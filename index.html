@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popular Movie Collection</title>
+    <!-- Inter font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+    </style>
+</head>
+<body class="p-4">
+    <header class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-yellow-400 mb-2">Popular Movie Collection</h1>
+        <p class="text-lg text-gray-400">Find your favorite movies here</p>
+    </header>
+
+    <main class="max-w-7xl mx-auto">
+        <!-- Search box -->
+        <div class="mb-8 p-4 bg-slate-700 rounded-xl shadow-lg">
+            <input type="text" id="searchInput" placeholder="Search for a movie..." class="w-full p-3 rounded-lg bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+        </div>
+
+        <!-- Movie list area -->
+        <div id="movieList" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Movie cards will be loaded here by JavaScript -->
+        </div>
+
+        <!-- Message if no movies are found -->
+        <div id="noResults" class="hidden text-center text-lg text-gray-400 mt-10">
+            Movie not found. Try another keyword.
+        </div>
+    </main>
+
+    <footer class="text-center mt-10 p-4 text-gray-500">
+        <p>&copy; 2025 Movie Collection. Made with ❤ for you.</p>
+    </footer>
+
+    <!-- CONFIRMATION POP-UP -->
+    <div id="popup" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden">
+        <div class="bg-slate-800 p-8 rounded-xl shadow-2xl max-w-sm w-full text-center transform scale-95 transition-transform duration-300">
+            <h2 class="text-2xl font-bold text-yellow-400 mb-4">Confirmation</h2>
+            <p class="text-lg text-gray-300 mb-6">Are you sure you want to proceed?</p>
+            <!-- "Close" button is now an affiliate link -->
+            <a href="https://www.google.com" target="_blank" id="popupAffiliateLink" class="inline-block bg-yellow-500 text-slate-900 font-semibold py-2 px-6 rounded-lg hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-colors duration-300">
+                Proceed
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Static movie data with added watchMovie link
+        const movies = [
+            {
+                title: 'The Matrix',
+                poster: 'https://placehold.co/300x450/1a202c/e2e8f0?text=The+Matrix',
+                year: '1999',
+                watchMovie: 'https://www.amazon.com/The-Matrix-Blu-ray-Keanu-Reeves/dp/B000Z94R6M'
+            },
+            {
+                title: 'Inception',
+                poster: 'https://placehold.co/300x450/1a202c/e2e8f0?text=Inception',
+                year: '2010',
+                watchMovie: 'https://www.amazon.com/Inception-Blu-ray-Leonardo-DiCaprio/dp/B002ZUXK5O'
+            },
+            {
+                title: 'Parasite',
+                poster: 'https://placehold.co/300x450/1a202c/e2e8f0?text=Parasite',
+                year: '2019',
+                watchMovie: 'https://www.amazon.com/Parasite-Bong-Joon-Ho/dp/B082L8T5Q8'
+            },
+            {
+                title: 'Interstellar',
+                poster: 'https://placehold.co/300x450/1a202c/e2e8f0?text=Interstellar',
+                year: '2014',
+                watchMovie: 'https://www.amazon.com/Interstellar-Blu-ray-Matthew-McConaughey/dp/B00Q64NWSG'
+            },
+            {
+                title: 'Spirited Away',
+                poster: 'https://placehold.co/300x450/1a202c/e2e8f0?text=Spirited+Away',
+                year: '2001',
+                watchMovie: 'https://www.amazon.com/Spirited-Away-2-Disc-Special-Edition/dp/B00005JQ1M'
+            },
+            {
+                title: 'The Dark Knight',
+                poster: 'https://placehold.co/300x450/1a202c/e2e8f0?text=The+Dark+Knight',
+                year: '2008',
+                watchMovie: 'https://www.amazon.com/Dark-Knight-Blu-ray-Christian-Bale/dp/B001CU5Q3I'
+            },
+            {
+                title: 'Mad Max: Fury Road',
+                poster: 'https://placehold.co/300x450/1a202c/e2e8f0?text=Mad+Max',
+                year: '2015',
+                watchMovie: 'https://www.amazon.com/Mad-Max-Fury-Road-Blu-ray/dp/B00X97G074'
+            },
+            {
+                title: 'Pulp Fiction',
+                poster: 'https://placehold.co/300x450/1a202c/e2e8f0?text=Pulp+Fiction',
+                year: '1994',
+                watchMovie: 'https://www.amazon.com/Pulp-Fiction-2-Disc-Special-Edition/dp/B00005JL'
+            }
+        ];
+
+        const movieListContainer = document.getElementById('movieList');
+        const searchInput = document.getElementById('searchInput');
+        const noResultsMessage = document.getElementById('noResults');
+
+        // Function to render movie list
+        function renderMovies(moviesToRender) {
+            movieListContainer.innerHTML = ''; // Clear existing movies
+            if (moviesToRender.length === 0) {
+                noResultsMessage.classList.remove('hidden');
+                return;
+            } else {
+                noResultsMessage.classList.add('hidden');
+            }
+
+            moviesToRender.forEach(movie => {
+                const movieCard = `
+                    <div class="bg-slate-800 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <img src="${movie.poster}" alt="Poster of ${movie.title}" class="w-full h-80 object-cover">
+                        <div class="p-5 flex flex-col items-start">
+                            <h2 class="text-xl font-semibold mb-1 text-white">${movie.title}</h2>
+                            <p class="text-sm text-gray-400 mb-3">Year: ${movie.year}</p>
+                            <a href="${movie.watchMovie}" target="_blank" class="w-full text-center bg-yellow-500 text-slate-900 font-semibold py-2 px-4 rounded-lg hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-colors duration-300">
+                                Watch Now
+                            </a>
+                        </div>
+                    </div>
+                `;
+                movieListContainer.innerHTML += movieCard;
+            });
+        }
+
+        // Function to handle search
+        function handleSearch() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredMovies = movies.filter(movie => 
+                movie.title.toLowerCase().includes(searchTerm)
+            );
+            renderMovies(filteredMovies);
+        }
+
+        // --- Pop-up Logic ---
+        const popup = document.getElementById('popup');
+        const popupAffiliateLink = document.getElementById('popupAffiliateLink');
+        
+        // Set pop-up appearance time in minutes
+        const delayInMinutes = 1;
+
+        // Show pop-up after the specified time
+        setTimeout(() => {
+            popup.classList.remove('hidden');
+        }, delayInMinutes * 60 * 1000); // 1 minute = 60000 ms
+
+        // Set the pop-up affiliate link
+        // Replace the URL below with your desired affiliate link
+        popupAffiliateLink.href = 'https://your-affiliate-link.com';
+
+        // Render movies when the page first loads
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMovies(movies);
+        });
+
+        // Add event listener for search input
+        searchInput.addEventListener('input', handleSearch);
+    </script>
+</body>
+</html>
