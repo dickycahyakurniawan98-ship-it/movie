@@ -1,183 +1,892 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dicakun Movie Collection</title>
-    <!-- Inter font from Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS CDN -->
+    <title>Situs Web Donghua dan Film</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #1a202c;
-            color: #e2e8f0;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+        .header {
+            background-color: #1c1c1c;
+            border-bottom: 1px solid #333;
+        }
+        .nav-link {
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: #6366f1;
+        }
+        .search-button {
+            background-color: #6366f1;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        .search-button:hover {
+            background-color: #4f46e5;
+        }
+        .card {
+            background-color: #1c1c1c;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .card-image-container {
+            position: relative;
+            padding-top: 150%; /* 2:3 Aspect Ratio */
+        }
+        .card-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .tag {
+            background-color: rgba(99, 102, 241, 0.8);
+            backdrop-filter: blur(5px);
+            color: white;
+            border-radius: 0.25rem;
+        }
+        .slider-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+        }
+        .slider-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+        }
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .nav-arrow:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .dot.active {
+            background-color: #6366f1;
+        }
+        .info-item {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .info-item div {
+            flex: 1 1 200px;
+        }
+        .rating-star {
+            color: #ffc107;
+        }
+        .qr-code-box {
+            background-color: #e0e0e0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+        .episode-button {
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            transition: background-color 0.3s;
+        }
+        .episode-button:hover {
+            background-color: #3c3c3c;
+        }
+        .episode-button.active {
+            background-color: #6366f1;
+            color: white;
+        }
+        .video-container {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
-<body class="p-4">
-    <header class="text-center mb-8">
-        <h1 class="text-4xl font-bold text-yellow-400 mb-2">Dicakun Movie Collection</h1>
-        <p class="text-lg text-gray-400">Find your favorite movies here</p>
+<body class="bg-[#121212] text-gray-200">
+
+    <!-- Header Section -->
+    <header class="header sticky top-0 z-50">
+        <div class="container flex items-center justify-between py-4">
+            <div class="flex items-center space-x-8">
+                <a href="#" class="text-2xl font-bold text-white" onclick="showMainPage()">
+                    <span class="text-blue-500">DI</span>CAKUN
+                </a>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#" class="nav-link text-white font-medium" onclick="showMainPage()">Beranda</a>
+                    <a href="#" class="nav-link text-white font-medium" onclick="showMainPage()">Donghua</a>
+                    <a href="#" class="nav-link text-white font-medium">Terakhir</a>
+                    <a href="#" class="nav-link text-white font-medium">Peringkat</a>
+                    <a href="#" class="nav-link text-white font-medium">Semua <span class="ml-1">&#9776;</span></a>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="relative hidden md:block">
+                    <input type="text" placeholder="Masukkan kata kunci" class="bg-[#242424] text-white rounded-full pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full hidden md:block">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 15a4 4 0 110-8 4 4 0 010 8zm0 2a6 6 0 100-12 6 6 0 000 12zM21 21l-6-6"></path>
+                    </svg>
+                </button>
+                <a href="#" class="hidden md:block">
+                    <svg class="w-6 h-6 text-gray-400 hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405C18.21 14.242 18 13.568 18 13v-1c0-2.828 0-4.243-1.464-5.707C15.071 4.793 13.657 4 12 4s-3.071.793-4.536 2.293C6 7.757 6 9.172 6 12v1c0 .568-.21 1.242-.595 1.595L4 17h5l1 2h4l1-2zm-2-2v-2h-2v2H9v2h2v2h2v-2h2v-2h-2z"></path>
+                    </svg>
+                </a>
+                <a href="#" class="hidden md:block">
+                    <svg class="w-6 h-6 text-gray-400 hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
     </header>
 
-    <main class="max-w-7xl mx-auto">
-        <!-- Search box -->
-        <div class="mb-8 p-4 bg-slate-700 rounded-xl shadow-lg">
-            <input type="text" id="searchInput" placeholder="Search for a movie..." class="w-full p-3 rounded-lg bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400">
-        </div>
+    <!-- Main Content Section (Default View) -->
+    <div id="main-content">
+        <main class="container py-8">
+            <!-- Main Slider Section -->
+            <section id="slider-container" class="relative rounded-lg overflow-hidden mb-8">
+                <div class="relative w-full h-[500px]">
+                    <img id="slider-image" src="https://placehold.co/1200x500/2a2a2a/ffffff?text=Renegade+Immortal" alt="Renegade Immortal" class="slider-image">
+                    <div class="slider-overlay absolute inset-0 flex items-end p-8 text-white">
+                        <div>
+                            <span id="slider-tag" class="bg-blue-600 px-3 py-1 text-sm font-semibold rounded-full">Donghua</span>
+                            <h2 id="slider-title" class="text-4xl font-bold mt-2">Renegade Immortal</h2>
+                            <p id="slider-description" class="text-gray-300 text-lg mt-1">Populer (EP165) - Direkomendasikan</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation Arrows -->
+                    <div id="prev-btn" class="nav-arrow left-4 text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </div>
+                    <div id="next-btn" class="nav-arrow right-4 text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
 
-        <!-- Movie list area -->
-        <div id="movieList" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <!-- Movie cards will be loaded here by JavaScript -->
-        </div>
+                    <!-- Pagination Dots -->
+                    <div id="pagination" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2"></div>
+                </div>
+            </section>
 
-        <!-- Message if no movies are found -->
-        <div id="noResults" class="hidden text-center text-lg text-gray-400 mt-10">
-            Movie not found. Try another keyword.
-        </div>
-    </main>
+            <!-- Category Tabs -->
+            <section class="mb-8">
+                <div class="flex items-center justify-between border-b border-gray-700 pb-3">
+                    <div class="flex space-x-2">
+                        <button class="bg-gray-700 text-white px-4 py-2 rounded-full text-sm font-medium">Donghua</button>
+                        <button class="bg-gray-800 text-gray-400 px-4 py-2 rounded-full text-sm font-medium">Selesai</button>
+                        <a href="#movies-section" class="bg-gray-800 text-gray-400 px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-700 transition-colors">Film</a>
+                        <button class="bg-gray-800 text-gray-400 px-4 py-2 rounded-full text-sm font-medium">Segera</button>
+                    </div>
+                    <a href="#" class="text-sm font-medium text-blue-400 hover:text-blue-500">Jadwal ></a>
+                </div>
+            </section>
 
-    <footer class="text-center mt-10 p-4 text-gray-500">
-        <p>&copy; 2025 Movie Collection. Made with ❤ for you.</p>
-    </footer>
-
-    <!-- CONFIRMATION POP-UP -->
-    <div id="popup" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden">
-        <div class="bg-slate-800 p-8 rounded-xl shadow-2xl max-w-sm w-full text-center transform scale-95 transition-transform duration-300">
-            <h2 class="text-2xl font-bold text-yellow-400 mb-4">Confirmation</h2>
-            <p class="text-lg text-gray-300 mb-6">Are you sure you want to proceed?</p>
-            <!-- "Close" button is now an affiliate link -->
-            <a href="https://www.google.com" target="_blank" id="popupAffiliateLink" class="inline-block bg-yellow-500 text-slate-900 font-semibold py-2 px-6 rounded-lg hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-colors duration-300">
-                Proceed
-            </a>
-        </div>
+            <section class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <!-- Card 1 -->
+                <div class="card">
+                    <a href="#" onclick="showDetailPage('shrouding-the-heavens')">
+                        <div class="card-image-container">
+                            <img src="https://placehold.co/300x450/333333/ffffff?text=Shrouding+the+Heavens" alt="Shrouding the Heavens" class="card-image">
+                        </div>
+                        <div class="p-4">
+                            <span class="tag px-2 py-1 text-xs">Donghua</span>
+                            <h4 class="text-sm font-semibold mt-2">Shrouding The Heavens</h4>
+                            <p class="text-xs text-gray-400 mt-1">EP126</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- Card 2 -->
+                <div class="card">
+                    <a href="#" onclick="showDetailPage('purple-river-season-2')">
+                        <div class="card-image-container">
+                            <img src="https://placehold.co/300x450/444444/ffffff?text=Purple+River+Season+2" alt="Purple River Season 2" class="card-image">
+                        </div>
+                        <div class="p-4">
+                            <span class="tag px-2 py-1 text-xs">Donghua</span>
+                            <h4 class="text-sm font-semibold mt-2">Purple River Season 2</h4>
+                            <p class="text-xs text-gray-400 mt-1">EP09</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- Card 3 -->
+                <div class="card">
+                    <a href="#" onclick="showDetailPage('urban-miracle-doctor')">
+                        <div class="card-image-container">
+                            <img src="https://placehold.co/300x450/555555/ffffff?text=Urban+Miracle+Doctor" alt="Urban Miracle Doctor" class="card-image">
+                        </div>
+                        <div class="p-4">
+                            <span class="tag px-2 py-1 text-xs">Donghua</span>
+                            <h4 class="text-sm font-semibold mt-2">Urban Miracle Doctor</h4>
+                            <p class="text-xs text-gray-400 mt-1">EP12</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- Card 4 -->
+                <div class="card">
+                    <a href="#" onclick="showDetailPage('legend-of-the-ethereal-sword')">
+                        <div class="card-image-container">
+                            <img src="https://placehold.co/300x450/666666/ffffff?text=Legend+of+the+Ethereal+Sword" alt="Legend of the Ethereal Sword" class="card-image">
+                        </div>
+                        <div class="p-4">
+                            <span class="tag px-2 py-1 text-xs">Donghua</span>
+                            <h4 class="text-sm font-semibold mt-2">Legend of the Ethereal Sword</h4>
+                            <p class="text-xs text-gray-400 mt-1">EP15</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- Card 5 -->
+                <div class="card">
+                    <a href="#" onclick="showDetailPage('ancient-supremacy')">
+                        <div class="card-image-container">
+                            <img src="https://placehold.co/300x450/777777/ffffff?text=Ancient+Supremacy" alt="Ancient Supremacy" class="card-image">
+                        </div>
+                        <div class="p-4">
+                            <span class="tag px-2 py-1 text-xs">Donghua</span>
+                            <h4 class="text-sm font-semibold mt-2">Ancient Supremacy</h4>
+                            <p class="text-xs text-gray-400 mt-1">EP230</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- Card 6 -->
+                <div class="card">
+                    <a href="#" onclick="showDetailPage('supreme-over-the-sky')">
+                        <div class="card-image-container">
+                            <img src="https://placehold.co/300x450/888888/ffffff?text=Supreme+Over+the+Sky" alt="Supreme Over the Sky" class="card-image">
+                        </div>
+                        <div class="p-4">
+                            <span class="tag px-2 py-1 text-xs">Donghua</span>
+                            <h4 class="text-sm font-semibold mt-2">Supreme Over the Sky</h4>
+                            <p class="text-xs text-gray-400 mt-1">EP23</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </main>
     </div>
 
+    <!-- Detail Content Section (Hidden by Default) -->
+    <div id="detail-content" class="hidden">
+        <main class="container py-8">
+            <!-- Breadcrumbs -->
+            <div class="text-sm text-gray-400 mb-6">
+                <a href="#" class="hover:underline" onclick="showMainPage()">Beranda</a> >
+                <span id="detail-title-breadcrumb"></span>
+            </div>
+
+            <!-- Detail Section -->
+            <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Left Column: Image and Details -->
+                <div class="col-span-1 lg:col-span-2 flex flex-col md:flex-row gap-8">
+                    <div class="flex-shrink-0 w-full md:w-1/3">
+                        <img id="detail-image" src="" alt="" class="rounded-lg shadow-lg w-full">
+                    </div>
+                    <div class="flex-grow">
+                        <span id="detail-tag" class="bg-blue-600 px-3 py-1 text-sm font-semibold rounded-full"></span>
+                        <h1 id="detail-title" class="text-3xl font-bold text-white mt-2"></h1>
+                        
+                        <div class="info-item text-sm text-gray-400 mt-4">
+                            <div>
+                                <p><strong>Episode Terakhir:</strong> <span id="detail-episode"></span></p>
+                                <p><strong>Penulis:</strong> <span id="detail-author"></span></p>
+                                <p><strong>Bahasa:</strong> <span id="detail-language"></span></p>
+                            </div>
+                            <div>
+                                <p><strong>Tahun:</strong> <span id="detail-year"></span></p>
+                                <p><strong>Durasi:</strong> <span id="detail-duration"></span></p>
+                                <p><strong>Pembaruan Terakhir:</strong> <span id="detail-last-update"></span></p>
+                            </div>
+                            <div>
+                                <p><strong>Negara:</strong> <span id="detail-country"></span></p>
+                                <p><strong>Dirilis:</strong> <span id="detail-released"></span></p>
+                                <p><strong>Jenis:</strong> <span id="detail-type"></span></p>
+                            </div>
+                        </div>
+
+                        <p id="detail-introduction" class="text-gray-300 mt-4"></p>
+
+                        <div class="flex flex-wrap gap-4 mt-6">
+                            <button class="bg-yellow-500 text-black px-6 py-3 rounded-full font-bold shadow-lg">Watch</button>
+                            <button class="bg-gray-700 text-white px-6 py-3 rounded-full font-medium flex items-center gap-2">
+                                AI Multi Sub
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="flex items-center space-x-4 mt-6">
+                            <span class="text-lg text-gray-400">
+                                <i class="fas fa-comment"></i> 
+                                <span class="text-white ml-1">0</span>
+                            </span>
+                            <span class="text-lg text-gray-400">
+                                <i class="fas fa-thumbs-up"></i> 
+                                <span class="text-white ml-1">1</span>
+                            </span>
+                            <span class="text-lg text-gray-400">
+                                <i class="fas fa-users"></i> 
+                                <span class="text-white ml-1">511</span>
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Right Column: Rating -->
+                <div class="col-span-1 flex flex-col items-center lg:items-end">
+                    <div class="text-right">
+                        <span class="text-4xl font-bold text-yellow-500">7.9</span>
+                        <span class="text-lg text-gray-400">Netizen ratings</span>
+                    </div>
+                    <div class="flex mt-2">
+                        <span class="rating-star text-2xl">&#9733;</span>
+                        <span class="rating-star text-2xl">&#9733;</span>
+                        <span class="rating-star text-2xl">&#9733;</span>
+                        <span class="rating-star text-2xl">&#9733;</span>
+                        <span class="text-gray-500 text-2xl">&#9733;</span>
+                    </div>
+                    <p class="text-sm text-gray-400 mt-2">I also want to rate the video</p>
+                </div>
+            </section>
+
+            <!-- Episodes Section -->
+            <section class="mt-12">
+                <h2 class="text-2xl font-semibold mb-4">Playlist</h2>
+                <p class="text-gray-400 mb-4">AI Multi Sub</p>
+                <div id="episode-list" class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 xl:grid-cols-12 gap-4">
+                    <!-- Episode buttons will be generated here -->
+                </div>
+            </section>
+
+            <!-- Ranking List Section -->
+            <section class="mt-12">
+                <h2 class="text-2xl font-semibold mb-4">Donghua Ranking list</h2>
+                <ol class="list-decimal list-inside space-y-2 text-lg">
+                    <li><a href="#" class="hover:underline">Battle Through the Heavens Season 5</a></li>
+                    <li><a href="#" class="hover:underline">Tales of Herding Gods</a></li>
+                    <li><a href="#" class="hover:underline">Renegade Immortal</a></li>
+                    <li><a href="#" class="hover:underline">Soul Land 2 The Peerless Tang Clan</a></li>
+                    <li><a href="#" class="hover:underline">Swallowed star</a></li>
+                    <li><a href="#" class="hover:underline">Perfect World</a></li>
+                    <li><a href="#" class="hover:underline">Throne of Seal</a></li>
+                </ol>
+            </section>
+        </main>
+    </div>
+
+    <!-- Player Content Section (Hidden by Default) -->
+    <div id="player-content" class="hidden">
+        <main class="container py-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="col-span-1 lg:col-span-2">
+                    <!-- Video Player -->
+                    <div class="video-container mb-4">
+                        <iframe id="video-player" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+
+                    <h1 id="player-title" class="text-3xl font-bold text-white"></h1>
+                    <p id="player-info" class="text-sm text-gray-400 mt-2"></p>
+                    
+                    <div class="flex flex-wrap gap-4 mt-6 items-center">
+                        <a id="download-button" href="#" target="_blank" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold shadow-lg flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                            </svg>
+                            Unduh
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-span-1">
+                    <h2 class="text-2xl font-semibold mb-4">Playlist</h2>
+                    <div id="player-episode-list" class="grid grid-cols-2 gap-2">
+                        <!-- Episode buttons will be generated here -->
+                    </div>
+                </div>
+            </div>
+            
+            <section class="mt-12">
+                <h2 class="text-2xl font-semibold mb-4">Maybe You Like</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                    <!-- Cards will be generated dynamically -->
+                    <div class="card">
+                        <a href="#" onclick="showDetailPage('shrouding-the-heavens')">
+                            <div class="card-image-container">
+                                <img src="https://placehold.co/300x450/333333/ffffff?text=Shrouding+the+Heavens" alt="Shrouding the Heavens" class="card-image">
+                            </div>
+                            <div class="p-4">
+                                <span class="tag px-2 py-1 text-xs">Donghua</span>
+                                <h4 class="text-sm font-semibold mt-2">Shrouding The Heavens</h4>
+                                <p class="text-xs text-gray-400 mt-1">EP126</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <footer class="bg-black py-8 mt-12 text-center text-gray-500">
+        <div class="container flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <p>&copy; 2024 DICAKUN. All rights reserved.</p>
+            <div class="flex space-x-4">
+                <a href="https://www.facebook.com/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.873V15h-2.905V12h2.905V9.695c0-2.905 1.77-4.482 4.342-4.482 1.258 0 2.342.224 2.652.324V7.5H16.14c-1.282 0-1.534.61-1.534 1.517V12h3.192l-.517 3H14.606v6.873C19.343 21.128 23 16.991 23 12h-1z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+                <a href="https://www.twitter.com/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14.288 8.16l5.77-5.77-1.06-1.06-5.77 5.77-5.77-5.77-1.06 1.06 5.77 5.77-5.77 5.77 1.06 1.06 5.77-5.77 5.77 5.77 1.06-1.06-5.77-5.77z"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.323 16.315c-.412-.413-.976-.642-1.564-.642H12a2.5 2.5 0 01-2.5-2.5V12a2.5 2.5 0 012.5-2.5h1.759c.588 0 1.152.229 1.564.642.413.412.642.976.642 1.564v1.759c0 .588-.229 1.152-.642 1.564-.412.413-.976.642-1.564.642H12a2.5 2.5 0 01-2.5-2.5V12a2.5 2.5 0 012.5-2.5h1.759a2.5 2.5 0 011.564.642.413.412.642.976.642 1.564v1.759c0 .588-.229 1.152-.642 1.564-.412.413-.976.642-1.564.642z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+                <a href="https://www.tiktok.com/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M16 2.015c.348-.007.697-.007 1.045.006.35.01.7.03 1.044.062.333.03.666.07 1 .12a.6.6 0 01.3.16.6.6 0 01.16.3c.05.334.09.667.12 1.002.03.344.05.694.06 1.044.01.348-.01.7-.01 1.047 0 .19-.002.38-.006.57-.003.19-.01.378-.01.565-.008.19-.02.378-.04.566-.02.19-.04.378-.07.567-.04.19-.08.38-.13.57-.05.18-.11.36-.18.54-.07.18-.16.36-.26.54-.1.18-.21.35-.33.52-.12.17-.25.34-.39.5-.14.16-.29.31-.44.45-.16.14-.32.27-.49.38-.17.11-.35.21-.54.3-.19.09-.38.16-.58.21-.2.05-.4.09-.6.12-.2.03-.41.05-.62.06-.2.01-.4.01-.6.01-.19.01-.38.01-.57.01s-.38-.01-.57-.01c-1.33-.04-2.65-.2-3.95-.49C7.4 20.32 5.56 19.34 4 17.82c-.67-.68-1.27-1.42-1.8-2.22-.53-.8-.96-1.63-1.28-2.5-.33-.87-.55-1.75-.66-2.63-.11-.88-.13-1.75-.08-2.62.05-.87.21-1.73.46-2.57.25-.84.58-1.66 1-2.43.43-.77.9-1.52 1.41-2.25.51-.73 1.06-1.44 1.66-2.11.6-.68 1.25-1.32 1.94-1.93.69-.6 1.4-1.16 2.14-1.7.74-.54 1.5-.99 2.27-1.35.78-.36 1.56-.67 2.34-.92.78-.25 1.55-.45 2.32-.59.77-.14 1.54-.25 2.3-.32.76-.08 1.52-.15 2.28-.15.76 0 1.52 0 2.28-.01zM11.5 13.5v-3h2v3h-2zm-3-3h-2v3h2v-3zm6 0h-2v3h2v-3z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <p class="text-sm mt-4">Made with ❤️ by DICAKUN</p>
+    </footer>
+
     <script>
-        // Static movie data with added watchMovie link
-        const movies = [
+        // Data untuk slider
+        const slides = [
             {
-                title: 'Him',
-                poster: 'https://i.imgur.com/n6myV4E.png',
-                year: '2025',
-                watchMovie: 'https://www.youtube.com/embed/hpEy0iOixb4?si=8XlPyjWATETXHjUy'
+                image: "https://placehold.co/1200x500/2a2a2a/ffffff?text=Renegade+Immortal",
+                tag: "Donghua",
+                title: "Renegade Immortal",
+                description: "Populer (EP165) - Direkomendasikan",
+                slug: "renegade-immortal"
             },
             {
-                title: 'The Long Walk',
-                poster: 'https://i.imgur.com/GL2DijQ.jpeg',
-                year: '2025',
-                watchMovie: 'https://www.revenuecpmgate.com/q38u8p5s4?key=3fc9d9634e1afaf8cda0afbf5a87958c'
+                image: "https://placehold.co/1200x500/3a3a3a/ffffff?text=A+Record+of+a+Mortal's+Journey+to+Immortality",
+                tag: "Donghua",
+                title: "A Record of a Mortal's Journey to Immortality",
+                description: "Episode Terbaru (EP18) - 4.9/5 Rating",
+                slug: "a-record-of-a-mortals-journey-to-immortality"
             },
             {
-                title: 'Downton Abbey',
-                poster: 'https://i.imgur.com/DrwJmjD.jpeg',
-                year: '2019',
-                watchMovie: 'https://www.revenuecpmgate.com/q38u8p5s4?key=3fc9d9634e1afaf8cda0afbf5a87958c'
+                image: "https://placehold.co/1200x500/4a4a4a/ffffff?text=Soul+Land",
+                tag: "Donghua",
+                title: "Soul Land",
+                description: "Paling Banyak Ditonton (EP275) - 4.8/5 Rating",
+                slug: "soul-land"
             },
             {
-                title: 'Area 51',
-                poster: 'https://i.imgur.com/Bn9iG12.png',
-                year: '2015',
-                watchMovie: 'https://www.revenuecpmgate.com/q38u8p5s4?key=3fc9d9634e1afaf8cda0afbf5a87958c'
-            },
-            {
-                title: 'Bull',
-                poster: 'https://i.imgur.com/WLvJPBj.png',
-                year: '2021',
-                watchMovie: 'https://www.revenuecpmgate.com/q38u8p5s4?key=3fc9d9634e1afaf8cda0afbf5a87958c'
-            },
-            {
-                title: 'Dragonheart',
-                poster: 'https://i.imgur.com/U1IQJdd.png',
-                year: '1996',
-                watchMovie: 'https://www.revenuecpmgate.com/q38u8p5s4?key=3fc9d9634e1afaf8cda0afbf5a87958c'
-            },
-            {
-                title: 'Tomorrowland',
-                poster: 'https://i.imgur.com/hYVax3o.png',
-                year: '2015',
-                watchMovie: 'https://www.revenuecpmgate.com/q38u8p5s4?key=3fc9d9634e1afaf8cda0afbf5a87958c'
-            },
-            {
-                title: 'Paprika',
-                poster: 'https://i.imgur.com/j8lZQF8.png',
-                year: '1991',
-                watchMovie: 'https://www.revenuecpmgate.com/q38u8p5s4?key=3fc9d9634e1afaf8cda0afbf5a87958c'
+                image: "https://placehold.co/1200x500/5a5a5a/ffffff?text=Perfect+World",
+                tag: "Donghua",
+                title: "Perfect World",
+                description: "Populer (EP185) - 4.7/5 Rating",
+                slug: "perfect-world"
             }
         ];
 
-        const movieListContainer = document.getElementById('movieList');
-        const searchInput = document.getElementById('searchInput');
-        const noResultsMessage = document.getElementById('noResults');
+        // Data untuk halaman detail dan player
+        const contentData = {
+            'shrouding-the-heavens': {
+                tag: 'Donghua',
+                title: 'Shrouding The Heavens',
+                image: 'https://placehold.co/300x450/333333/ffffff?text=Shrouding+the+Heavens',
+                breadcrumbs: 'Donghua > Shrouding The Heavens',
+                episode: 'EP126',
+                author: '无名',
+                language: 'Chinese',
+                year: '2023',
+                duration: 'Details',
+                lastUpdate: '2025-09-09 19:08',
+                country: 'Chinese',
+                released: 'Unknown',
+                type: 'action / fantasy / adventure',
+                introduction: 'This animation is adapted from the first part of the trilogy of The Great Saint by Chen Dong, a platinum-writing writer from Qidian. In the depths of the cold and dark universe, nine huge bronze coffins are pulling a mysterious ancient corpse to the end. It is a thrilling journey of human beings after exploring the tomb of the big dipper and returning to the earth, which has the reputation of "Emperor Tomb". In the depths of the cold and dark universe, nine huge bronze coffins are pulling a mysterious ancient corpse to the end.',
+                episodeCount: 126,
+                related: ['purple-river-season-2', 'ancient-supremacy'],
+                videoLinks: {
+                    1: 'https://www.youtube.com/embed/P-v3a2oD47o',
+                    2: 'https://www.youtube.com/embed/w7W3-L36L0k',
+                    3: 'https://www.youtube.com/embed/HqD22m3Gj6k',
+                    4: 'https://www.youtube.com/embed/H6xI2k85h9I',
+                    5: 'https://www.youtube.com/embed/7V-e9g5bX7k',
+                    6: 'https://www.youtube.com/embed/gX7n4R3QcQc'
+                },
+                // Sisipkan link unduhan di sini untuk setiap episode.
+                // Anda bisa menambahkan link untuk episode 7, 8, dan seterusnya.
+                downloadLinks: {
+                    1: 'https://example.com/download-ep1.mp4',
+                    2: 'https://example.com/download-ep2.mp4',
+                    3: 'https://example.com/download-ep3.mp4',
+                    4: 'https://example.com/download-ep4.mp4',
+                    5: 'https://example.com/download-ep5.mp4',
+                    6: 'https://example.com/download-ep6.mp4'
+                }
+            },
+            'purple-river-season-2': {
+                tag: 'Donghua',
+                title: 'Purple River Season 2',
+                image: 'https://placehold.co/300x450/444444/ffffff?text=Purple+River+Season+2',
+                breadcrumbs: 'Donghua > Purple River Season 2',
+                episode: 'EP09',
+                author: 'Anonymous',
+                language: 'Chinese',
+                year: '2024',
+                duration: 'Details',
+                lastUpdate: '2025-09-09 19:08',
+                country: 'Chinese',
+                released: 'Unknown',
+                type: 'action / fantasy / adventure',
+                introduction: 'The second season of Purple River, following the thrilling adventures of the protagonists.',
+                episodeCount: 9,
+                related: ['shrouding-the-heavens', 'urban-miracle-doctor'],
+                videoLinks: {
+                    1: 'https://www.youtube.com/embed/P-v3a2oD47o',
+                    2: 'https://www.youtube.com/embed/w7W3-L36L0k',
+                    3: 'https://www.youtube.com/embed/P-v3a2oD47o',
+                    4: 'https://www.youtube.com/embed/w7W3-L36L0k',
+                    5: 'https://www.youtube.com/embed/P-v3a2oD47o',
+                    6: 'https://www.youtube.com/embed/w7W3-L36L0k'
+                },
+                downloadLinks: {}
+            },
+            'urban-miracle-doctor': {
+                tag: 'Donghua',
+                title: 'Urban Miracle Doctor',
+                image: 'https://placehold.co/300x450/555555/ffffff?text=Urban+Miracle+Doctor',
+                breadcrumbs: 'Donghua > Urban Miracle Doctor',
+                episode: 'EP12',
+                author: 'Anonymous',
+                language: 'Chinese',
+                year: '2023',
+                duration: 'Details',
+                lastUpdate: '2025-09-09 19:08',
+                country: 'Chinese',
+                released: 'Unknown',
+                type: 'action / fantasy / adventure',
+                introduction: 'A story about a miracle doctor who navigates the urban world with his extraordinary skills.',
+                episodeCount: 12,
+                related: ['purple-river-season-2', 'ancient-supremacy'],
+                videoLinks: {
+                    1: 'https://www.youtube.com/embed/P-v3a2oD47o',
+                    2: 'https://www.youtube.com/embed/w7W3-L36L0k',
+                    3: 'https://www.youtube.com/embed/P-v3a2oD47o',
+                    4: 'https://www.youtube.com/embed/w7W3-L36L0k',
+                    5: 'https://www.youtube.com/embed/P-v3a2oD47o',
+                    6: 'https://www.youtube.com/embed/w7W3-L36L0k'
+                },
+                downloadLinks: {}
+            },
+            'legend-of-the-ethereal-sword': {
+                tag: 'Donghua',
+                title: 'Legend of the Ethereal Sword',
+                image: 'https://placehold.co/300x450/666666/ffffff?text=Legend+of+the+Ethereal+Sword',
+                breadcrumbs: 'Donghua > Legend of the Ethereal Sword',
+                episode: 'EP15',
+                author: 'Anonymous',
+                language: 'Chinese',
+                year: '2022',
+                duration: 'Details',
+                lastUpdate: '2025-09-09 19:08',
+                country: 'Chinese',
+                released: 'Unknown',
+                type: 'action / fantasy / adventure',
+                introduction: 'A legendary tale of a sword master on a quest for justice.',
+                episodeCount: 15,
+                related: ['supreme-over-the-sky', 'perfect-world'],
+                videoLinks: {
+                    1: 'https://www.youtube.com/embed/P-v3a2oD47o',
+                    2: 'https://www.youtube.com/embed/w7W3-L36L0k',
+                    3: 'https://www.youtube.com/embed/P-v3a2oD47o',
+                    4: 'https://www.youtube.com/embed/w7W3-L36L0k',
+                    5: 'https://www.youtube.com/embed/P-v3a2oD47o',
+                    6: 'https://www.youtube.com/embed/w7W3-L36L0k'
+                },
+                downloadLinks: {}
+            },
+            'ancient-supremacy': {
+                tag: 'Donghua',
+                title: 'Ancient Supremacy',
+                image: 'https://placehold.co/300x450/777777/ffffff?text=Ancient+Supremacy',
+                breadcrumbs: 'Donghua > Ancient Supremacy',
+                episode: 'EP230',
+                author: 'Anonymous',
+                language: 'Chinese',
+                year: '2021',
+                duration: 'Details',
+                lastUpdate: '2025-09-09 19:08',
+                country: 'Chinese',
+                released: 'Unknown',
+                type: 'action / fantasy / adventure',
+                introduction: 'A powerful story of an ancient hero rising to reclaim his supremacy.',
+                episodeCount: 230,
+                related: ['urban-miracle-doctor', 'shrouding-the-heavens'],
+                videoLinks: {
+                    1: 'https://www.youtube.com/embed/P-v3a2oD47o',
+                    2: 'https://www.youtube.com/embed/w7W3-L36L0k',
+                    3: 'https://www.youtube.com/embed/P-v3a2oD47o',
+                    4: 'https://www.youtube.com/embed/w7W3-L36L0k',
+                    5: 'https://www.youtube.com/embed/P-v3a2oD47o',
+                    6: 'https://www.youtube.com/embed/w7W3-L36L0k'
+                },
+                downloadLinks: {}
+            },
+            'supreme-over-the-sky': {
+                tag: 'Donghua',
+                title: 'Supreme Over the Sky',
+                image: 'https://placehold.co/300x450/888888/ffffff?text=Supreme+Over+the+Sky',
+                breadcrumbs: 'Donghua > Supreme Over the Sky',
+                episode: 'EP23',
+                author: 'Anonymous',
+                language: 'Chinese',
+                year: '2024',
+                duration: 'Details',
+                lastUpdate: '2025-09-09 19:08',
+                country: 'Chinese',
+                released: 'Unknown',
+                type: 'action / fantasy / adventure',
+                introduction: 'An epic tale of a hero who becomes supreme over all in the sky.',
+                episodeCount: 23,
+                related: ['legend-of-the-ethereal-sword', 'perfect-world'],
+                videoLinks: {
+                    1: 'https://www.youtube.com/embed/P-v3a2oD47o',
+                    2: 'https://www.youtube.com/embed/w7W3-L36L0k',
+                    3: 'https://www.youtube.com/embed/P-v3a2oD47o',
+                    4: 'https://www.youtube.com/embed/w7W3-L36L0k',
+                    5: 'https://www.youtube.com/embed/P-v3a2oD47o',
+                    6: 'https://www.youtube.com/embed/w7W3-L36L0k'
+                },
+                downloadLinks: {}
+            }
+        };
 
-        // Function to render movie list
-        function renderMovies(moviesToRender) {
-            movieListContainer.innerHTML = ''; // Clear existing movies
-            if (moviesToRender.length === 0) {
-                noResultsMessage.classList.remove('hidden');
+        const mainContent = document.getElementById('main-content');
+        const detailContent = document.getElementById('detail-content');
+        const playerContent = document.getElementById('player-content');
+        let currentContentId = '';
+
+        // Fungsi untuk menampilkan halaman utama
+        function showMainPage() {
+            mainContent.classList.remove('hidden');
+            detailContent.classList.add('hidden');
+            playerContent.classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Fungsi untuk menampilkan halaman detail berdasarkan ID konten
+        function showDetailPage(contentId) {
+            const content = contentData[contentId];
+            if (!content) {
+                console.error('Content not found:', contentId);
                 return;
-            } else {
-                noResultsMessage.classList.add('hidden');
+            }
+            currentContentId = contentId;
+
+            document.getElementById('detail-image').src = content.image;
+            document.getElementById('detail-image').alt = content.title;
+            document.getElementById('detail-tag').textContent = content.tag;
+            document.getElementById('detail-title').textContent = content.title;
+            document.getElementById('detail-title-breadcrumb').textContent = content.title;
+            document.getElementById('detail-episode').textContent = content.episode;
+            document.getElementById('detail-author').textContent = content.author;
+            document.getElementById('detail-language').textContent = content.language;
+            document.getElementById('detail-year').textContent = content.year;
+            document.getElementById('detail-duration').textContent = content.duration;
+            document.getElementById('detail-last-update').textContent = content.lastUpdate;
+            document.getElementById('detail-country').textContent = content.country;
+            document.getElementById('detail-released').textContent = content.released;
+            document.getElementById('detail-type').textContent = content.type;
+            document.getElementById('detail-introduction').textContent = content.introduction;
+
+            // Generate episode buttons
+            const episodeList = document.getElementById('episode-list');
+            episodeList.innerHTML = '';
+            for (let i = 1; i <= content.episodeCount; i++) {
+                const button = document.createElement('button');
+                button.classList.add('episode-button');
+                button.textContent = `EP${i}`;
+                button.setAttribute('data-episode', i);
+                button.addEventListener('click', () => {
+                    showPlayerPage(contentId, i);
+                });
+                episodeList.appendChild(button);
             }
 
-            moviesToRender.forEach(movie => {
-                const movieCard = `
-                    <div class="bg-slate-800 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <img src="${movie.poster}" alt="Poster of ${movie.title}" class="w-full h-80 object-cover">
-                        <div class="p-5 flex flex-col items-start">
-                            <h2 class="text-xl font-semibold mb-1 text-white">${movie.title}</h2>
-                            <p class="text-sm text-gray-400 mb-3">Year: ${movie.year}</p>
-                            <a href="${movie.watchMovie}" target="_blank" class="w-full text-center bg-yellow-500 text-slate-900 font-semibold py-2 px-4 rounded-lg hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-colors duration-300">
-                                Watch Now
-                            </a>
-                        </div>
-                    </div>
-                `;
-                movieListContainer.innerHTML += movieCard;
+            mainContent.classList.add('hidden');
+            detailContent.classList.remove('hidden');
+            playerContent.classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Fungsi untuk menampilkan halaman pemutar
+        function showPlayerPage(contentId, episodeNumber) {
+            const content = contentData[contentId];
+            if (!content) {
+                console.error('Content not found:', contentId);
+                return;
+            }
+
+            // Dapatkan link video berdasarkan nomor episode
+            const videoUrl = content.videoLinks[episodeNumber];
+            if (videoUrl) {
+                document.getElementById('video-player').src = videoUrl;
+            } else {
+                document.getElementById('video-player').src = ""; // Setel src ke string kosong
+                console.error(`Video link not found for episode: ${episodeNumber}. Displaying blank player.`);
+            }
+
+            // Dapatkan link unduhan dari halaman detail, bukan dari player
+            const downloadUrl = content.downloadLinks ? content.downloadLinks[episodeNumber] : null;
+            const downloadButton = document.getElementById('download-button');
+            if (downloadUrl) {
+                downloadButton.href = downloadUrl;
+                downloadButton.classList.remove('hidden');
+            } else {
+                downloadButton.classList.add('hidden');
+            }
+
+            document.getElementById('player-title').textContent = `${content.title} EP${episodeNumber}`;
+            document.getElementById('player-info').textContent = `EP${episodeNumber} / ${content.episode} · ${content.year} · ${content.country} · ${content.type}`;
+            
+            // Generate episode buttons on player page
+            const playerEpisodeList = document.getElementById('player-episode-list');
+            playerEpisodeList.innerHTML = '';
+            for (let i = 1; i <= content.episodeCount; i++) {
+                const button = document.createElement('button');
+                button.classList.add('episode-button', 'w-full', 'text-left');
+                button.textContent = `EP${i}`;
+
+                if (i === episodeNumber) {
+                    button.classList.add('active');
+                }
+
+                button.addEventListener('click', () => {
+                    showPlayerPage(contentId, i);
+                });
+                playerEpisodeList.appendChild(button);
+            }
+
+            mainContent.classList.add('hidden');
+            detailContent.classList.add('hidden');
+            playerContent.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    
+        // Inisialisasi slider
+        let currentSlide = 0;
+        const sliderImage = document.getElementById('slider-image');
+        const sliderTag = document.getElementById('slider-tag');
+        const sliderTitle = document.getElementById('slider-title');
+        const sliderDescription = document.getElementById('slider-description');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const pagination = document.getElementById('pagination');
+
+        function updateSlider() {
+            sliderImage.src = slides[currentSlide].image;
+            sliderTag.textContent = slides[currentSlide].tag;
+            sliderTitle.textContent = slides[currentSlide].title;
+            sliderDescription.textContent = slides[currentSlide].description;
+            updatePagination();
+        }
+
+        function updatePagination() {
+            pagination.innerHTML = '';
+            slides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                }
+                dot.addEventListener('click', () => {
+                    currentSlide = index;
+                    updateSlider();
+                    resetInterval();
+                });
+                pagination.appendChild(dot);
             });
         }
 
-        // Function to handle search
-        function handleSearch() {
-            const searchTerm = searchInput.value.toLowerCase();
-            const filteredMovies = movies.filter(movie => 
-                movie.title.toLowerCase().includes(searchTerm)
-            );
-            renderMovies(filteredMovies);
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlider();
         }
 
-        // --- Pop-up Logic ---
-        const popup = document.getElementById('popup');
-        const popupAffiliateLink = document.getElementById('popupAffiliateLink');
-        
-        // Set pop-up appearance time in minutes
-        const delayInMinutes = 0.5;
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlider();
+        }
 
-        // Show pop-up after the specified time
-        setTimeout(() => {
-            popup.classList.remove('hidden');
-        }, delayInMinutes * 60 * 1000); // 1 minute = 60000 ms
+        let slideInterval = setInterval(nextSlide, 5000);
 
-        // Set the pop-up affiliate link
-        // Replace the URL below with your desired affiliate link
-        popupAffiliateLink.href = 'https://www.revenuecpmgate.com/s5cbxdh2cx?key=32d9d8af50ecf81bfb18c74649fdff3c';
+        function resetInterval() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 5000);
+        }
 
-        // Render movies when the page first loads
-        document.addEventListener('DOMContentLoaded', () => {
-            renderMovies(movies);
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetInterval();
         });
 
-        // Add event listener for search input
-        searchInput.addEventListener('input', handleSearch);
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetInterval();
+        });
+
+        updateSlider();
     </script>
 </body>
 </html>
-
-
-
-
-
