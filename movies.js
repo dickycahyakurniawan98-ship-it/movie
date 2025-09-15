@@ -2,7 +2,10 @@ const allMovies = [
     {
         title: "Perang Kota (2025)",
         poster: "https://i.imgur.com/h006fQE.jpeg",
-        videoUrl: "https://gdplayer.to/embed/?NTI3TzBMUjNIYXI3MUYrQmlrNG5haFprWFpOYTkyQ1Q4YlhyMWdrMDQyZXlKUENua3gvTmhuMFBkVHA5OHdLVDliZVhuOWdqVUpPcGNlRWVQZ29Ma3pjNG5acGlmN2lKc09mT3pNekI2cXgrcnplN2Z5WUlOTlBtelZvMHNFZHhoVkd1S3c0VEZMTTNxekZ0VUtsUEt3PT0,",
+        servers: [
+            { name: "Server 1", url: "https://gdplayer.to/embed/?NTI3TzBMUjNIYXI3MUYrQmlrNG5haFprWFpOYTkyQ1Q4YlhyMWdrMDQyZXlKUENua3gvTmhuMFBkVHA5OHdLVDliZVhuOWdqVUpPcGNlRWVQZ29Ma3pjNG5acGlmN2lKc09mT3pNekI2cXgrcnplN2Z5WUlOTlBtelZvMHNFZHhoVkd1S3c0VEZMTTNxekZ0VUtsUEt3PT0," },
+            { name: "Server 2", url: "https://gdplayer.to/embed/?NTI3TzBMUjNIYXI3MUYrQmlrNG5haFprWFpOYTkyQ1Q4YlhyMWdrMDQyZXlKUENua3gvTmhuMFBkVHA5OHdLVDliZVhuOWdqVUpPcGNlRWVQZ29Ma3pjNG5acGlmN2lKc09mT3pNekI2cXgrcnplN2Z5WUlOTlBtelZvMHNFZHhoVkd1S3c0VEZMTTNxekZ0VUtsUEt3PT0," }
+        ],
         genre: "Action,Drama,Romance",
         year: 2025,
         label: "Movie",
