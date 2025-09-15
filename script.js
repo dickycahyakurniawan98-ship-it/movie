@@ -7,6 +7,7 @@ const allMovies = [
         year: 2025,
         label: "Movie",
         rating: 6.5,
+        description: "Film aksi ini mengisahkan pertarungan epik di tengah kota yang hancur akibat konflik.",
         servers: [
             { name: "Server 1", url: "https://gdplayer.to/embed/?NTI3TzBMUjNIYXI3MUYrQmlrNG5haFprWFpOYTkyQ1Q4YlhyMWdrMDQyZXlKUENua3gvTmhuMFBkVHA5OHdLVDliZVhuOWdqVUpPcGNlRWVQZ29Ma3pjNG5acGlmN2lKc09mT3pNekI2cXgrcnplN2Z5WUlOTlBtelZvMHNFZHhoVkd1S3c0VEZMTTNxekZ0VUtsUEt3PT0," }
         ]
@@ -18,6 +19,7 @@ const allMovies = [
         year: 2025,
         label: "Movie",
         rating: 5.8,
+        description: "Teror mengerikan menanti di sebuah pabrik gula tua yang ditinggalkan, tempat sekelompok remaja berani memasuki untuk menguji nyali mereka.",
         servers: [
             { name: "Server 1", url: "https://gdplayer.to/embed/?T0p0RUZSYjdtSWs4TzVOUlBjVGU5QzYrcHlTSmQxWEJETDFFdTN2dVAzTHpyV3ZOdC94aUtxdEpaam1xVlR5T0FWSWNuZ3RhcXpiMXhXRklmdDVwY3c3aGVvbzhTTS82U1BCaG9vOGRlemZRZ29JMnZKVjRTeVA0SlJaUUQyUVBNT3hnT1VQOVl3QSs1V3JlSmR6Nk5nPT0" }
         ]
@@ -29,6 +31,7 @@ const allMovies = [
         year: 2023,
         label: "Donghua",
         rating: 9.1,
+        description: "Nie Li, seorang ahli di masa lalu, terlahir kembali dengan kesempatan kedua untuk melindungi orang yang dicintainya dari kehancuran.",
         servers: [
             { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
         ]
@@ -40,6 +43,7 @@ const allMovies = [
         year: 2022,
         label: "Donghua",
         rating: 7.8,
+        description: "Li Changshou adalah seorang praktisi Tao yang sangat berhati-hati dan berusaha menghindari semua masalah yang mungkin muncul.",
         servers: [
             { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
         ]
@@ -51,6 +55,7 @@ const allMovies = [
         year: 2022,
         label: "Donghua",
         rating: 8.5,
+        description: "Seorang pemuda dengan dua roh bela diri yang langka memulai perjalanan kultivasi untuk menjadi yang terkuat.",
         servers: [
             { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
         ]
@@ -62,6 +67,7 @@ const allMovies = [
         year: 2023,
         label: "Movie",
         rating: 6.9,
+        description: "Film ini menceritakan kisah Zhang Xiaofan, seorang pemuda yang terjebak dalam konflik antara berbagai sekte kultivasi.",
         servers: [
             { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
         ]
@@ -73,6 +79,7 @@ const allMovies = [
         year: 2022,
         label: "Donghua",
         rating: 9.0,
+        description: "Xiao Yan, seorang jenius yang kehilangan kekuatan kultivasinya, memulai perjalanan untuk mendapatkan kembali kekuatannya.",
         servers: [
             { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
         ]
@@ -84,6 +91,7 @@ const allMovies = [
         year: 2023,
         label: "Donghua",
         rating: 8.8,
+        description: "Kisah Shi Hao, seorang anak yang terlahir dengan takdir khusus, yang harus menghadapi berbagai tantangan untuk menjadi yang terkuat di dunianya.",
         servers: [
             { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
         ]
@@ -95,6 +103,7 @@ const allMovies = [
         year: 2023,
         label: "Donghua",
         rating: 8.1,
+        description: "Lanjutan dari seri Douluo Dalu, film ini mengikuti Tang Wulin yang melanjutkan perjuangan keluarganya untuk melindungi dunia.",
         servers: [
             { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
         ]
@@ -106,6 +115,7 @@ const allMovies = [
         year: 2023,
         label: "Donghua",
         rating: 8.4,
+        description: "Wang Lin, seorang pemuda yang tidak berbakat, menantang takdir untuk mencapai keabadian dan membalaskan dendam.",
         servers: [
             { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
         ]
@@ -117,6 +127,7 @@ const allMovies = [
         year: 2022,
         label: "Donghua",
         rating: 8.9,
+        description: "Lin Dong, seorang pemuda yang diremehkan, menemukan rahasia kuno yang memberinya kekuatan luar biasa untuk melindungi klannya.",
         servers: [
             { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
         ]
@@ -128,6 +139,7 @@ const allMovies = [
         year: 2022,
         label: "Donghua",
         rating: 8.7,
+        description: "Bai Xiaochun, seorang pemuda yang takut mati, memulai perjalanan kultivasi dengan harapan untuk menjadi abadi.",
         servers: [
             { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
         ]
@@ -139,6 +151,7 @@ const allMovies = [
         year: 2004,
         label: "Movie",
         rating: 6.5,
+        description: "Di tengah hiruk pikuk Shanghai, seorang calon gangster menemukan dirinya terlibat dalam pertarungan antara master kungfu legendaris.",
         servers: [
             { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
         ]
@@ -150,6 +163,7 @@ const allMovies = [
         year: 2001,
         label: "Movie",
         rating: 8.6,
+        description: "Seorang gadis muda bernama Chihiro tersesat di dunia roh dan harus bekerja di pemandian para dewa untuk menyelamatkan orang tuanya.",
         servers: [
             { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
         ]
@@ -161,6 +175,7 @@ const allMovies = [
         year: 2016,
         label: "Movie",
         rating: 9.3,
+        description: "Seorang gadis SMA dari pedesaan dan seorang anak laki-laki dari Tokyo bertukar tubuh secara misterius, mengikat nasib mereka.",
         servers: [
             { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
         ]
@@ -168,7 +183,7 @@ const allMovies = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Data untuk slider (diambil dari movies.js)
+    // Memilih 3 film terakhir untuk ditampilkan di slider sebagai "terbaru"
     const heroSlides = allMovies.slice(-3).map(movie => ({
         title: movie.title,
         subtitle: `Tahun: ${movie.year} | ${movie.genre}`,
@@ -331,6 +346,9 @@ document.addEventListener('DOMContentLoaded', () => {
         detailPoster.src = movie.poster;
         detailTitle.textContent = movie.title;
         detailVideoPlayer.src = movie.servers[0].url; // Default to the first server
+        
+        // Tambahkan deskripsi film ke halaman detail
+        document.getElementById('detail-description').textContent = movie.description;
 
         renderRating(movie.rating);
         renderServerButtons(movie.servers);
@@ -412,7 +430,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderMovies(filteredMovies);
                 sectionTitle.textContent = `Tahun ${year}`;
                 mainPage.classList.remove('hidden');
-                mainContent.classList.add('hidden');
+                mainContent.classList.remove('hidden');
                 detailPage.classList.add('hidden');
                 yearDropdown.classList.add('hidden');
             });
@@ -423,11 +441,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Fungsionalitas menu mobile
     mobileMenuToggle.addEventListener('click', () => {
-        mobileMenu.classList.remove('-translate-x-full');
+        mobileMenu.classList.remove('translate-x-full');
     });
 
     closeMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.add('-translate-x-full');
+        mobileMenu.classList.add('translate-x-full');
     });
     
     // Menjadikan tombol navigasi berfungsi
@@ -446,13 +464,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderMovies(filteredMovies);
                 sectionTitle.textContent = `${filterValue} List`;
                 mainPage.classList.remove('hidden');
-                mainContent.classList.add('hidden');
+                mainContent.classList.remove('hidden');
                 detailPage.classList.add('hidden');
             }
             // Tutup menu mobile jika terbuka
-            mobileMenu.classList.add('-translate-x-full');
+            mobileMenu.classList.add('translate-x-full');
         });
     });
+    
+    // Menggunakan fungsionalitas pencarian
+    const searchInput = document.getElementById('search-input');
+    const searchInputMobile = document.getElementById('search-input-mobile');
+
+    const handleSearch = () => {
+        const searchKeyword = (searchInput.value || searchInputMobile.value).toLowerCase();
+        const filteredMovies = allMovies.filter(movie => 
+            movie.title.toLowerCase().includes(searchKeyword)
+        );
+        renderMovies(filteredMovies);
+        if (searchKeyword) {
+            sectionTitle.textContent = `Hasil Pencarian untuk "${searchKeyword}"`;
+        } else {
+            sectionTitle.textContent = "Semua Film";
+        }
+    };
+
+    searchInput.addEventListener('input', handleSearch);
+    searchInputMobile.addEventListener('input', handleSearch);
 
     // Panggil fungsi untuk merender film di setiap bagian
     renderHeroSlides();
