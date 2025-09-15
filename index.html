@@ -173,17 +173,6 @@
             background-clip: text;
             color: transparent;
         }
-
-        @media (max-width: 768px) {
-            .adsterra-banner-desktop {
-                display: none;
-            }
-        }
-        @media (min-width: 769px) {
-            .adsterra-banner-mobile {
-                display: none;
-            }
-        }
     </style>
 </head>
 <body class="bg-gray-900 text-white font-sans">
@@ -191,7 +180,7 @@
     <!-- Navigasi Atas -->
     <nav class="bg-gray-800 p-4 flex justify-between items-center fixed w-full top-0 z-50 shadow-lg">
         <div class="flex items-center space-x-6">
-            <h1 class="text-2xl font-bold text-white"><span style="color: #f97316;">DICA</span><span style="color: #ffffff;">KUN</span></h1>
+            <h1 class="text-2xl font-bold text-white"><span class="text-orange-500">DICA</span><span class="text-white">KUN</span></h1>
             <div id="nav-links" class="hidden md:flex space-x-4">
                 <a href="#" class="hover:text-orange-500 transition-colors" data-filter-type="all">Home</a>
                 <a href="#" class="hover:text-orange-500 transition-colors" data-filter-type="genre" data-filter-value="Donghua">Donghua</a>
@@ -208,7 +197,7 @@
         <div class="flex items-center space-x-4">
             <div class="hidden md:flex items-center bg-gray-700 rounded-full px-4 py-2">
                 <i class="fas fa-search text-gray-400 mr-2"></i>
-                <input type="text" placeholder="Enter keywords" class="bg-transparent text-white focus:outline-none">
+                <input type="text" placeholder="Enter keywords" class="bg-transparent text-white focus:outline-none" id="search-input">
             </div>
             <a href="#" class="text-gray-300 hover:text-white"><i class="fas fa-user-circle text-2xl"></i></a>
             <button id="mobile-menu-toggle" class="text-gray-300 hover:text-white md:hidden"><i class="fas fa-bars text-2xl"></i></button>
@@ -239,7 +228,7 @@
             <div class="mt-auto pt-4">
                 <div class="flex items-center bg-gray-700 rounded-full px-4 py-2">
                     <i class="fas fa-search text-gray-400 mr-2"></i>
-                    <input type="text" placeholder="Enter keywords" class="bg-transparent text-white focus:outline-none w-full">
+                    <input type="text" placeholder="Enter keywords" class="bg-transparent text-white focus:outline-none w-full" id="search-input-mobile">
                 </div>
             </div>
         </div>
@@ -257,98 +246,20 @@
         </div>
     </header>
 
-    <!-- Adsterra Banner (Top) -->
-    <div class="flex justify-center my-8 adsterra-banner adsterra-banner-desktop">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : 'ffdff708edae7939e16ca710f413b948',
-                'format' : 'iframe',
-                'height' : 90,
-                'width' : 728,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
-    </div>
-    <div class="flex justify-center my-4 adsterra-banner adsterra-banner-mobile">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : 'ffdff708edae7939e16ca710f413b948',
-                'format' : 'iframe',
-                'height' : 50,
-                'width' : 320,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
-    </div>
-
     <main id="main-page" class="container mx-auto p-4 md:mt-8">
         <!-- Bagian Daftar Film Utama -->
         <section class="mb-8">
             <div class="flex justify-between items-center mb-4">
                 <h2 id="section-title" class="text-xl md:text-2xl font-bold">Semua Film</h2>
-                <a href="#" class="text-orange-500 text-sm md:text-base hover:underline">More ></a>
+                <a href="#" class="text-orange-500 text-sm md:text-base hover:underline" id="more-link">More ></a>
             </div>
             <div id="movie-list-container" class="movie-list-grid">
                 <!-- Daftar film akan dirender di sini oleh JavaScript -->
             </div>
         </section>
         
-        <!-- Adsterra Banner (Mid) -->
-        <div class="flex justify-center my-8 adsterra-banner adsterra-banner-desktop">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : 'ffdff708edae7939e16ca710f413b948',
-                    'format' : 'iframe',
-                    'height' : 90,
-                    'width' : 728,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
-        </div>
-        <div class="flex justify-center my-4 adsterra-banner adsterra-banner-mobile">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : 'ffdff708edae7939e16ca710f413b948',
-                    'format' : 'iframe',
-                    'height' : 50,
-                    'width' : 320,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
-        </div>
-        
     </main>
     
-    <!-- Adsterra Banner (Bottom) -->
-    <div class="flex justify-center my-8 adsterra-banner adsterra-banner-desktop">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : 'ffdff708edae7939e16ca710f413b948',
-                'format' : 'iframe',
-                'height' : 90,
-                'width' : 728,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
-    </div>
-    <div class="flex justify-center my-4 adsterra-banner adsterra-banner-mobile">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : 'ffdff708edae7939e16ca710f413b948',
-                'format' : 'iframe',
-                'height' : 50,
-                'width' : 320,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
-    </div>
-
     <!-- Bagian Tampilan Detail Film (Awalnya Tersembunyi) -->
     <div id="detail-page" class="hidden">
         <main class="container mx-auto p-4 md:mt-8">
@@ -367,8 +278,9 @@
                     <div id="detail-rating" class="flex gap-1 text-orange-500 mb-4 text-xl">
                         <!-- Rating bintang akan dirender di sini oleh JavaScript -->
                     </div>
+                    <p id="detail-description" class="text-gray-300 mb-4"></p>
                     <div class="relative w-full rounded-lg overflow-hidden shadow-lg mb-4">
-                        <div class="responsive-video-container">
+                        <div class="video-container">
                             <iframe id="detail-video-player" frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>
@@ -383,32 +295,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Adsterra Banner (Detail Page) -->
-            <div class="flex justify-center my-8 adsterra-banner adsterra-banner-desktop">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : 'ffdff708edae7939e16ca710f413b948',
-                        'format' : 'iframe',
-                        'height' : 90,
-                        'width' : 728,
-                        'params' : {}
-                    };
-                </script>
-                <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
-            </div>
-            <div class="flex justify-center my-4 adsterra-banner adsterra-banner-mobile">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : 'ffdff708edae7939e16ca710f413b948',
-                        'format' : 'iframe',
-                        'height' : 50,
-                        'width' : 320,
-                        'params' : {}
-                    };
-                </script>
-                <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
-            </div>
         </main>
     </div>
 
@@ -418,8 +304,367 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="https://dicky-cahya-kurniawan-98.github.io/movie/script.js?v=2"></script>
-    <script type='text/javascript' src='//pl27633652.revenuecpmgate.com/79/ba/cb/79bacb53d815e6ef8c58c6adec366111.js'></script>
+    <script>
+        const movies = [
+            {
+                id: '1',
+                title: 'Jujutsu Kaisen 0',
+                genre: 'Donghua',
+                year: '2021',
+                rating: 4.8,
+                description: 'Yuta Okkotsu, seorang siswa SMA yang pendiam, menderita masalah serius: teman masa kecilnya Rika telah berubah menjadi Kutukan dan tidak akan pernah meninggalkannya.',
+                poster: 'https://placehold.co/400x600/525252/FFF?text=Jujutsu+Kaisen+0',
+                video: 'https://www.youtube.com/embed/DFNlR3o65kM',
+                servers: ['Server 1', 'Server 2']
+            },
+            {
+                id: '2',
+                title: 'Godzilla Minus One',
+                genre: 'Movie',
+                year: '2023',
+                rating: 4.9,
+                description: 'Setelah perang, Jepang menghadapi ancaman baru: Godzilla. Film ini mengikuti perjuangan orang-orang biasa untuk bertahan hidup dari monster raksasa ini.',
+                poster: 'https://placehold.co/400x600/525252/FFF?text=Godzilla+Minus+One',
+                video: 'https://www.youtube.com/embed/j5E0GvJj3I0',
+                servers: ['Server 1', 'Server 3']
+            },
+            {
+                id: '3',
+                title: 'Spider-Man: Across the Spider-Verse',
+                genre: 'Movie',
+                year: '2023',
+                rating: 4.7,
+                description: 'Miles Morales melakukan perjalanan melintasi multiverse dan bertemu dengan tim Spider-People untuk melindungi keberadaan multiverse.',
+                poster: 'https://placehold.co/400x600/525252/FFF?text=Spider-Man',
+                video: 'https://www.youtube.com/embed/shW9i6k8cB0',
+                servers: ['Server 2', 'Server 4']
+            },
+            {
+                id: '4',
+                title: 'The Wandering Earth 2',
+                genre: 'Movie',
+                year: '2023',
+                rating: 4.5,
+                description: 'Umat manusia membangun pendorong raksasa untuk memindahkan Bumi dari jalur Matahari yang menua, tapi masalah tak terduga muncul.',
+                poster: 'https://placehold.co/400x600/525252/FFF?text=Wandering+Earth+2',
+                video: 'https://www.youtube.com/embed/j1_mS_jH92k',
+                servers: ['Server 1', 'Server 2']
+            },
+            {
+                id: '5',
+                title: 'Avatar: The Last Airbender',
+                genre: 'Donghua',
+                year: '2024',
+                rating: 4.2,
+                description: 'Seorang Avatar muda bernama Aang terbangun untuk memenuhi takdirnya: mengendalikan empat elemen dan mengembalikan keseimbangan pada dunia.',
+                poster: 'https://placehold.co/400x600/525252/FFF?text=Avatar+The+Last+Airbender',
+                video: 'https://www.youtube.com/embed/yS8Xb6gKj8U',
+                servers: ['Server 3', 'Server 4']
+            },
+            {
+                id: '6',
+                title: 'Dungeons & Dragons: Honor Among Thieves',
+                genre: 'Movie',
+                year: '2023',
+                rating: 4.6,
+                description: 'Seorang pencuri menawan dan sekelompok petualang yang tidak biasa melakukan perampokan epik untuk mendapatkan relik yang hilang, tetapi segalanya menjadi berbahaya ketika mereka bertemu dengan orang-orang yang salah.',
+                poster: 'https://placehold.co/400x600/525252/FFF?text=Dungeons+%26+Dragons',
+                video: 'https://www.youtube.com/embed/y2D4d-s4FjU',
+                servers: ['Server 1', 'Server 3']
+            },
+            {
+                id: '7',
+                title: 'Demon Slayer: Kimetsu no Yaiba – To the Hashira Training',
+                genre: 'Donghua',
+                year: '2024',
+                rating: 4.9,
+                description: 'Tanjiro dan kawan-kawan berlatih untuk menghadapi pertarungan terakhir melawan Muzan Kibutsuji.',
+                poster: 'https://placehold.co/400x600/525252/FFF?text=Demon+Slayer',
+                video: 'https://www.youtube.com/embed/v9o494GzW6k',
+                servers: ['Server 1', 'Server 2', 'Server 4']
+            }
+        ];
+
+        const featuredMovies = movies.slice(0, 3);
+        
+        let sliderIndex = 0;
+        let sliderInterval;
+
+        const mainPage = document.getElementById('main-page');
+        const detailPage = document.getElementById('detail-page');
+        const backBtn = document.getElementById('back-btn');
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const navLinks = document.getElementById('nav-links');
+        const yearToggle = document.getElementById('year-toggle');
+        const yearDropdown = document.getElementById('year-dropdown');
+        const yearToggleMobile = document.getElementById('year-toggle-mobile');
+        const yearDropdownMobile = document.getElementById('year-dropdown-mobile');
+        const searchInput = document.getElementById('search-input');
+        const searchInputMobile = document.getElementById('search-input-mobile');
+        const sectionTitle = document.getElementById('section-title');
+
+        const renderMovies = (filterType, filterValue) => {
+            const container = document.getElementById('movie-list-container');
+            container.innerHTML = '';
+            
+            const filteredMovies = movies.filter(movie => {
+                const searchKeyword = (searchInput.value || searchInputMobile.value).toLowerCase();
+                const matchesSearch = searchKeyword === '' || movie.title.toLowerCase().includes(searchKeyword);
+
+                if (filterType === 'all' || filterType === undefined) {
+                    return matchesSearch;
+                }
+                if (filterType === 'genre') {
+                    sectionTitle.textContent = `${filterValue} Movies`;
+                    return movie.genre === filterValue && matchesSearch;
+                }
+                if (filterType === 'year') {
+                    sectionTitle.textContent = `Movies Tahun ${filterValue}`;
+                    return movie.year === filterValue && matchesSearch;
+                }
+            });
+
+            if (filteredMovies.length === 0) {
+                container.innerHTML = '<p class="col-span-full text-center text-gray-400">Tidak ada film yang ditemukan.</p>';
+                return;
+            }
+
+            filteredMovies.forEach(movie => {
+                const movieCard = document.createElement('div');
+                movieCard.className = 'movie-card bg-gray-800 rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300 cursor-pointer';
+                movieCard.dataset.movieId = movie.id;
+                
+                movieCard.innerHTML = `
+                    <img src="${movie.poster}" alt="${movie.title} Poster" class="w-full h-auto object-cover rounded-t-lg">
+                    <span class="label-genre">${movie.genre}</span>
+                    <span class="rating-label"><i class="fas fa-star text-yellow-400"></i> ${movie.rating}</span>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold truncate">${movie.title}</h3>
+                        <p class="text-sm text-gray-400">${movie.year}</p>
+                    </div>
+                `;
+                container.appendChild(movieCard);
+            });
+        };
+
+        const renderSlider = () => {
+            const sliderWrapper = document.getElementById('slider-wrapper');
+            const sliderDotsContainer = document.getElementById('slider-dots');
+            sliderWrapper.innerHTML = '';
+            sliderDotsContainer.innerHTML = '';
+
+            featuredMovies.forEach((movie, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'slider-slide flex items-center justify-center p-4';
+                slide.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${movie.poster.replace('400x600', '1200x600')})`;
+                slide.dataset.movieId = movie.id;
+
+                slide.innerHTML = `
+                    <div class="text-center md:text-left md:w-2/3 lg:w-1/2 p-4 rounded-lg bg-black bg-opacity-50">
+                        <h2 class="text-2xl md:text-4xl font-bold mb-2">${movie.title}</h2>
+                        <p class="text-sm md:text-lg mb-4">${movie.description}</p>
+                        <button class="bg-orange-500 text-white font-bold py-2 px-6 rounded-full hover:bg-orange-600 transition-colors">Watch Now</button>
+                    </div>
+                `;
+                sliderWrapper.appendChild(slide);
+
+                const dot = document.createElement('span');
+                dot.className = `slider-dot ${index === 0 ? 'active' : ''}`;
+                dot.dataset.index = index;
+                sliderDotsContainer.appendChild(dot);
+            });
+            
+            updateSlider();
+        };
+
+        const updateSlider = () => {
+            const sliderWrapper = document.getElementById('slider-wrapper');
+            const slides = sliderWrapper.querySelectorAll('.slider-slide');
+            const dots = document.querySelectorAll('.slider-dot');
+
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === sliderIndex) {
+                    slide.classList.add('active');
+                }
+            });
+
+            dots.forEach((dot, index) => {
+                dot.classList.remove('active');
+                if (index === sliderIndex) {
+                    dot.classList.add('active');
+                }
+            });
+
+            const transformValue = `translateX(${-sliderIndex * 100}%)`;
+            sliderWrapper.style.transform = transformValue;
+        };
+
+        const showNextSlide = () => {
+            sliderIndex = (sliderIndex + 1) % featuredMovies.length;
+            updateSlider();
+        };
+
+        const showPrevSlide = () => {
+            sliderIndex = (sliderIndex - 1 + featuredMovies.length) % featuredMovies.length;
+            updateSlider();
+        };
+
+        const resetSliderInterval = () => {
+            clearInterval(sliderInterval);
+            sliderInterval = setInterval(showNextSlide, 5000);
+        };
+
+        const showDetailPage = (movieId) => {
+            const movie = movies.find(m => m.id === movieId);
+            if (!movie) return;
+
+            mainPage.classList.add('hidden');
+            detailPage.classList.remove('hidden');
+            
+            document.getElementById('detail-poster').src = movie.poster;
+            document.getElementById('detail-title').textContent = movie.title;
+            document.getElementById('detail-description').textContent = movie.description;
+            document.getElementById('detail-video-player').src = movie.video;
+            
+            // Render rating stars
+            const ratingContainer = document.getElementById('detail-rating');
+            ratingContainer.innerHTML = '';
+            for (let i = 0; i < 5; i++) {
+                const star = document.createElement('i');
+                star.className = `fas fa-star ${i < Math.floor(movie.rating) ? 'text-orange-500' : 'text-gray-600'}`;
+                ratingContainer.appendChild(star);
+            }
+            
+            // Render server buttons
+            const serverButtonsContainer = document.getElementById('server-buttons');
+            serverButtonsContainer.innerHTML = '';
+            movie.servers.forEach(server => {
+                const button = document.createElement('button');
+                button.className = 'bg-gray-700 text-white font-bold py-2 px-4 rounded-lg hover:bg-orange-500 transition-colors';
+                button.textContent = server;
+                serverButtonsContainer.appendChild(button);
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+        
+        const showMainPage = () => {
+            detailPage.classList.add('hidden');
+            mainPage.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        const generateYears = () => {
+            const years = [...new Set(movies.map(movie => movie.year))].sort((a, b) => b - a);
+            const dropdown = yearDropdown;
+            const dropdownMobile = yearDropdownMobile;
+
+            dropdown.innerHTML = '';
+            dropdownMobile.innerHTML = '';
+
+            years.forEach(year => {
+                const link = document.createElement('a');
+                link.href = '#';
+                link.className = 'block px-4 py-2 text-sm text-white hover:bg-gray-600';
+                link.textContent = year;
+                link.dataset.filterType = 'year';
+                link.dataset.filterValue = year;
+                dropdown.appendChild(link);
+                dropdownMobile.appendChild(link.cloneNode(true));
+            });
+        };
+
+        // Event Listeners
+        window.addEventListener('load', () => {
+            renderMovies('all');
+            renderSlider();
+            generateYears();
+            resetSliderInterval();
+        });
+
+        document.getElementById('next-btn').addEventListener('click', () => {
+            showNextSlide();
+            resetSliderInterval();
+        });
+        document.getElementById('prev-btn').addEventListener('click', () => {
+            showPrevSlide();
+            resetSliderInterval();
+        });
+        document.getElementById('slider-dots').addEventListener('click', (e) => {
+            const dot = e.target.closest('.slider-dot');
+            if (dot) {
+                sliderIndex = parseInt(dot.dataset.index);
+                updateSlider();
+                resetSliderInterval();
+            }
+        });
+        document.getElementById('slider-wrapper').addEventListener('click', (e) => {
+            const slide = e.target.closest('.slider-slide');
+            if (slide && slide.dataset.movieId) {
+                showDetailPage(slide.dataset.movieId);
+            }
+        });
+
+        document.getElementById('movie-list-container').addEventListener('click', (e) => {
+            const movieCard = e.target.closest('.movie-card');
+            if (movieCard && movieCard.dataset.movieId) {
+                showDetailPage(movieCard.dataset.movieId);
+            }
+        });
+
+        document.getElementById('back-btn').addEventListener('click', showMainPage);
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+        });
+        closeMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+        });
+
+        navLinks.addEventListener('click', (e) => {
+            const link = e.target.closest('a');
+            if (link && link.dataset.filterType) {
+                e.preventDefault();
+                renderMovies(link.dataset.filterType, link.dataset.filterValue);
+            }
+        });
+        mobileMenu.addEventListener('click', (e) => {
+            const link = e.target.closest('a');
+            if (link && link.dataset.filterType) {
+                e.preventDefault();
+                renderMovies(link.dataset.filterType, link.dataset.filterValue);
+                mobileMenu.classList.add('translate-x-full');
+            }
+        });
+
+        yearToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            yearDropdown.classList.toggle('hidden');
+        });
+        yearToggleMobile.addEventListener('click', (e) => {
+            e.preventDefault();
+            yearDropdownMobile.classList.toggle('hidden');
+        });
+        document.addEventListener('click', (e) => {
+            if (!yearToggle.contains(e.target) && !yearDropdown.contains(e.target)) {
+                yearDropdown.classList.add('hidden');
+            }
+            if (!yearToggleMobile.contains(e.target) && !yearDropdownMobile.contains(e.target)) {
+                yearDropdownMobile.classList.add('hidden');
+            }
+        });
+
+        searchInput.addEventListener('input', () => {
+            renderMovies(document.querySelector('#nav-links a.active')?.dataset.filterType, document.querySelector('#nav-links a.active')?.dataset.filterValue);
+        });
+        searchInputMobile.addEventListener('input', () => {
+            renderMovies(document.querySelector('#nav-links a.active')?.dataset.filterType, document.querySelector('#nav-links a.active')?.dataset.filterValue);
+        });
+
+    </script>
 
 </body>
 </html>
