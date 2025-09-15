@@ -163,6 +163,14 @@
             font-size: 0.75rem;
             font-weight: bold;
         }
+
+        .gradient-text {
+            background: linear-gradient(to bottom, #f97316, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-white font-sans">
@@ -170,8 +178,8 @@
     <!-- Navigasi Atas -->
     <nav class="bg-gray-800 p-4 flex justify-between items-center fixed w-full top-0 z-50 shadow-lg">
         <div class="flex items-center space-x-6">
-            <h1 class="text-2xl font-bold text-white">
-                <span class="text-orange-500">DI</span>CAKUN
+            <h1 class="text-2xl font-bold">
+                <span class="gradient-text">DICAKUN</span>
             </h1>
         </div>
         <div class="flex items-center space-x-4">
@@ -269,14 +277,14 @@
             <script type="text/javascript">
                 atOptions = {
                     'key' : 'ffdff708edae7939e16ca710f413b948',
-                    'format' : 'iframe',
-                    'height' : 90,
-                    'width' : 728,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
-        </div>
+                'format' : 'iframe',
+                'height' : 90,
+                'width' : 728,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
+    </div>
         
         <!-- Bagian Daftar Movie Lainnya (Contoh) -->
         <section class="mb-8">
@@ -364,7 +372,6 @@
     </div>
 
     <!-- Menghubungkan file JavaScript -->
-    <script src="movies.js"></script>
     <script src="script.js"></script>
 
 </body>
