@@ -210,13 +210,24 @@
                 <i class="fas fa-search text-gray-400 mr-2"></i>
                 <input type="text" placeholder="Enter keywords" class="bg-transparent text-white focus:outline-none" id="search-input">
             </div>
-            <!-- Mengarahkan langsung ke halaman uploader tanpa modal kata sandi di sini -->
-            <a href="movie_uploader.html" target="_blank" class="text-gray-300 hover:text-white">
+            <a href="#" id="upload-link" class="text-gray-300 hover:text-white" data-password="081198">
                 <i class="fas fa-pencil-alt text-2xl"></i>
             </a>
             <button id="mobile-menu-toggle" class="text-gray-300 hover:text-white md:hidden"><i class="fas fa-bars text-2xl"></i></button>
         </div>
     </nav>
+
+    <!-- Modal Kata Sandi (Awalnya tersembunyi) -->
+    <div id="password-modal" class="modal">
+        <div class="bg-gray-800 p-8 rounded-lg shadow-md w-full max-w-sm">
+            <h2 class="text-xl font-bold mb-4 text-center">Masukkan Kata Sandi</h2>
+            <form id="password-form" class="space-y-4">
+                <input type="password" id="password-input" placeholder="Kata Sandi" class="w-full bg-gray-700 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
+                <button type="submit" class="w-full py-3 rounded-lg bg-orange-500 text-gray-900 font-bold hover:bg-orange-600 transition-colors">Masuk</button>
+            </form>
+            <p id="password-error" class="mt-4 text-center text-red-500 hidden">Kata sandi salah!</p>
+        </div>
+    </div>
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="fixed inset-y-0 right-0 w-64 bg-gray-800 z-50 shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out">
@@ -414,7 +425,12 @@
         const closeMenuBtn = document.getElementById('close-menu-btn');
         const searchInput = document.getElementById('search-input');
         const searchInputMobile = document.getElementById('search-input-mobile');
-        
+        const passwordModal = document.getElementById('password-modal');
+        const passwordForm = document.getElementById('password-form');
+        const passwordInput = document.getElementById('password-input');
+        const passwordError = document.getElementById('password-error');
+        const uploadLink = document.getElementById('upload-link');
+
         function initializeFirebase() {
             if (Object.keys(firebaseConfig).length > 0) {
                 app = initializeApp(firebaseConfig);
@@ -721,8 +737,36 @@
         document.addEventListener('DOMContentLoaded', () => {
             initializeFirebase();
             
-            // Logika untuk modal kata sandi (dihapus karena tidak aman)
-            
+            // Logika untuk modal kata sandi
+            uploadLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                passwordModal.classList.add('is-visible');
+                passwordInput.focus();
+            });
+
+            passwordForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const enteredPassword = passwordInput.value;
+                const correctPassword = uploadLink.getAttribute('data-password');
+
+                if (enteredPassword === correctPassword) {
+                    passwordModal.classList.remove('is-visible');
+                    passwordError.classList.add('hidden');
+                    window.open('movie_uploader.html', '_blank');
+                } else {
+                    passwordError.classList.remove('hidden');
+                }
+            });
+
+            // Tutup modal jika mengklik di luar
+            window.addEventListener('click', (event) => {
+                if (event.target === passwordModal) {
+                    passwordModal.classList.remove('is-visible');
+                    passwordError.classList.add('hidden');
+                    passwordForm.reset();
+                }
+            });
+
             nextBtn.addEventListener('click', () => {
                 nextSlide();
                 startAutoSlide();
