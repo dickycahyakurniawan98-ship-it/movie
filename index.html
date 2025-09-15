@@ -532,7 +532,12 @@
         // Fungsi untuk merender slider
         function renderHeroSlides() {
             const heroSlides = allMovies.slice(0, 3); // Ambil 3 postingan terbaru
-            if (heroSlides.length === 0) return; // Tambahkan guard clause jika tidak ada film
+            if (heroSlides.length === 0) {
+                // Sembunyikan slider jika tidak ada film
+                document.getElementById('main-content').classList.add('hidden');
+                return; 
+            }
+            document.getElementById('main-content').classList.remove('hidden');
             
             sliderWrapper.innerHTML = '';
             sliderDotsContainer.innerHTML = '';
@@ -593,6 +598,12 @@
         function renderMovies(moviesArray) {
             const container = document.getElementById('movie-list-container');
             container.innerHTML = '';
+            
+            if (moviesArray.length === 0) {
+                container.innerHTML = `<p class="text-center text-lg text-gray-400 col-span-full">Tidak ada movie ditemukan. Silakan tambahkan movie pertama Anda melalui halaman unggah.</p>`;
+                return;
+            }
+
             moviesArray.forEach((movie) => {
                 const movieCard = document.createElement('div');
                 movieCard.classList.add('movie-card', 'bg-gray-800', 'rounded-lg', 'overflow-hidden', 'cursor-pointer', 'transform', 'transition-transform', 'duration-200', 'hover:scale-105', 'shadow-md');
