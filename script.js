@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
         title: movie.title,
         subtitle: `Tahun: ${movie.year} | ${movie.genre}`,
         background: movie.poster,
-        videoUrl: movie.videoUrl
+        videoUrl: movie.servers[0].url // Mengambil URL dari server pertama
     }));
 
     const mainPage = document.getElementById('main-page');
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="absolute bottom-10 left-10 p-4">
                     <h2 class="text-xl md:text-3xl font-bold mb-2">${slide.title}</h2>
                     <p class="text-sm md:text-base text-gray-300">${slide.subtitle}</p>
-                    <a href="#" data-movie-index="${allMovies.indexOf(allMovies.find(m => m.title === slide.title))}" class="play-btn mt-4 inline-block bg-orange-500 hover:bg-orange-600 text-gray-900 font-bold py-2 px-6 rounded-full transition-colors">Tonton Sekarang</a>
+                    <a href="#" data-movie-index="${allMovies.findIndex(m => m.title === slide.title)}" class="play-btn mt-4 inline-block bg-orange-500 hover:bg-orange-600 text-gray-900 font-bold py-2 px-6 rounded-full transition-colors">Tonton Sekarang</a>
                 </div>
             `;
             sliderWrapper.appendChild(slideElement);
