@@ -1,25 +1,25 @@
 // Data film dipindahkan langsung ke sini untuk menghindari masalah CORS
 const allMovies = [
     {
-        title: "The Sword Emperor of Eternity",
-        poster: "https://seaty24.com/wp-content/uploads/2023/12/Poster-The-Sword-Emperor-of-Eternity.jpg",
-        genre: "Donghua",
-        year: 2023,
-        label: "Donghua",
-        rating: 7.5,
+        title: "Perang Kota (2025)",
+        poster: "https://i.imgur.com/h006fQE.jpeg",
+        genre: "Action,Drama,Romance",
+        year: 2025,
+        label: "Movie",
+        rating: 6.5,
         servers: [
-            { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+            { name: "Server 1", url: "https://gdplayer.to/embed/?NTI3TzBMUjNIYXI3MUYrQmlrNG5haFprWFpOYTkyQ1Q4YlhyMWdrMDQyZXlKUENua3gvTmhuMFBkVHA5OHdLVDliZVhuOWdqVUpPcGNlRWVQZ29Ma3pjNG5acGlmN2lKc09mT3pNekI2cXgrcnplN2Z5WUlOTlBtelZvMHNFZHhoVkd1S3c0VEZMTTNxekZ0VUtsUEt3PT0," }
         ]
     },
     {
-        title: "I Am The Blade",
-        poster: "https://seaty24.com/wp-content/uploads/2023/12/Poster-I-Am-The-Blade-1.jpg",
-        genre: "Donghua",
-        year: 2023,
-        label: "Donghua",
-        rating: 8.2,
+        title: "Pabrik Gula (2025)",
+        poster: "https://i.imgur.com/8EuTmDC.jpeg",
+        genre: "Horror,thriller",
+        year: 2025,
+        label: "Movie",
+        rating: 5.8,
         servers: [
-            { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+            { name: "Server 1", url: "https://gdplayer.to/embed/?T0p0RUZSYjdtSWs4TzVOUlBjVGU5QzYrcHlTSmQxWEJETDFFdTN2dVAzTHpyV3ZOdC94aUtxdEpaam1xVlR5T0FWSWNuZ3RhcXpiMXhXRklmdDVwY3c3aGVvbzhTTS82U1BCaG9vOGRlemZRZ29JMnZKVjRTeVA0SlJaUUQyUVBNT3hnT1VQOVl3QSs1V3JlSmR6Nk5nPT0" }
         ]
     },
     {
