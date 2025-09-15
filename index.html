@@ -12,7 +12,10 @@
         /* Gaya kustom untuk modal, slider, dan tata letak grid */
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
         }
+
         .modal {
             display: none;
             position: fixed;
@@ -82,7 +85,7 @@
             background-position: center;
             position: relative;
         }
-        
+
         @media (min-width: 768px) {
             .slider-slide {
                 height: 60vh;
@@ -163,13 +166,23 @@
             font-size: 0.75rem;
             font-weight: bold;
         }
-
-        .gradient-text {
-            background: linear-gradient(to bottom, #f97316, #ffffff);
+        
+        .dicakun-logo-gradient {
+            background-image: linear-gradient(to bottom, #f97316, #fff);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
             color: transparent;
+        }
+
+        @media (max-width: 768px) {
+            .adsterra-banner-desktop {
+                display: none;
+            }
+        }
+        @media (min-width: 769px) {
+            .adsterra-banner-mobile {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -178,15 +191,7 @@
     <!-- Navigasi Atas -->
     <nav class="bg-gray-800 p-4 flex justify-between items-center fixed w-full top-0 z-50 shadow-lg">
         <div class="flex items-center space-x-6">
-            <h1 class="text-2xl font-bold">
-                <span class="gradient-text">DICAKUN</span>
-            </h1>
-        </div>
-        <div class="flex items-center space-x-4">
-            <!-- Tombol untuk mobile menu -->
-            <button id="mobile-menu-toggle" class="md:hidden text-white focus:outline-none">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
+            <h1 class="text-2xl font-bold text-white"><span style="color: #f97316;">DICA</span><span style="color: #ffffff;">KUN</span></h1>
             <div id="nav-links" class="hidden md:flex space-x-4">
                 <a href="#" class="hover:text-orange-500 transition-colors" data-filter-type="all">Home</a>
                 <a href="#" class="hover:text-orange-500 transition-colors" data-filter-type="genre" data-filter-value="Donghua">Donghua</a>
@@ -199,38 +204,44 @@
                 </div>
                 <a href="#" class="hover:text-orange-500 transition-colors" data-filter-type="all">All</a>
             </div>
-            <div id="search-container" class="hidden md:flex items-center bg-gray-700 rounded-full px-4 py-2">
+        </div>
+        <div class="flex items-center space-x-4">
+            <div class="hidden md:flex items-center bg-gray-700 rounded-full px-4 py-2">
                 <i class="fas fa-search text-gray-400 mr-2"></i>
-                <input id="search-input" type="text" placeholder="Enter keywords" class="bg-transparent text-white focus:outline-none">
+                <input type="text" placeholder="Enter keywords" class="bg-transparent text-white focus:outline-none">
             </div>
-            <a href="#" class="hidden md:block text-gray-300 hover:text-white"><i class="fas fa-user-circle text-2xl"></i></a>
+            <a href="#" class="text-gray-300 hover:text-white"><i class="fas fa-user-circle text-2xl"></i></a>
+            <button id="mobile-menu-toggle" class="text-gray-300 hover:text-white md:hidden"><i class="fas fa-bars text-2xl"></i></button>
         </div>
     </nav>
-    
-    <!-- Mobile Menu dan Search yang tersembunyi -->
-    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-gray-900 z-40 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden">
-        <div class="p-6">
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-64 bg-gray-800 z-50 shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out">
+        <div class="p-4 flex flex-col h-full">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-2xl font-bold">Menu</h2>
-                <button id="close-menu-btn" class="text-white text-2xl"><i class="fas fa-times"></i></button>
+                <button id="close-menu-btn" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
             </div>
-            <div class="flex items-center bg-gray-700 rounded-full px-4 py-2 mb-4">
-                <i class="fas fa-search text-gray-400 mr-2"></i>
-                <input id="mobile-search-input" type="text" placeholder="Enter keywords" class="bg-transparent text-white focus:outline-none w-full">
-            </div>
-            <nav class="space-y-4">
-                <a href="#" class="block text-xl hover:text-orange-500 transition-colors" data-filter-type="all">Home</a>
-                <a href="#" class="block text-xl hover:text-orange-500 transition-colors" data-filter-type="genre" data-filter-value="Donghua">Donghua</a>
-                <a href="#" class="block text-xl hover:text-orange-500 transition-colors" data-filter-type="genre" data-filter-value="Movie">Movie</a>
+            <nav class="flex flex-col space-y-4">
+                <a href="#" class="text-white hover:text-orange-500 transition-colors" data-filter-type="all">Home</a>
+                <a href="#" class="text-white hover:text-orange-500 transition-colors" data-filter-type="genre" data-filter-value="Donghua">Donghua</a>
+                <a href="#" class="text-white hover:text-orange-500 transition-colors" data-filter-type="genre" data-filter-value="Movie">Movie</a>
                 <div class="relative">
-                    <a href="#" id="mobile-year-toggle" class="block text-xl hover:text-orange-500 transition-colors">Year</a>
-                    <div id="mobile-year-dropdown" class="bg-gray-800 mt-2 py-2 rounded-lg shadow-lg z-20">
-                        <!-- Tahun akan dirender di sini -->
+                    <a href="#" id="year-toggle-mobile" class="text-white hover:text-orange-500 transition-colors">Year</a>
+                    <div id="year-dropdown-mobile" class="hidden bg-gray-700 mt-2 py-2 rounded-lg shadow-lg">
+                        <!-- Tahun akan dirender di sini oleh JavaScript -->
                     </div>
                 </div>
-                <a href="#" class="block text-xl hover:text-orange-500 transition-colors" data-filter-type="all">All</a>
-                <a href="#" class="block text-xl hover:text-orange-500 transition-colors"><i class="fas fa-user-circle mr-2"></i>Profile</a>
+                <a href="#" class="text-white hover:text-orange-500 transition-colors" data-filter-type="all">All</a>
             </nav>
+            <div class="mt-auto pt-4">
+                <div class="flex items-center bg-gray-700 rounded-full px-4 py-2">
+                    <i class="fas fa-search text-gray-400 mr-2"></i>
+                    <input type="text" placeholder="Enter keywords" class="bg-transparent text-white focus:outline-none w-full">
+                </div>
+            </div>
         </div>
     </div>
     
@@ -245,15 +256,27 @@
             <!-- Indikator titik akan dirender di sini oleh JavaScript -->
         </div>
     </header>
-    
-    <!-- Kode Iklan Adsterra (Banner Atas) -->
-    <div class="flex justify-center my-8 adsterra-banner">
+
+    <!-- Adsterra Banner (Top) -->
+    <div class="flex justify-center my-8 adsterra-banner adsterra-banner-desktop">
         <script type="text/javascript">
             atOptions = {
                 'key' : 'ffdff708edae7939e16ca710f413b948',
                 'format' : 'iframe',
                 'height' : 90,
                 'width' : 728,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
+    </div>
+    <div class="flex justify-center my-4 adsterra-banner adsterra-banner-mobile">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'ffdff708edae7939e16ca710f413b948',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
                 'params' : {}
             };
         </script>
@@ -272,46 +295,59 @@
             </div>
         </section>
         
-        <!-- Kode Iklan Adsterra (Banner Tengah) -->
-        <div class="flex justify-center my-8 adsterra-banner">
+        <!-- Adsterra Banner (Mid) -->
+        <div class="flex justify-center my-8 adsterra-banner adsterra-banner-desktop">
             <script type="text/javascript">
                 atOptions = {
                     'key' : 'ffdff708edae7939e16ca710f413b948',
-                'format' : 'iframe',
-                'height' : 90,
-                'width' : 728,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
-    </div>
-        
-        <!-- Bagian Daftar Movie Lainnya (Contoh) -->
-        <section class="mb-8">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl md:text-2xl font-bold">Lainnya</h2>
-                <a href="#" class="text-orange-500 text-sm md:text-base hover:underline">More ></a>
-            </div>
-            <div id="other-movie-list" class="movie-list-grid">
-                <!-- Konten film lainnya akan dirender di sini -->
-            </div>
-        </section>
-        
-        <!-- Kode Iklan Adsterra (Banner Bawah) -->
-        <div class="flex justify-center my-8 adsterra-banner">
+                    'format' : 'iframe',
+                    'height' : 90,
+                    'width' : 728,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
+        </div>
+        <div class="flex justify-center my-4 adsterra-banner adsterra-banner-mobile">
             <script type="text/javascript">
                 atOptions = {
                     'key' : 'ffdff708edae7939e16ca710f413b948',
-                'format' : 'iframe',
-                'height' : 90,
-                'width' : 728,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
-    </div>
-
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
+        </div>
+        
     </main>
+    
+    <!-- Adsterra Banner (Bottom) -->
+    <div class="flex justify-center my-8 adsterra-banner adsterra-banner-desktop">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'ffdff708edae7939e16ca710f413b948',
+                'format' : 'iframe',
+                'height' : 90,
+                'width' : 728,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
+    </div>
+    <div class="flex justify-center my-4 adsterra-banner adsterra-banner-mobile">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'ffdff708edae7939e16ca710f413b948',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
+    </div>
 
     <!-- Bagian Tampilan Detail Film (Awalnya Tersembunyi) -->
     <div id="detail-page" class="hidden">
@@ -321,7 +357,7 @@
             </button>
             <div class="flex flex-col md:flex-row gap-8">
                 <!-- Poster Film -->
-                <div class="md:w-1/3 flex-shrink-0">
+                <div class="md:w-1/3">
                     <img id="detail-poster" src="" alt="Poster Film" class="w-full h-auto rounded-lg shadow-lg">
                     <button class="w-full mt-4 py-2 rounded-lg bg-orange-500 text-gray-900 font-bold hover:bg-orange-600 transition-colors">Bookmark</button>
                 </div>
@@ -329,50 +365,61 @@
                 <div class="md:w-2/3">
                     <h1 id="detail-title" class="text-3xl font-bold mb-4"></h1>
                     <div id="detail-rating" class="flex gap-1 text-orange-500 mb-4 text-xl">
-                        <!-- Rating akan dirender di sini oleh JavaScript -->
+                        <!-- Rating bintang akan dirender di sini oleh JavaScript -->
                     </div>
-                    <div class="video-container rounded-lg overflow-hidden shadow-lg mb-4">
-                        <iframe id="detail-video-player" frameborder="0" allowfullscreen></iframe>
+                    <div class="relative w-full rounded-lg overflow-hidden shadow-lg mb-4">
+                        <div class="responsive-video-container">
+                            <iframe id="detail-video-player" frameborder="0" allowfullscreen></iframe>
+                        </div>
                     </div>
-
-                    <!-- Kode Iklan Adsterra (Banner Desktop) di halaman detail -->
-                    <div class="flex justify-center my-8 adsterra-banner-desktop">
-                        <script type="text/javascript">
-                            atOptions = {
-                                'key' : 'ffdff708edae7939e16ca710f413b948',
-                                'format' : 'iframe',
-                                'height' : 90,
-                                'width' : 728,
-                                'params' : {}
-                            };
-                        </script>
-                        <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
-                    </div>
-                    
-                    <!-- Kode Iklan Adsterra (Banner Mobile) di halaman detail -->
-                    <div class="flex justify-center my-4 adsterra-banner-mobile">
-                        <script type="text/javascript">
-                            atOptions = {
-                                'key' : 'ffdff708edae7939e16ca710f413b948',
-                                'format' : 'iframe',
-                                'height' : 50,
-                                'width' : 320,
-                                'params' : {}
-                            };
-                        </script>
-                        <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
-                    </div>
-
-                    <div id="server-buttons" class="flex flex-wrap gap-2 mt-4">
+                    <div id="server-buttons" class="flex flex-wrap gap-2 mb-4">
                         <!-- Tombol server akan dimuat oleh JavaScript -->
                     </div>
+                    <div class="flex gap-2">
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition-colors"><i class="fab fa-facebook-f mr-2"></i>Facebook</button>
+                        <button class="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-full transition-colors"><i class="fab fa-twitter mr-2"></i>Twitter</button>
+                        <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full transition-colors"><i class="fab fa-whatsapp mr-2"></i>Whatsapp</button>
+                        <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition-colors"><i class="fab fa-pinterest mr-2"></i>Pinterest</button>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Adsterra Banner (Detail Page) -->
+            <div class="flex justify-center my-8 adsterra-banner adsterra-banner-desktop">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : 'ffdff708edae7939e16ca710f413b948',
+                        'format' : 'iframe',
+                        'height' : 90,
+                        'width' : 728,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
+            </div>
+            <div class="flex justify-center my-4 adsterra-banner adsterra-banner-mobile">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : 'ffdff708edae7939e16ca710f413b948',
+                        'format' : 'iframe',
+                        'height' : 50,
+                        'width' : 320,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
             </div>
         </main>
     </div>
 
-    <!-- Menghubungkan file JavaScript -->
-    <script src="script.js"></script>
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-center p-4 mt-8">
+        <p class="text-sm text-gray-400">&copy; 2025 DICAKUN. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://dicky-cahya-kurniawan-98.github.io/movie/script.js?v=2"></script>
+    <script type='text/javascript' src='//pl27633652.revenuecpmgate.com/79/ba/cb/79bacb53d815e6ef8c58c6adec366111.js'></script>
 
 </body>
 </html>
