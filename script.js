@@ -1,3 +1,172 @@
+// Data film dipindahkan langsung ke sini untuk menghindari masalah CORS
+const allMovies = [
+    {
+        title: "The Sword Emperor of Eternity",
+        poster: "https://seaty24.com/wp-content/uploads/2023/12/Poster-The-Sword-Emperor-of-Eternity.jpg",
+        genre: "Donghua",
+        year: 2023,
+        label: "Donghua",
+        rating: 7.5,
+        servers: [
+            { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+        ]
+    },
+    {
+        title: "I Am The Blade",
+        poster: "https://seaty24.com/wp-content/uploads/2023/12/Poster-I-Am-The-Blade-1.jpg",
+        genre: "Donghua",
+        year: 2023,
+        label: "Donghua",
+        rating: 8.2,
+        servers: [
+            { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+        ]
+    },
+    {
+        title: "Tales of Demons and Gods",
+        poster: "https://seaty24.com/wp-content/uploads/2023/07/Poster-Tales-of-Demons-and-Gods-S7.jpg",
+        genre: "Donghua",
+        year: 2023,
+        label: "Donghua",
+        rating: 9.1,
+        servers: [
+            { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+        ]
+    },
+    {
+        title: "My Senior Brother Is Too Steady",
+        poster: "https://seaty24.com/wp-content/uploads/2022/01/my-senior-brother-is-too-steady-donghua-poster.jpg",
+        genre: "Donghua",
+        year: 2022,
+        label: "Donghua",
+        rating: 7.8,
+        servers: [
+            { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+        ]
+    },
+    {
+        title: "Twin Martial Spirits",
+        poster: "https://seaty24.com/wp-content/uploads/2022/06/Twin-Martial-Spirits-S2-Poster.jpg",
+        genre: "Donghua",
+        year: 2022,
+        label: "Donghua",
+        rating: 8.5,
+        servers: [
+            { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+        ]
+    },
+    {
+        title: "Jade Dynasty",
+        poster: "https://seaty24.com/wp-content/uploads/2023/02/Poster-Jade-Dynasty.jpg",
+        genre: "Movie",
+        year: 2023,
+        label: "Movie",
+        rating: 6.9,
+        servers: [
+            { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+        ]
+    },
+    {
+        title: "Battle Through the Heavens",
+        poster: "https://seaty24.com/wp-content/uploads/2022/07/Battle-Through-The-Heavens-Poster.jpg",
+        genre: "Donghua",
+        year: 2022,
+        label: "Donghua",
+        rating: 9.0,
+        servers: [
+            { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+        ]
+    },
+    {
+        title: "Perfect World",
+        poster: "https://seaty24.com/wp-content/uploads/2023/12/Perfect-World.jpg",
+        genre: "Donghua",
+        year: 2023,
+        label: "Donghua",
+        rating: 8.8,
+        servers: [
+            { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+        ]
+    },
+    {
+        title: "Legend of the Dragon King",
+        poster: "https://seaty24.com/wp-content/uploads/2023/12/Poster-Legend-of-the-Dragon-King.jpg",
+        genre: "Donghua",
+        year: 2023,
+        label: "Donghua",
+        rating: 8.1,
+        servers: [
+            { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+        ]
+    },
+    {
+        title: "Renegade Immortal",
+        poster: "https://seaty24.com/wp-content/uploads/2023/12/Poster-Renegade-Immortal.jpg",
+        genre: "Donghua",
+        year: 2023,
+        label: "Donghua",
+        rating: 8.4,
+        servers: [
+            { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+        ]
+    },
+    {
+        title: "Martial Universe",
+        poster: "https://seaty24.com/wp-content/uploads/2022/08/Martial-Universe-S3-Poster.jpg",
+        genre: "Donghua",
+        year: 2022,
+        label: "Donghua",
+        rating: 8.9,
+        servers: [
+            { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+        ]
+    },
+    {
+        title: "A Will Eternal",
+        poster: "https://seaty24.com/wp-content/uploads/2022/08/A-Will-Eternal-Poster.jpg",
+        genre: "Donghua",
+        year: 2022,
+        label: "Donghua",
+        rating: 8.7,
+        servers: [
+            { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+        ]
+    },
+    {
+        title: "Kungfu Hustle",
+        poster: "https://images.alphacoders.com/463/thumb-1920-463870.jpg",
+        genre: "Movie",
+        year: 2004,
+        label: "Movie",
+        rating: 6.5,
+        servers: [
+            { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+        ]
+    },
+    {
+        title: "Spirited Away",
+        poster: "https://www.themoviedb.org/t/p/original/3G59JtGqj05yP8UjFh6M6TjJvCg.jpg",
+        genre: "Movie",
+        year: 2001,
+        label: "Movie",
+        rating: 8.6,
+        servers: [
+            { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+        ]
+    },
+    {
+        title: "Your Name",
+        poster: "https://www.themoviedb.org/t/p/original/qZqXp1uGfSjJk0X7sI7kXm9dYhI.jpg",
+        genre: "Movie",
+        year: 2016,
+        label: "Movie",
+        rating: 9.3,
+        servers: [
+            { name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
+        ]
+    },
+];
+
 document.addEventListener('DOMContentLoaded', () => {
     // Data untuk slider (diambil dari movies.js)
     const heroSlides = allMovies.slice(-3).map(movie => ({
@@ -19,6 +188,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const yearDropdown = document.getElementById('year-dropdown');
     const serverButtonsContainer = document.getElementById('server-buttons');
     const detailRatingContainer = document.getElementById('detail-rating');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenuBtn = document.getElementById('close-menu-btn');
 
     // Kontrol untuk slider
     const sliderWrapper = document.getElementById('slider-wrapper');
@@ -248,9 +420,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     renderYearDropdown();
+    
+    // Fungsionalitas menu mobile
+    mobileMenuToggle.addEventListener('click', () => {
+        mobileMenu.classList.remove('-translate-x-full');
+    });
 
+    closeMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.add('-translate-x-full');
+    });
+    
     // Menjadikan tombol navigasi berfungsi
-    const navLinks = document.querySelectorAll('#nav-links a');
+    const navLinks = document.querySelectorAll('#nav-links a, #mobile-menu nav a');
     navLinks.forEach(link => {
         link.addEventListener('click', (event) => {
             event.preventDefault();
@@ -268,6 +449,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 mainContent.classList.add('hidden');
                 detailPage.classList.add('hidden');
             }
+            // Tutup menu mobile jika terbuka
+            mobileMenu.classList.add('-translate-x-full');
         });
     });
 
