@@ -3,847 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pusat Movie</title>
-    <!-- Tailwind CSS CDN -->
+    <title>CineMax - Tonton Film & Series Modern</title>
+    <!-- Memuat Tailwind CSS untuk styling modern dan responsif -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome CDN untuk ikon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Gaya kustom untuk modal, slider, dan tata letak grid */
+        /* Menggunakan font Inter dan menerapkan Dark Mode secara global */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0d1117;
-            color: #c9d1d9;
+            background-color: #0d0d0d; /* Latar belakang sangat gelap */
+            color: #e0e0e0; /* Warna teks terang */
         }
-
-        .modal {
+        /* Custom scrollbar style untuk carousel (opsional tapi estetik) */
+        .no-scrollbar::-webkit-scrollbar {
             display: none;
-            position: fixed;
-            z-index: 100;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            justify-content: center;
-            align-items: center;
         }
-
-        .modal.is-visible {
-            display: flex;
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
-
-        .modal-content {
-            position: relative;
-            max-width: 90%;
-            width: 800px;
+        /* Style untuk Tombol Utama Play */
+        .play-button {
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* Rasio aspek 16:9 */
-            height: 0;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .movie-list-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 1rem;
-        }
-
-        @media (min-width: 640px) {
-            .movie-list-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
-        }
-
-        /* Gaya Slider */
-        .slider-container {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .slider-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .slider-slide {
-            flex-shrink: 0;
-            width: 100%;
-            height: 50vh;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        @media (min-width: 768px) {
-            .slider-slide {
-                height: 60vh;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .slider-slide {
-                height: 70vh;
-            }
-        }
-
-        .slider-nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
-            cursor: pointer;
-            color: white;
-            padding: 1rem;
-        }
-
-        .slider-nav-btn.prev {
-            left: 1rem;
-        }
-
-        .slider-nav-btn.next {
-            right: 1rem;
-        }
-
-        .slider-dots {
-            position: absolute;
-            bottom: 1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .slider-dot {
-            width: 10px;
-            height: 10px;
-            background-color: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .slider-dot.active {
-            background-color: white;
-        }
-
-        /* Gaya Poster Film */
-        .movie-card {
-            position: relative;
-        }
-
-        .movie-card .label-genre {
-            position: absolute;
-            top: 0.5rem;
-            left: 0.5rem;
-            background-color: #f97316;
-            color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: bold;
-        }
-
-        .movie-card .rating-label {
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            background-color: rgba(0, 0, 0, 0.6);
-            color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.375rem;
-            font-size: 0.75rem;
-            font-weight: bold;
-        }
-        
-        .dicakun-logo-gradient {
-            background-image: linear-gradient(to bottom, #f97316, #fff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        @media (max-width: 768px) {
-            .adsterra-banner-desktop {
-                display: none;
-            }
-        }
-        @media (min-width: 769px) {
-            .adsterra-banner-mobile {
-                display: none;
-            }
+        .play-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 0, 70, 0.4);
         }
     </style>
 </head>
-<body class="bg-gray-900 text-white font-sans">
+<body class="antialiased">
 
-    <!-- Navigasi Atas -->
-    <nav class="bg-gray-800 p-4 flex justify-between items-center fixed w-full top-0 z-50 shadow-lg">
-        <div class="flex items-center space-x-6">
-            <h1 class="text-2xl font-bold text-white"><span class="text-orange-500">DICA</span><span class="text-white">KUN</span></h1>
-            <div id="nav-links" class="hidden md:flex space-x-4">
-                <a href="#" class="hover:text-orange-500 transition-colors" data-filter-type="all">Home</a>
-                <a href="#" class="hover:text-orange-500 transition-colors" data-filter-type="genre" data-filter-value="Donghua">Donghua</a>
-                <a href="#" class="hover:text-orange-500 transition-colors" data-filter-type="genre" data-filter-value="Movie">Movie</a>
-                <div class="relative">
-                    <a href="#" id="year-toggle" class="hover:text-orange-500 transition-colors">Year</a>
-                    <div id="year-dropdown" class="absolute hidden bg-gray-700 mt-2 py-2 rounded-lg shadow-lg z-20">
-                        <!-- Tahun akan dirender di sini oleh JavaScript -->
-                    </div>
-                </div>
-                <a href="#" class="hover:text-orange-500 transition-colors" data-filter-type="all">All</a>
-            </div>
-        </div>
-        <div class="flex items-center space-x-4">
-            <div class="hidden md:flex items-center bg-gray-700 rounded-full px-4 py-2">
-                <i class="fas fa-search text-gray-400 mr-2"></i>
-                <input type="text" placeholder="Enter keywords" class="bg-transparent text-white focus:outline-none" id="search-input">
-            </div>
-            <a href="#" id="upload-link" class="text-gray-300 hover:text-white" data-password="081198">
-                <i class="fas fa-pencil-alt text-2xl"></i>
-            </a>
-            <button id="mobile-menu-toggle" class="text-gray-300 hover:text-white md:hidden"><i class="fas fa-bars text-2xl"></i></button>
-        </div>
-    </nav>
+    <!-- Kontainer Utama -->
+    <div id="app" class="min-h-screen pb-20">
 
-    <!-- Modal Kata Sandi (Awalnya tersembunyi) -->
-    <div id="password-modal" class="modal">
-        <div class="bg-gray-800 p-8 rounded-lg shadow-md w-full max-w-sm">
-            <h2 class="text-xl font-bold mb-4 text-center">Masukkan Kata Sandi</h2>
-            <form id="password-form" class="space-y-4">
-                <input type="password" id="password-input" placeholder="Kata Sandi" class="w-full bg-gray-700 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
-                <button type="submit" class="w-full py-3 rounded-lg bg-orange-500 text-gray-900 font-bold hover:bg-orange-600 transition-colors">Masuk</button>
-            </form>
-            <p id="password-error" class="mt-4 text-center text-red-500 hidden">Kata sandi salah!</p>
-        </div>
-    </div>
+        <!-- Header dan Navigasi Atas (Desktop/Tablet) -->
+        <!-- HANYA MENYISAKAN LOGO CINEMAX SESUAI PERMINTAAN -->
+        <header class="hidden md:flex items-center p-6 bg-black/70 sticky top-0 z-10 backdrop-blur-sm">
+            <h1 class="text-3xl font-extrabold text-red-500 tracking-wider">CineMax</h1>
+        </header>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-64 bg-gray-800 z-50 shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out">
-        <div class="p-4 flex flex-col h-full">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold">Menu</h2>
-                <button id="close-menu-btn" class="text-gray-400 hover:text-white">
-                    <i class="fas fa-times text-2xl"></i>
-                </button>
-            </div>
-            <nav class="flex flex-col space-y-4">
-                <a href="#" class="text-white hover:text-orange-500 transition-colors" data-filter-type="all">Home</a>
-                <a href="#" class="text-white hover:text-orange-500 transition-colors" data-filter-type="genre" data-filter-value="Donghua">Donghua</a>
-                <a href="#" class="text-white hover:text-orange-500 transition-colors" data-filter-type="genre" data-filter-value="Movie">Movie</a>
-                <div class="relative">
-                    <a href="#" id="year-toggle-mobile" class="text-white hover:text-orange-500 transition-colors">Year</a>
-                    <div id="year-dropdown-mobile" class="hidden bg-gray-700 mt-2 py-2 rounded-lg shadow-lg">
-                        <!-- Tahun akan dirender di sini oleh JavaScript -->
-                    </div>
-                </div>
-                <a href="#" class="text-white hover:text-orange-500 transition-colors" data-filter-type="all">All</a>
-            </nav>
-            <div class="mt-auto pt-4">
-                <div class="flex items-center bg-gray-700 rounded-full px-4 py-2">
-                    <i class="fas fa-search text-gray-400 mr-2"></i>
-                    <input type="text" placeholder="Enter keywords" class="bg-transparent text-white focus:outline-none w-full" id="search-input-mobile">
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Bagian Hero/Spanduk Utama (Slider) -->
-    <header id="main-content" class="relative w-full mt-16 slider-container">
-        <div id="slider-wrapper" class="slider-wrapper">
-            <!-- Slide akan dirender di sini oleh JavaScript -->
-        </div>
-        <button id="prev-btn" class="slider-nav-btn prev"><i class="fas fa-chevron-left text-3xl"></i></button>
-        <button id="next-btn" class="slider-nav-btn next"><i class="fas fa-chevron-right text-3xl"></i></button>
-        <div id="slider-dots" class="slider-dots">
-            <!-- Indikator titik akan dirender di sini oleh JavaScript -->
-        </div>
-    </header>
-    
-    <!-- Adsterra Banner (Top) -->
-    <!--
-    <div class="flex justify-center my-8 adsterra-banner adsterra-banner-desktop">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : 'ffdff708edae7939e16ca710f413b948',
-                'format' : 'iframe',
-                'height' : 90,
-                'width' : 728,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
-    </div>
-    <div class="flex justify-center my-4 adsterra-banner adsterra-banner-mobile">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : 'ffdff708edae7939e16ca710f413b948',
-                'format' : 'iframe',
-                'height' : 50,
-                'width' : 320,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
-    </div>
-    -->
-
-    <main id="main-page" class="container mx-auto p-4 md:mt-8">
-        <!-- Status koneksi dan informasi user (opsional, bisa disembunyikan jika tidak diperlukan) -->
-        <!-- <div class="mb-4 text-center text-sm text-gray-400">
-            <span id="auth-status">Menghubungkan...</span> | User ID: <span id="user-id"></span>
-        </div> -->
+        <!-- Search Bar Mobile (Selalu terlihat di atas) -->
+        <!-- DIHAPUS karena ingin tampilan minimalis di atas -->
         
-        <!-- Bagian Daftar Film Utama -->
-        <section class="mb-8">
-            <div class="flex justify-between items-center mb-4">
-                <h2 id="section-title" class="text-xl md:text-2xl font-bold">Semua Film</h2>
-                <a href="#" class="text-orange-500 text-sm md:text-base hover:underline" id="more-link">More ></a>
-            </div>
-            <div id="movie-list-container" class="movie-list-grid">
-                <!-- Daftar film akan dirender di sini oleh JavaScript dari Firestore -->
+        <!-- Bagian Hero Utama (Film Unggulan) -->
+        <section class="relative h-[60vh] sm:h-[70vh] md:h-[80vh] overflow-hidden">
+            <!-- Gambar Hero (INI ADALAH TEMPAT UNTUK MENGUBAH POSTER UTAMA) -->
+            <img src="https://placehold.co/1200x800/180050/FFFFFF?text=SPACE+ODYSSEY+BARU" 
+                 onerror="this.src='https://placehold.co/1200x800/180050/FFFFFF?text=SPACE+ODYSSEY+BARU'"
+                 alt="Poster Film Unggulan" 
+                 class="absolute inset-0 w-full h-full object-cover brightness-75 transition duration-500"
+            >
+            <!-- Overlay Gradien untuk visibilitas teks -->
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-[#0d0d0d]/40 to-transparent"></div>
+            
+            <!-- Konten Hero -->
+            <div class="absolute bottom-0 p-6 sm:p-8 md:p-12 w-full">
+                <span class="text-xs sm:text-sm font-semibold text-white bg-red-600 px-3 py-1 rounded-full mb-3 inline-block">TRENDING</span>
+                <!-- INI ADALAH TEMPAT UNTUK MENGUBAH JUDUL FILM -->
+                <h2 class="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white mb-2 leading-tight">SPACE ODYSSEY</h2>
+                <div class="flex items-center space-x-4 text-sm sm:text-base text-gray-300 mb-6">
+                    <span>2025</span>
+                    <span>•</span>
+                    <span>145 min</span>
+                    <span>•</span>
+                    <span class="text-yellow-400 font-bold">9.2/10</span>
+                </div>
+                
+                <!-- Tombol Utama DENGAN LINK. Ganti hero-film-link.html dengan URL Anda -->
+                <a href="hero-film-link.html" class="play-button bg-red-600 text-white font-bold py-3 px-8 rounded-full flex items-center space-x-3 text-lg sm:text-xl w-full sm:w-auto justify-center">
+                    <!-- Ikon Play (Lucide icon: play) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    <span>Tonton Sekarang</span>
+                </a>
             </div>
         </section>
-        
-        <!-- Adsterra Banner (Mid) -->
-        <!--
-        <div class="flex justify-center my-8 adsterra-banner adsterra-banner-desktop">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : 'ffdff708edae7939e16ca710f413b948',
-                    'format' : 'iframe',
-                    'height' : 90,
-                    'width' : 728,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
-        </div>
-        <div class="flex justify-center my-4 adsterra-banner adsterra-banner-mobile">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : 'ffdff708edae7939e16ca710f413b948',
-                    'format' : 'iframe',
-                    'height' : 50,
-                    'width' : 320,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/ffdff708edae7939e16ca710f413b948/invoke.js"></script>
-        </div>
-        -->
-        
-    </main>
-    
-    <!-- Bagian Tampilan Detail Film (Awalnya Tersembunyi) -->
-    <div id="detail-page" class="hidden">
-        <main class="container mx-auto p-4 md:mt-8">
-            <button id="back-btn" class="text-white text-lg hover:text-orange-500 mb-4 transition-colors">
-                <i class="fas fa-arrow-left mr-2"></i>Kembali ke Beranda
-            </button>
-            <div class="flex flex-col md:flex-row gap-8">
-                <!-- Poster Film -->
-                <div class="md:w-1/3">
-                    <img id="detail-poster" src="" alt="Poster Film" class="w-full h-auto rounded-lg shadow-lg">
-                    <button class="w-full mt-4 py-2 rounded-lg bg-orange-500 text-gray-900 font-bold hover:bg-orange-600 transition-colors">Bookmark</button>
+
+        <!-- Konten Utama Film (Carousel/List) -->
+        <main class="p-4 sm:p-6 md:p-8 space-y-10">
+            
+            <!-- Bagian 1: Baru Dirilis (Menggunakan Carousel Horizontal) -->
+            <section>
+                <h3 class="text-xl sm:text-2xl font-bold mb-4 text-white">Baru Dirilis</h3>
+                <div class="flex space-x-4 overflow-x-scroll no-scrollbar py-2">
+                    
+                    <!-- Kartu Film 1 (Ganti detail-film.html dengan URL film 1) -->
+                    <a href="detail-film.html" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
+                        <img src="https://placehold.co/300x450/1C3C6F/FFFFFF?text=FANTASI+BARU" alt="Poster Film 1" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
+                        <p class="text-sm font-semibold text-center truncate">The Cosmic Runner</p>
+                        <p class="text-xs text-gray-500 text-center">Aksi, Sci-Fi</p>
+                    </a>
+                    
+                    <!-- Kartu Film 2 (Ganti detail-film.html dengan URL film 2) -->
+                    <a href="detail-film.html" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
+                        <img src="https://placehold.co/300x450/4A4E69/FFFFFF?text=PROTOKOL" alt="Poster Film 2" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
+                        <p class="text-sm font-semibold text-center truncate">Shadow Protocol</p>
+                        <p class="text-xs text-gray-500 text-center">Thriller, Misteri</p>
+                    </a>
+                    
+                    <!-- Kartu Film 3 (Ganti detail-film.html dengan URL film 3) -->
+                    <a href="detail-film.html" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
+                        <img src="https://placehold.co/300x450/7A003E/FFFFFF?text=SAKSI+BISU" alt="Poster Film 3" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
+                        <p class="text-sm font-semibold text-center truncate">The Silent Witness</p>
+                        <p class="text-xs text-gray-500 text-center">Drama, Kriminal</p>
+                    </a>
+                    
+                    <!-- Kartu Film 4 (Ganti detail-film.html dengan URL film 4) -->
+                    <a href="detail-film.html" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
+                        <img src="https://placehold.co/300x450/004C4C/FFFFFF?text=LEGENDA+PULAU" alt="Poster Film 4" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
+                        <p class="text-sm font-semibold text-center truncate">Legend of Mara</p>
+                        <p class="text-xs text-gray-500 text-center">Fantasi, Petualangan</p>
+                    </a>
+                    
+                    <!-- Kartu Film 5 (Ganti detail-film.html dengan URL film 5) -->
+                    <a href="detail-film.html" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
+                        <img src="https://placehold.co/300x450/3A005A/FFFFFF?text=MIMPI+DIGITAL" alt="Poster Film 5" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
+                        <p class="text-sm font-semibold text-center truncate">Digital Dream</p>
+                        <p class="text-xs text-gray-500 text-center">Sci-Fi, Fiksi</p>
+                    </a>
+                    
+                    <!-- Tambahkan lebih banyak kartu film di sini -->
                 </div>
-                <!-- Informasi & Video -->
-                <div class="md:w-2/3">
-                    <h1 id="detail-title" class="text-3xl font-bold mb-4"></h1>
-                    <div id="detail-rating" class="flex gap-1 text-orange-500 mb-4 text-xl">
-                        <!-- Rating bintang akan dirender di sini oleh JavaScript -->
-                    </div>
-                    <p id="detail-description" class="text-gray-300 mb-4"></p>
-                    <div class="relative w-full rounded-lg overflow-hidden shadow-lg mb-4">
-                        <div class="video-container">
-                            <iframe id="detail-video-player" frameborder="0" allowfullscreen></iframe>
+            </section>
+
+            <!-- Bagian 2: Series Terbaik -->
+            <section>
+                <h3 class="text-xl sm:text-2xl font-bold mb-4 text-white">Serial TV Populer</h3>
+                <div class="flex space-x-4 overflow-x-scroll no-scrollbar py-2">
+                    
+                    <!-- Kartu Series 1 (Ganti detail-film.html dengan URL series 1) -->
+                    <a href="detail-film.html" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
+                        <img src="https://placehold.co/300x450/4B0082/FFFFFF?text=KOLONI+AKHIR" alt="Poster Series 1" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
+                        <p class="text-sm font-semibold text-center truncate">The Last Colony</p>
+                        <p class="text-xs text-gray-500 text-center">Sci-Fi, 3 Musim</p>
+                    </a>
+                    
+                    <!-- Kartu Series 2 (Ganti detail-film.html dengan URL series 2) -->
+                    <a href="detail-film.html" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
+                        <img src="https://placehold.co/300x450/008080/FFFFFF?text=PEWARIS" alt="Poster Series 2" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
+                        <p class="text-sm font-semibold text-center truncate">Royal Heirs</p>
+                        <p class="text-xs text-gray-500 text-center">Drama, 5 Musim</p>
+                    </a>
+                    
+                    <!-- Kartu Series 3 (Ganti detail-film.html dengan URL series 3) -->
+                    <a href="detail-film.html" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
+                        <img src="https://placehold.co/300x450/5F5F5F/FFFFFF?text=KULINER" alt="Poster Series 3" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
+                        <p class="text-sm font-semibold text-center truncate">The Chef's Legacy</p>
+                        <p class="text-xs text-gray-500 text-center">Kuliner, Dokumenter</p>
+                    </a>
+                    
+                    <!-- Kartu Series 4 (Ganti detail-film.html dengan URL series 4) -->
+                    <a href="detail-film.html" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
+                        <img src="https://placehold.co/300x450/000080/FFFFFF?text=KODE" alt="Poster Series 4" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
+                        <p class="text-sm font-semibold text-center truncate">The Code</p>
+                        <p class="text-xs text-gray-500 text-center">Teknologi, Fiksi</p>
+                    </a>
+                    
+                    <!-- Tambahkan lebih banyak kartu series di sini -->
+                </div>
+            </section>
+
+            <!-- Bagian 3: Film Pilihan (Daftar Vertikal di Mobile, Grid di Desktop) -->
+            <section>
+                <h3 class="text-xl sm:text-2xl font-bold mb-4 text-white">Anime</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    
+                    <!-- Item Grid 1 (Ganti detail-film.html dengan URL film 6) -->
+                    <a href="detail-film.html" class="relative group rounded-xl overflow-hidden shadow-xl transform transition duration-300 hover:scale-[1.02] cursor-pointer block">
+                        <img src="https://placehold.co/400x600/8B0000/FFFFFF?text=GERBANG+WAKTU" alt="Pilihan Film 1" class="w-full h-full object-cover aspect-[2/3]">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition duration-300 flex items-end p-3">
+                            <p class="text-white font-semibold text-sm">The Gate of Time</p>
                         </div>
-                    </div>
-                    <div id="server-buttons" class="flex flex-wrap gap-2 mb-4">
-                        <!-- Tombol server akan dimuat oleh JavaScript -->
-                    </div>
-                    <div class="flex gap-2">
-                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition-colors"><i class="fab fa-facebook-f mr-2"></i>Facebook</button>
-                        <button class="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-full transition-colors"><i class="fab fa-twitter mr-2"></i>Twitter</button>
-                        <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full transition-colors"><i class="fab fa-whatsapp mr-2"></i>Whatsapp</button>
-                        <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition-colors"><i class="fab fa-pinterest mr-2"></i>Pinterest</button>
-                    </div>
+                    </a>
+                    
+                    <!-- Item Grid 2 (Ganti detail-film.html dengan URL film 7) -->
+                    <a href="detail-film.html" class="relative group rounded-xl overflow-hidden shadow-xl transform transition duration-300 hover:scale-[1.02] cursor-pointer block">
+                        <img src="https://placehold.co/400x600/FF8C00/FFFFFF?text=GURUN" alt="Pilihan Film 2" class="w-full h-full object-cover aspect-[2/3]">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition duration-300 flex items-end p-3">
+                            <p class="text-white font-semibold text-sm">Desert Scape</p>
+                        </div>
+                    </a>
+                    
+                    <!-- Item Grid 3 (Ganti detail-film.html dengan URL film 8) -->
+                    <a href="detail-film.html" class="relative group rounded-xl overflow-hidden shadow-xl transform transition duration-300 hover:scale-[1.02] cursor-pointer block">
+                        <img src="https://placehold.co/400x600/808000/FFFFFF?text=MISTERI+LAUT" alt="Pilihan Film 3" class="w-full h-full object-cover aspect-[2/3]">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition duration-300 flex items-end p-3">
+                            <p class="text-white font-semibold text-sm">High Seas Mystery</p>
+                        </div>
+                    </a>
+                    
+                    <!-- Item Grid 4 (Ganti detail-film.html dengan URL film 9) -->
+                    <a href="detail-film.html" class="relative group rounded-xl overflow-hidden shadow-xl transform transition duration-300 hover:scale-[1.02] cursor-pointer block">
+                        <img src="https://placehold.co/400x600/1E90FF/FFFFFF?text=INSINYUR" alt="Pilihan Film 4" class="w-full h-full object-cover aspect-[2/3]">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition duration-300 flex items-end p-3">
+                            <p class="text-white font-semibold text-sm">The Engineer</p>
+                        </div>
+                    </a>
+                    
+                    <!-- Item Grid 5 (Hanya terlihat di layar besar - Ganti detail-film.html dengan URL film 10) -->
+                    <a href="detail-film.html" class="relative hidden lg:block group rounded-xl overflow-hidden shadow-xl transform transition duration-300 hover:scale-[1.02] cursor-pointer block">
+                        <img src="https://placehold.co/400x600/9400D3/FFFFFF?text=GAUNG+MASA+LALU" alt="Pilihan Film 5" class="w-full h-full object-cover aspect-[2/3]">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition duration-300 flex items-end p-3">
+                            <p class="text-white font-semibold text-sm">Echoes of Past</p>
+                        </div>
+                    </a>
+                    
                 </div>
-            </div>
+            </section>
         </main>
+
+        <!-- Footer Sederhana (Hanya terlihat di desktop) -->
+        <footer class="hidden md:block p-6 text-center text-gray-500 border-t border-gray-800 mt-10">
+            <p>&copy; 2025 CineMax. Semua Hak Dilindungi. | Dibuat dengan Tailwind CSS.</p>
+        </footer>
+
+        <!-- Navigasi Bawah Mobile (Sticky Bottom Bar) -->
+        <!-- Ini tetap dipertahankan karena sangat penting untuk navigasi di layar kecil -->
+        <nav class="fixed bottom-0 left-0 right-0 h-16 bg-black/90 backdrop-blur-md border-t border-gray-800 flex justify-around items-center z-20 md:hidden">
+            <!-- Tombol 1: Beranda -->
+            <a href="#" class="flex flex-col items-center justify-center text-red-500">
+                <!-- Ikon Beranda (Lucide icon: home) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span class="text-xs mt-1">Beranda</span>
+            </a>
+            <!-- Tombol 2: Pencarian -->
+            <a href="#" class="flex flex-col items-center justify-center text-gray-400 hover:text-red-500 transition duration-150">
+                <!-- Ikon Pencarian (Lucide icon: search) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <span class="text-xs mt-1">Cari</span>
+            </a>
+            <!-- Tombol 3: Koleksi (Watchlist) -->
+            <a href="detail-film.html" class="flex flex-col items-center justify-center text-gray-400 hover:text-red-500 transition duration-150">
+                <!-- Ikon Tanda Buku (Lucide icon: bookmark) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+                <span class="text-xs mt-1">Koleksi</span>
+            </a>
+            <!-- Tombol 4: Profil -->
+            <a href="#" class="flex flex-col items-center justify-center text-gray-400 hover:text-red-500 transition duration-150">
+                <!-- Ikon Pengguna (Lucide icon: user) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span class="text-xs mt-1">Akun</span>
+            </a>
+        </nav>
+
     </div>
-
-    <!-- Footer Section -->
-    <footer class="bg-gray-800 text-center p-4 mt-8">
-        <p class="text-sm text-gray-400">&copy; 2025 DICAKUN. Hak Cipta Dilindungi.</p>
-    </footer>
-
-    <!-- Skrip Firebase SDK dan logika aplikasi -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, getDocs, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Global variables for Firebase
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-
-        // Inisialisasi Firebase
-        let app;
-        let db;
-        let auth;
-        let userId = null;
-        let allMovies = [];
-        
-        // Deklarasi variabel elemen HTML di sini agar dapat diakses secara global
-        const mainPage = document.getElementById('main-page');
-        const mainContent = document.getElementById('main-content');
-        const detailPage = document.getElementById('detail-page');
-        const backBtn = document.getElementById('back-btn');
-        const detailPoster = document.getElementById('detail-poster');
-        const detailTitle = document.getElementById('detail-title');
-        const detailVideoPlayer = document.getElementById('detail-video-player');
-        const sectionTitle = document.getElementById('section-title');
-        const yearToggleBtn = document.getElementById('year-toggle');
-        const yearDropdown = document.getElementById('year-dropdown');
-        const serverButtonsContainer = document.getElementById('server-buttons');
-        const detailRatingContainer = document.getElementById('detail-rating');
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const closeMenuBtn = document.getElementById('close-menu-btn');
-        const searchInput = document.getElementById('search-input');
-        const searchInputMobile = document.getElementById('search-input-mobile');
-        const passwordModal = document.getElementById('password-modal');
-        const passwordForm = document.getElementById('password-form');
-        const passwordInput = document.getElementById('password-input');
-        const passwordError = document.getElementById('password-error');
-        const uploadLink = document.getElementById('upload-link');
-
-        function initializeFirebase() {
-            if (Object.keys(firebaseConfig).length > 0) {
-                app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
-
-                // Autentikasi pengguna
-                onAuthStateChanged(auth, async (user) => {
-                    if (user) {
-                        userId = user.uid;
-                        // document.getElementById('user-id').textContent = userId;
-                        // document.getElementById('auth-status').textContent = 'Terhubung';
-                        setupRealtimeDataListener();
-                        seedDataIfNeeded();
-                    } else {
-                        await signInWithCustomToken(auth, initialAuthToken).catch(async (error) => {
-                            console.error("Custom token sign-in failed, signing in anonymously:", error);
-                            await signInAnonymously(auth);
-                        });
-                    }
-                });
-            } else {
-                console.error("Firebase config is missing. App cannot function.");
-                // document.getElementById('auth-status').textContent = 'Gagal terhubung';
-            }
-        }
-
-        async function seedDataIfNeeded() {
-            const moviesRef = collection(db, `/artifacts/${appId}/public/data/movies`);
-            const q = query(moviesRef);
-            const querySnapshot = await getDocs(q);
-
-            if (querySnapshot.empty) {
-                console.log("No initial movies found. Seeding database...");
-                const seedMovies = [
-                    {
-                        title: "Perang Kota (2025)",
-                        poster: "https://i.imgur.com/h006fQE.jpeg",
-                        genre: "Action,Drama,Romance",
-                        year: 2025,
-                        label: "Movie",
-                        rating: 6.5,
-                        description: "Film aksi ini mengisahkan pertarungan epik di tengah kota yang hancur akibat konflik.",
-                        servers: [{ name: "Server 1", url: "https://www.youtube.com/embed/fD3l412rD6I" }]
-                    },
-                    {
-                        title: "Pabrik Gula (2025)",
-                        poster: "https://i.imgur.com/8EuTmDC.jpeg",
-                        genre: "Horror,thriller",
-                        year: 2025,
-                        label: "Movie",
-                        rating: 5.8,
-                        description: "Teror mengerikan menanti di sebuah pabrik gula tua yang ditinggalkan.",
-                        servers: [{ name: "Server 1", url: "https://www.youtube.com/embed/pQkI6YjD1b8" }]
-                    },
-                    {
-                        title: "Tales of Demons and Gods",
-                        poster: "https://seaty24.com/wp-content/uploads/2023/07/Poster-Tales-of-Demons-and-Gods-S7.jpg",
-                        genre: "Donghua",
-                        year: 2023,
-                        label: "Donghua",
-                        rating: 9.1,
-                        description: "Nie Li, seorang ahli di masa lalu, terlahir kembali dengan kesempatan kedua.",
-                        servers: [{ name: "Server 1", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }]
-                    }
-                ];
-                for (const movie of seedMovies) {
-                    await addDoc(moviesRef, movie);
-                }
-            }
-        }
-
-        function setupRealtimeDataListener() {
-            const moviesRef = collection(db, `/artifacts/${appId}/public/data/movies`);
-            const q = query(moviesRef);
-
-            onSnapshot(q, (snapshot) => {
-                allMovies = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                allMovies.sort((a, b) => b.year - a.year); // Sort by year descending for "latest"
-                renderHeroSlides();
-                renderMovies(allMovies);
-                renderYearDropdown('year-dropdown');
-                renderYearDropdown('year-dropdown-mobile');
-            }, (error) => {
-                console.error("Error getting real-time data: ", error);
-            });
-        }
-
-        // ---------- FUNGSI UNTUK MERENDER TAMPILAN (DIPINDAHKAN KE SINI AGAR DAPAT DIAKSES SECARA GLOBAL) ----------
-
-        // Kontrol untuk slider
-        const sliderWrapper = document.getElementById('slider-wrapper');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const sliderDotsContainer = document.getElementById('slider-dots');
-        let currentSlide = 0;
-        let slideInterval;
-
-        // Fungsi untuk merender slider
-        function renderHeroSlides() {
-            const heroSlides = allMovies.slice(0, 3); // Ambil 3 postingan terbaru
-            if (heroSlides.length === 0) {
-                // Sembunyikan slider jika tidak ada film
-                document.getElementById('main-content').classList.add('hidden');
-                return; 
-            }
-            document.getElementById('main-content').classList.remove('hidden');
-            
-            sliderWrapper.innerHTML = '';
-            sliderDotsContainer.innerHTML = '';
-            heroSlides.forEach((slide, index) => {
-                const slideElement = document.createElement('div');
-                slideElement.classList.add('slider-slide');
-                slideElement.style.backgroundImage = `url('${slide.poster}')`;
-                slideElement.innerHTML = `
-                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
-                    <div class="absolute bottom-10 left-10 p-4">
-                        <h2 class="text-xl md:text-3xl font-bold mb-2">${slide.title}</h2>
-                        <p class="text-sm md:text-base text-gray-300">Tahun: ${slide.year} | ${slide.genre}</p>
-                        <a href="#" data-movie-id="${slide.id}" class="play-btn mt-4 inline-block bg-orange-500 hover:bg-orange-600 text-gray-900 font-bold py-2 px-6 rounded-full transition-colors">Tonton Sekarang</a>
-                    </div>
-                `;
-                sliderWrapper.appendChild(slideElement);
-
-                const dot = document.createElement('span');
-                dot.classList.add('slider-dot');
-                dot.addEventListener('click', () => showSlide(index));
-                sliderDotsContainer.appendChild(dot);
-            });
-            showSlide(currentSlide);
-            startAutoSlide();
-        }
-
-        function showSlide(index) {
-            currentSlide = index;
-            const slides = document.querySelectorAll('.slider-slide');
-            const dots = document.querySelectorAll('.slider-dot');
-            const offset = -currentSlide * 100;
-            sliderWrapper.style.transform = `translateX(${offset}%)`;
-
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
-        }
-
-        function nextSlide() {
-            const numSlides = allMovies.slice(0, 3).length;
-            if (numSlides === 0) return;
-            currentSlide = (currentSlide + 1) % numSlides;
-            showSlide(currentSlide);
-        }
-
-        function prevSlide() {
-            const numSlides = allMovies.slice(0, 3).length;
-            if (numSlides === 0) return;
-            currentSlide = (currentSlide - 1 + numSlides) % numSlides;
-            showSlide(currentSlide);
-        }
-
-        function startAutoSlide() {
-            clearInterval(slideInterval);
-            slideInterval = setInterval(nextSlide, 5000);
-        }
-
-        function renderMovies(moviesArray) {
-            const container = document.getElementById('movie-list-container');
-            container.innerHTML = '';
-            
-            if (moviesArray.length === 0) {
-                container.innerHTML = `<p class="text-center text-lg text-gray-400 col-span-full">Tidak ada movie ditemukan. Silakan tambahkan movie pertama Anda melalui halaman unggah.</p>`;
-                return;
-            }
-
-            moviesArray.forEach((movie) => {
-                const movieCard = document.createElement('div');
-                movieCard.classList.add('movie-card', 'bg-gray-800', 'rounded-lg', 'overflow-hidden', 'cursor-pointer', 'transform', 'transition-transform', 'duration-200', 'hover:scale-105', 'shadow-md');
-
-                const posterImg = document.createElement('img');
-                posterImg.src = movie.poster;
-                posterImg.alt = movie.title;
-                posterImg.classList.add('w-full', 'h-auto', 'object-cover', 'rounded-t-lg');
-                
-                const titleElement = document.createElement('h3');
-                titleElement.textContent = movie.title;
-                titleElement.classList.add('p-3', 'text-sm', 'md:text-base', 'text-center', 'truncate');
-                
-                if (movie.label) {
-                    const genreLabel = document.createElement('span');
-                    genreLabel.classList.add('label-genre');
-                    genreLabel.textContent = movie.label;
-                    movieCard.appendChild(genreLabel);
-                }
-
-                if (movie.rating) {
-                    const ratingLabel = document.createElement('span');
-                    ratingLabel.classList.add('rating-label');
-                    ratingLabel.textContent = movie.rating.toFixed(1);
-                    movieCard.appendChild(ratingLabel);
-                }
-
-                movieCard.addEventListener('click', () => {
-                    showMovieDetail(movie);
-                });
-
-                movieCard.appendChild(posterImg);
-                movieCard.appendChild(titleElement);
-                container.appendChild(movieCard);
-            });
-        }
-
-        function showMovieDetail(movie) {
-            mainPage.classList.add('hidden');
-            mainContent.classList.add('hidden');
-            detailPage.classList.remove('hidden');
-
-            detailPoster.src = movie.poster;
-            detailTitle.textContent = movie.title;
-            detailVideoPlayer.src = movie.servers[0].url; // Default to the first server
-            
-            document.getElementById('detail-description').textContent = movie.description;
-
-            renderRating(movie.rating);
-            renderServerButtons(movie.servers);
-        }
-        
-        function renderRating(rating) {
-            detailRatingContainer.innerHTML = '';
-            const fullStars = Math.floor(rating / 2);
-            const halfStar = rating % 2 >= 1 ? 1 : 0;
-            const emptyStars = 5 - fullStars - halfStar;
-            
-            for (let i = 0; i < fullStars; i++) {
-                const star = document.createElement('i');
-                star.classList.add('fas', 'fa-star');
-                detailRatingContainer.appendChild(star);
-            }
-            
-            if (halfStar) {
-                const star = document.createElement('i');
-                star.classList.add('fas', 'fa-star-half-alt');
-                detailRatingContainer.appendChild(star);
-            }
-            
-            for (let i = 0; i < emptyStars; i++) {
-                const star = document.createElement('i');
-                star.classList.add('far', 'fa-star');
-                detailRatingContainer.appendChild(star);
-            }
-        }
-        
-        function renderServerButtons(servers) {
-            serverButtonsContainer.innerHTML = '';
-            servers.forEach(server => {
-                const button = document.createElement('button');
-                button.classList.add('bg-gray-700', 'text-white', 'px-4', 'py-2', 'rounded-full', 'font-semibold', 'hover:bg-gray-600', 'transition-colors');
-                button.textContent = server.name;
-                button.addEventListener('click', () => {
-                    detailVideoPlayer.src = server.url;
-                });
-                serverButtonsContainer.appendChild(button);
-            });
-        }
-
-        function backToMainPage() {
-            mainPage.classList.remove('hidden');
-            mainContent.classList.remove('hidden');
-            detailPage.classList.add('hidden');
-            detailVideoPlayer.src = '';
-            renderMovies(allMovies);
-            sectionTitle.textContent = "Semua Film";
-        }
-
-        function renderYearDropdown(containerId) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = '';
-            // Periksa jika allMovies tidak kosong sebelum membuat uniqueYears
-            if (allMovies.length > 0) {
-                const uniqueYears = Array.from(new Set(allMovies.map(movie => movie.year))).sort((a, b) => b - a);
-                uniqueYears.forEach(year => {
-                    const yearLink = document.createElement('a');
-                    yearLink.href = '#';
-                    yearLink.textContent = year;
-                    yearLink.classList.add('block', 'px-4', 'py-2', 'hover:bg-gray-600', 'transition-colors');
-                    yearLink.addEventListener('click', (event) => {
-                        event.preventDefault();
-                        const filteredMovies = allMovies.filter(movie => movie.year === year);
-                        renderMovies(filteredMovies);
-                        sectionTitle.textContent = `Tahun ${year}`;
-                        mainPage.classList.remove('hidden');
-                        mainContent.classList.remove('hidden');
-                        detailPage.classList.add('hidden');
-                        container.classList.add('hidden');
-                    });
-                    container.appendChild(yearLink);
-                });
-            }
-        }
-        
-        const handleSearch = () => {
-            const searchKeyword = (searchInput.value || searchInputMobile.value).toLowerCase();
-            const filteredMovies = allMovies.filter(movie => 
-                movie.title.toLowerCase().includes(searchKeyword) ||
-                (movie.genre && movie.genre.toLowerCase().includes(searchKeyword))
-            );
-            renderMovies(filteredMovies);
-            if (searchKeyword) {
-                sectionTitle.textContent = `Hasil Pencarian untuk "${searchKeyword}"`;
-            } else {
-                sectionTitle.textContent = "Semua Film";
-            }
-        };
-
-        // ---------- EVENT LISTENERS (TETAP DI DALAM DOMContentLoaded) ----------
-
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeFirebase();
-            
-            // Logika untuk modal kata sandi
-            uploadLink.addEventListener('click', (event) => {
-                event.preventDefault();
-                passwordModal.classList.add('is-visible');
-                passwordInput.focus();
-            });
-
-            passwordForm.addEventListener('submit', (event) => {
-                event.preventDefault();
-                const enteredPassword = passwordInput.value;
-                const correctPassword = uploadLink.getAttribute('data-password');
-
-                if (enteredPassword === correctPassword) {
-                    passwordModal.classList.remove('is-visible');
-                    passwordError.classList.add('hidden');
-                    window.open('movie_uploader.html', '_blank');
-                } else {
-                    passwordError.classList.remove('hidden');
-                }
-            });
-
-            // Tutup modal jika mengklik di luar
-            window.addEventListener('click', (event) => {
-                if (event.target === passwordModal) {
-                    passwordModal.classList.remove('is-visible');
-                    passwordError.classList.add('hidden');
-                    passwordForm.reset();
-                }
-            });
-
-            nextBtn.addEventListener('click', () => {
-                nextSlide();
-                startAutoSlide();
-            });
-
-            prevBtn.addEventListener('click', () => {
-                prevSlide();
-                startAutoSlide();
-            });
-
-            document.addEventListener('click', (event) => {
-                if (event.target.classList.contains('play-btn')) {
-                    event.preventDefault();
-                    const movieId = event.target.getAttribute('data-movie-id');
-                    const movie = allMovies.find(m => m.id === movieId);
-                    if (movie) {
-                        showMovieDetail(movie);
-                    }
-                }
-            });
-
-            backBtn.addEventListener('click', backToMainPage);
-
-            if (yearToggleBtn) {
-                yearToggleBtn.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    yearDropdown.classList.toggle('hidden');
-                });
-            }
-            
-            const yearToggleMobile = document.getElementById('year-toggle-mobile');
-            const yearDropdownMobile = document.getElementById('year-dropdown-mobile');
-
-            if (yearToggleMobile) {
-                yearToggleMobile.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    yearDropdownMobile.classList.toggle('hidden');
-                });
-            }
-
-            const navLinks = document.querySelectorAll('#nav-links a, #mobile-menu nav a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    
-                    const filterType = event.target.getAttribute('data-filter-type');
-                    const filterValue = event.target.getAttribute('data-filter-value');
-                    
-                    if (filterType === 'all') {
-                        backToMainPage();
-                    } else if (filterType === 'genre') {
-                        const filteredMovies = allMovies.filter(movie => movie.genre.includes(filterValue));
-                        renderMovies(filteredMovies);
-                        sectionTitle.textContent = `${filterValue} List`;
-                        mainPage.classList.remove('hidden');
-                        mainContent.classList.remove('hidden');
-                        detailPage.classList.add('hidden');
-                    }
-                    mobileMenu.classList.add('translate-x-full');
-                });
-            });
-            
-            searchInput.addEventListener('input', handleSearch);
-            searchInputMobile.addEventListener('input', handleSearch);
-            
-        });
-    </script>
 </body>
 </html>
