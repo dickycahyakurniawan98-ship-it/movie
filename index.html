@@ -3,346 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineMax - Tonton Film & Series </title>
-    <!-- Memuat Tailwind CSS untuk styling modern dan responsif -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        /* Menggunakan font Inter dan menerapkan Dark Mode secara global */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0d0d0d; /* Latar belakang sangat gelap */
-            color: #e0e0e0; /* Warna teks terang */
-        }
-        /* Custom scrollbar style untuk carousel (opsional tapi estetik) */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
-        /* Style untuk Tombol Utama Play */
-        .play-button {
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .play-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(255, 0, 70, 0.4);
-        }
-    </style>
+    <title>Dicakun Movie – Nonton Film & Series Sub Indo Terbaik</title>
+
+    <!-- SEO & Metadata -->
+    <meta name="description" content="Dicakun Movie – Nonton film dan temukan koleksi terbaik secara legal.">
+    <meta name="keywords" content="film, movie, streaming, action, horror, LK21, Dicakun Movie">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
+    
+    <!-- Font Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tautkan CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Schema JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Dicakun Movie",
+      "url": "https://dicakun.my.id"
+    }
+    </script>
 </head>
-<body class="antialiased">
+<body>
 
-    <!-- Kontainer Utama -->
-    <div id="app" class="min-h-screen pb-20">
-
-        <!-- Header dan Navigasi Atas (Desktop/Tablet) -->
-        <!-- HANYA MENYISAKAN LOGO CINEMAX SESUAI PERMINTAAN -->
-        <header class="hidden md:flex items-center p-6 bg-black/70 sticky top-0 z-10 backdrop-blur-sm">
-            <h1 class="text-3xl font-extrabold text-red-500 tracking-wider">CineMax</h1>
-        </header>
-
-        <!-- Search Bar Mobile (Selalu terlihat di atas) -->
-        <!-- DIHAPUS karena ingin tampilan minimalis di atas -->
-        
-        <!-- Bagian Hero Utama (Film Unggulan) -->
-        <section class="relative h-[60vh] sm:h-[70vh] md:h-[80vh] overflow-hidden">
-            <!-- Gambar Hero (INI ADALAH TEMPAT UNTUK MENGUBAH POSTER UTAMA) -->
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj97t3yMqTknHodDLTaguXe-NJhjBM9D7GXg6kOKhM3LYtoNYfDkComlX7iVhlBMICMu0_SZKUxZaLNsVE4WVIPN56A29GRt0DrO1d4CLtpVSNds9cIlaeqrfbv6BQVOv5mX_rPhyphenhyphen9G827UajlZfocu4ABFAcNJNF7A0uXdWAiRsGK5mGuupmxkzRS6hYLm/s1506/MV5BOGQ3YWUzYjEtMTJiYy00ZjQ0LWI0YjktYjhiNGVhNGExYTM3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" 
-                 onerror="this.src='https://placehold.co/1200x800/180050/FFFFFF?text=SPACE+ODYSSEY+BARU'"
-                 alt="Poster Film Unggulan" 
-                 class="absolute inset-0 w-full h-full object-cover brightness-75 transition duration-500"
-            >
-            <!-- Overlay Gradien untuk visibilitas teks -->
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-[#0d0d0d]/40 to-transparent"></div>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container header-content">
+            <h1 class="logo">Dicakun<span class="logo-accent">Movie</span></h1>
             
-            <!-- Konten Hero -->
-            <div class="absolute bottom-0 p-6 sm:p-8 md:p-12 w-full">
-                <span class="text-xs sm:text-sm font-semibold text-white bg-red-600 px-3 py-1 rounded-full mb-3 inline-block">TRENDING</span>
-                <!-- INI ADALAH TEMPAT UNTUK MENGUBAH JUDUL FILM -->
-                <h2 class="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white mb-2 leading-tight">Demon Slayer Kimetsu No Yaiba The Movie Infinity Castle 2025</h2>
-                <div class="flex items-center space-x-4 text-sm sm:text-base text-gray-300 mb-6">
-                    <span>2025</span>
-                    <span>•</span>
-                    <span>145 min</span>
-                    <span>•</span>
-                    <span class="text-yellow-400 font-bold">9.2/10</span>
-                </div>
-                
-                <!-- Tombol Utama DENGAN LINK. Ganti hero-film-link.html dengan URL Anda -->
-                <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="play-button bg-red-600 text-white font-bold py-3 px-8 rounded-full flex items-center space-x-3 text-lg sm:text-xl w-full sm:w-auto justify-center">
-                    <!-- Ikon Play (Lucide icon: play) -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                    <span>Watch Now</span>
-                </a>
+            <!-- Menu Genre (Digunakan untuk filter cepat) -->
+            <nav class="nav-menu">
+                <a href="#" data-filter-genre="Action">Action</a>
+                <a href="#" data-filter-genre="Horror">Horror</a>
+                <a href="#" data-filter-genre="Romance">Romance</a>
+                <a href="#" data-filter-genre="Comedy">Comedy</a>
+                <a href="#" data-filter-genre="Animation">Animation</a>
+                <a href="#" data-filter-genre="Sci-Fi">Sci-Fi</a>
+            </nav>
+
+            <!-- Kolom Pencarian -->
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Cari film, series, anime...">
+                <button id="search-button" aria-label="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Konten Utama -->
+    <main class="main-content container">
+        
+        <!-- Filter Bar -->
+        <section class="filter-bar">
+            <h2 class="section-title">Film Terbaru & Terpopuler</h2>
+            <div class="filters">
+                <select id="genre-filter">
+                    <option value="">Semua Genre</option>
+                    <option value="Action">Action</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Comedy">Comedy</option>
+                    <option value="Animation">Animation</option>
+                    <option value="Sci-Fi">Sci-Fi</option>
+                    <option value="Fantasy">Fantasy</option>
+                    <option value="Thriller">Thriller</option>
+                    <option value="Drama">Drama</option>
+                </select>
+                <select id="year-filter">
+                    <option value="">Semua Tahun</option>
+                    <!-- Tahun akan diisi oleh JavaScript -->
+                </select>
+                <select id="sort-by">
+                    <option value="views">Paling Populer</option>
+                    <option value="rating">Rating Tertinggi</option>
+                    <option value="id">Terbaru</option>
+                    <option value="title">Judul (A-Z)</option>
+                </select>
             </div>
         </section>
 
-        <!-- Konten Utama Film (Carousel/List) -->
-        <main class="p-4 sm:p-6 md:p-8 space-y-10">
-            
-            <!-- Bagian 1: Baru Dirilis (Menggunakan Carousel Horizontal) -->
-            <section>
-                <h3 class="text-xl sm:text-2xl font-bold mb-4 text-white">Just Released</h3>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <!-- Grid Film -->
+        <section class="movie-grid" id="movie-grid">
+            <!-- Film akan diisi oleh JavaScript di sini -->
+            <p id="no-results" style="display: none; color: #fff; text-align: center; grid-column: 1 / -1; padding: 40px 0;">Tidak ada film yang cocok dengan kriteria Anda. Coba kata kunci lain.</p>
+        </section>
+
+        <!-- Load More/Pagination -->
+        <div class="load-more-container container">
+            <button id="load-more-button" class="btn-primary" style="display: none;">Muat Lebih Banyak</button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="#" aria-label="Facebook">Facebook</a> | 
+                <a href="#" aria-label="Instagram">Instagram</a> | 
+                <a href="#" aria-label="Twitter">Twitter</a>
+            </div>
+            <p>&copy; 2024 Dicakun Movie. Hak Cipta Dilindungi. | Kode Ini Hanya Contoh Web Statis.</p>
+        </div>
+    </footer>
+
+    <!-- Popup Modal Detail (Tersembunyi) -->
+    <div id="movie-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Judul Film</h3>
+                <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img id="modal-poster" src="" alt="Poster Film" class="modal-poster" onerror="this.onerror=null;this.src='https://placehold.co/200x300/1a1a1a/cccccc?text=Poster+Missing';">
+                <div class="modal-details">
+                    <h4>Sinopsis</h4>
+                    <p id="modal-synopsis">Sinopsis film.</p>
                     
-                    <!-- Kartu Film 1 (Ganti detail-film.html dengan URL film 1) -->
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj3wo_RbXK2fsu0ytfCJlwzJlOkRz1fQnhuNc3mP0tTIWrkxkjEmQK-VFqokuMwxv6syQLvGonEb4_sSsnMg0ll7V3slbCcziiiWX9vGTZh0iqyyXkiFX8VdcytyZIS0lEKuWVuuNUbgSxdwrLxqMnvcNBEGgFMMzavx0Gj41lThAvnzkS8SjzhceOKDZBg/s1500/saiyara%202025.jpg" alt="Poster Film 1" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">Saiyaara (2025)</p>
-                        <p class="text-xs text-gray-500 text-center">Drama,Romance</p>
-                    </a>
-                    
-                    <!-- Kartu Film 2 (Ganti detail-film.html dengan URL film 2) -->
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8V91KUPKzcChFsLEouFYWaJpRTG9H4QOj-HOqHe9mAJUxygOMWucJZmV8aQWkK6d_zm_EQeCu4PO-oPJLhlMRKtwtaeEkeJhosm5qSl4OWkLhhc_1f7nqp_rQO70BOL6H6FFyJOyat3y0ij2mGgc75VvPGZDMZN1_1h-5Zb6TumSVuiYVOhKtH8m8puqM/s273/preetycrazy.jpeg" alt="Poster Film 2" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">Pretty Crazy 2025</p>
-                        <p class="text-xs text-gray-500 text-center">Comedy,Drama</p>
-                    </a>
-                    
-                    <!-- Kartu Film 3 (Ganti detail-film.html dengan URL film 3) -->
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj97t3yMqTknHodDLTaguXe-NJhjBM9D7GXg6kOKhM3LYtoNYfDkComlX7iVhlBMICMu0_SZKUxZaLNsVE4WVIPN56A29GRt0DrO1d4CLtpVSNds9cIlaeqrfbv6BQVOv5mX_rPhyphenhyphen9G827UajlZfocu4ABFAcNJNF7A0uXdWAiRsGK5mGuupmxkzRS6hYLm/s1506/MV5BOGQ3YWUzYjEtMTJiYy00ZjQ0LWI0YjktYjhiNGVhNGExYTM3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Poster Film 3" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">Demon Slayer Kimetsu No Yaiba The Movie Infinity Castle 2025</p>
-                        <p class="text-xs text-gray-500 text-center">Drama, Kriminal</p>
-                    </a>
-                    
-                    <!-- Kartu Film 4 (Ganti detail-film.html dengan URL film 4) -->
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfGxnSC8F-zUPpM0C9Q3j4NhY0pMAE1xv07bMs08XfJanjcGOLGIgXCNvCmqbCE2SQZHFJ0G8rnUEfyzkTfXysOZMIcqnEF1d1riidxDF3TYy-nfLLBQY5APj9nzTn40TTZ7mm1Z5j4YfqlYVUYbGa-Ddy1cdGkiY-1Phix7SwJvZnmitCEhN9MSNRRI26/s1425/iceroad.jpg" alt="Poster Film 4" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">Ice Road: Vengeance (2025)</p>
-                        <p class="text-xs text-gray-500 text-center">Action,Adventure</p>
-                    </a>
-                    
-                    <!-- Kartu Film 5 (Ganti detail-film.html dengan URL film 5) -->
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjwNyAmRCHkPl8aAbPGk4OlPNQ857DMylo6k1apY8VPOm_7q-abEHz4yuX7tySMwsBMKSg8lLGDW80wJH1wVfgMsgZK2asfNOTyHLTyu4P0YSi3kJryh76LNT1f9ygw_SBA5w88UUDr2-sEFdMyFbMH3SpF5TURb01dxBeh3T-TeOLp7DVhuOkiaBt37c_q/s1400/she%20said%20maybe.jpg" alt="Poster Film 5" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">She Said Maybe 2025</p>
-                        <p class="text-xs text-gray-500 text-center">Drama,Romance</p>
-                    </a>
+                    <h4>Informasi</h4>
+                    <p>
+                        <strong>Tahun:</strong> <span id="modal-year">2024</span><br>
+                        <strong>Tipe:</strong> <span id="modal-type">Movie</span><br>
+                        <strong>Rating:</strong> <span id="modal-rating">8.0</span><br>
+                        <strong>Dilihat:</strong> <span id="modal-views">1.000.000</span>
+                    </p>
 
-                     <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjdPHHEr-ukC7TL3NSpl-1XbS_izBpnEUlKzsCMdiS2Lln6PfDIVbU-p80wGGYPaJBuiXTYwy0Rvkn8l6P9INke85q0at6Kj3535CLV7rvJM9p88VfFwt0BmY13TZez0IZxcnTHQumLILbm1p6JbZqLWL3VFBurQc-hEfsQ5Wgm0wau50-UOpQxLkMl3nJ_/s512/THE%20NEXT%20365%20DAYS.jpg" alt="Poster Film 6" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">THE NEXT 365 DAYS</p>
-                        <p class="text-xs text-gray-500 text-center">Drama,Romance</p>
-                    </a>
+                    <h4>Genre</h4>
+                    <div id="modal-genres" class="tag-list">
+                        <!-- Tags Genre -->
+                    </div>
 
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjnYUkrwnT8irT81oQIJ9rfmIw-OppVlQtd2TphwO1gv_0-axjSTgh8wxdD4v0Iv4Llbs0h8s2xV7BCcvEmP8xDAgPjC4dvhrvjE-DcDE5C-2s4n3JNh0GUSh63csKZPweCBi8c0p2hnyrRoP-3RzGxpLJdrCkZlSdSxDnZdFWzVA6FzEHzVo67aYp18YWk/s1024/Love%20and%20Leashes.jpg" alt="Poster Film 7" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">Love and Leashes</p>
-                        <p class="text-xs text-gray-500 text-center">Drama,Romance</p>
-                    </a>
+                    <!-- Untuk Series/Anime/Donghua -->
+                    <div id="episode-selector-container" style="display: none;">
+                        <label for="episode-selector">Pilih Episode:</label>
+                        <select id="episode-selector"></select>
+                    </div>
 
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg9ahaF0UbphHjCVcb5U2_r4o6eIxpwu32SmMdBlXZQ_49KluqdFrrL9WePbaghjYcafISpPIiuLETwgOLQ1G_9zdmBcyiHsiHWWmUDsTerryFONLmc4VNclI3tQE7bKaF4e1TLnCaHP4zYpgynDhurSiaVTrLT_3P8SO-6zNRzfAiOo4IePdgu_ha-8MFk/s1041/Dry%20Martina.jpg" alt="Poster Film 8" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">Dry Martina</p>
-                        <p class="text-xs text-gray-500 text-center">Drama,Romance</p>
-                    </a>
-
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjs9kf92ybvoyWRb8oYXDN8HV8iUh2SCj4VFNXYT-VankZNmVw1d91HUXixyS_tL4MfvaiBpegEQ8cWpwTgfx4gKUsFWcSpsDVouRWd5BPTPZvmnML72n5lFgxWGuKH4lkdQv-szxvW4d6SWOt2HCFbN10e77MsmG8BGO6HamsV3240cOULxGfykQ5blA6W/s1600/Foreign%20Exchange%20%282025%29.jpg" alt="Poster Film 9" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">Foreign Exchange (2025)</p>
-                        <p class="text-xs text-gray-500 text-center">Comedy,Romance</p>
-                    </a>
-
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgrzJz0eifgm-7FS1XlqF6brNFKqedEvR0Qx5qsERAnQfOrcb6G-3OT1rsTQlhyvSx7zpWTzAkzhFnDmEmEgYtZPQEKzM1p1AUbzHgLT1KB2uESuaxm6t5rcDkfvRD_XSOTniqTnO1Chh9-oQ52nUXLn8YxGwAla0EGIDsbFrAekFKuApE8ZKSq3AhKI4ZD/s281/Same%20Day%20with%20Someone.jpg" alt="Poster Film 10" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">Same Day with Someone 202S</p>
-                        <p class="text-xs text-gray-500 text-center">Comedy,Romance</p>
-                    </a>
-
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi0cdmKhxbDpogy9mM0nKHEKEj0P1lNGhLtwQn5BodnnRWmWkvIRtuDku6StPxtFVD2jHMaVEivC5OfSK0_iIIGCLsGn3BDuWY9sxrtQcBhZ3nvSM0BcxOevrE1q7Oo0WcnjQvL-4ovOxtc84kXvzQOpDucKfYIYArotnmtjnvBtYyLD367W6Q3Ts9tOlxe/s384/KPop_Demon_Hunter_film.jpeg" alt="Poster Film 11" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">KPop Demon Hunters</p>
-                        <p class="text-xs text-gray-500 text-center">Drama</p>
-                    </a>
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh6kt8nq18Dc5KB0Gfeln7hR_MT_58WyR1tFWXlyW0jGqEUQNtiITQgNzC_IMsucI-0GQyRrqoJBIsDv30Ztv8uYTS8G56SBY_hPx8Gizxbla_JBK0wi89KgV1UygAEvZN1Dt9x7dPmHWIOX0hGDKuqtlN7E_TCvw4hgeH8fEAcnWSDzc1obpzh8kbBFSUk/s3543/cgv_exit-8.jpg" alt="Poster Film 12" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">The Exit 8</p>
-                        <p class="text-xs text-gray-500 text-center">Action,horror</p>
-                    </a>
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiTa-UoH7NK_nbt0Vxkz9YXj_LghV_QjNYrxWXK-cG9oInirWZJV9vNGg_kzLvqhdz-6PdBl2dIKW9hV5xmkB7uZxR8UHYF-FkgXfF1M4uEsF4zjj2CslsS7WySji6XTWb6sl6mDFpkK385VQD5n9aHi_hJG05WovkpSo00AO4xIYBLCJ8v-fB2rKp2gIwD/s1596/HIM.jpg" alt="Poster Film 13" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">HIM</p>
-                        <p class="text-xs text-gray-500 text-center">Drama,Horror</p>
-                    </a>
-                     <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiVbnZTe8Bo6J8bH4lkQg-F5ZTwhi1J98hYSukBd9Pu-JcewSYWHg7RlGBQ89GAwgcZ4KVlA4EqXafxt9VoDsfSy8f2Od8vY2BCUy4EtnCtN2saZSOv26eEzgtDn1fuONbWvUddUr01TuTQmjqwmx2_PKY-awBCwvDIht2jTwuJIn_fK8H-NTa-U4EHuHkY/s1409/MV5BYWE2NmNmYTItZGY0ZC00MmY2LTk1NDAtMGUyMGEzMjcxNWM0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Poster Film 14" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">TThunderbolts</p>
-                        <p class="text-xs text-gray-500 text-center">Drama,Action</p>
-                    </a>
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgRfcnR8ErYzBX8KOxRmT54uqWvKP2ZeusOJ0Fiv-vcnWl1L1Ll_To1FF2sFrsscksoyB_RDSlqESqlStswMUpSWF_scd-bQSWFsCsh-o4GQBi0ed6xKpk3YFWDLL3Bf4iSvorfNcK8YOOrH-cNdrn3QCcXAGIKMVtrlyX7S3WOaMC_KCP9tnhIgVYKsTeF/s1481/MV5BYjIyMDc3ZmQtZTQyYy00NDhhLTlmMWEtYzM3MDYwNjRmY2NkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Poster Film 15" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">Ne Zha 2</p>
-                        <p class="text-xs text-gray-500 text-center">Action,Adventure</p>
-                    </a>
-                     <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEivHXQeTry8dnmpGSq0zCfrlx-iZI_D_pcOI2i31a7eLAIoFqdQFAvA2-ZkqL9IMS0vy9oGauC-4ZWsxheuWl5ePbDLiWKu9RvHh-0k7ORorYez39o9o9XtVFA3tEu0aNTyBEIpOONremD_5W4SWjR6eZVouFT2DvMcmawhSDEPEJiWa60WgP_LDIhU28q1/s1583/MV5BMGM3ZmI3NzQtNzU5Yi00ZWI1LTg3YTAtNmNmNWIyMWFjZTBkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Poster Film 16" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">Jurassic World: Rebirth</p>
-                        <p class="text-xs text-gray-500 text-center">Action,Adventure</p>
-                    </a>
-                     <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiLSeTKy_gB2BdDIN23TwyXa6rmebEYblAaty1ZBDG5Zr5na16HgNfIl6iHW2X9UQHyxNdTG5DWjoRXrScbPjTqcmqlvUImGjEwP-8iXXNUP4vYbnlpE2bXfwvHXmWshp7bbtjbvqhp8WoZp3x2TT5EcOH9t4_3DoZnk0hGHmuIXOKN-Ho0vniZffXoCXy8/s1481/MV5BZTUxOWRkN2UtZjBlMS00NWU0LWE2M2ItZmY5MDJjMzlhYTk4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Poster Film 17" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">Downton Abbey: The Grand Finale</p>
-                        <p class="text-xs text-gray-500 text-center">Drama,Romance</p>
-                    </a>
-                     <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEifQ932AC9Qq0zOl-oQtPR0ymSn6wQhxd5Dk6aY5La1Uh0q7un5JWFztbxVWmX1yuT9NOnxvwWZEDI01QQQpV3uPvmX3lVQi41QcQqTjFCwqAr7VEp8HCsPCHm5SDesl97_d8WIW9WmbjNCm2lY2cmV-TP1-vdPBfLLN0zTHib0xmPnOjDxDxpc6-f0YU3P/s1600/GoOnlineTools-image-downloader.jpeg" alt="Poster Film 18" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">The Conjuring: Last Rites</p>
-                        <p class="text-xs text-gray-500 text-center">Drama,Horror</p>
-                    </a>
-                     <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEik9OPd0Xkx3giCOEezIefQ32RVChOaDykzjz0Fknb2S4gYuwRnkeIqsmpTZFpvOE3EjGDpuqxQxuLKZWONVaZpPkdpvAu6aAo559GVGaG1cxc0r2MO3TZSCCRGZdtQr1q3kZR2rJ_LxHap2qGCWH0VbTRpDvIa-u6jU8VjhIpv9S_0xy7-okZlkrldFjTq/s1429/99moons.jpg" alt="Poster Film 19" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">99 Moons</p>
-                        <p class="text-xs text-gray-500 text-center">Drama,Romance</p>
-                    </a>
-                     <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwZYmMl9x6vwjTiJs9V_J9TiMQsiQ14rjtzhyphenhyphenaVCb9VhXrEe4Xe6xlP_cnElVOu_cslRVEGGTp-kj0GNdORMNuHYn8loUAD10J9tm0vVf9LNCuCt0QbqJZ8KJziauUcPEVTdrRe-lVbYdjkOGjNMhy3AJZLy5Lo3_g0qtJJZOp83eRopAWyn1R9_1q7zit/s1467/hallowroad.jpg" alt="Poster Film 20" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">Hallow Road 2025</p>
-                        <p class="text-xs text-gray-500 text-center">Drama,Horror</p>
-                    </a>
-                     <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhUdpUZmUkx7EuWsBPDU1b2ZxM_vrsZVD6qTbZu_9D9X2i_Yuz84jUzW5X4zhNYfpDMbq3Mciv23J4FV8UJfsdTitOk4mLaAFmKpcMZptpp6XlKczngdWSetIICUO7TWRz4SVWYwCJEDObemvlsIuW4FQRSPYU8ew0hQ5IEEJARs5fTCm_uweggSpJqDYeT/s1250/%23single.jpg" alt="Poster Film 21" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">#Single</p>
-                        <p class="text-xs text-gray-500 text-center">Drama,Romance</p>
-                    </a>
-                     <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjTR3laV3DcUPEkN5Skewm0p_eGG9fBcoznYTexzyNg7INrUZuBbOcU-mvQXtQq2KN3x41NNj8ktgfX8lMfkTQDu5d5JDUhbgwiWg-MN4HyyI58CumqYKgFE3sDiVoTykXi_3XHIIIoMvHR5gE9g345RwsfJpG6bgS_lzBBc0mCoJjH6hUGOmkkaEQjpQ-j/s1481/MV5BOWE5ZDMyMWEtOTZjMi00YzFhLWE4OTEtNDc3MDMzZjFmMmIzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Poster Film 22" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">ELIO 2025</p>
-                        <p class="text-xs text-gray-500 text-center">Drama,Comedy</p>
-                    </a>
-                     <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://i.imgur.com/Q9n9hzw.jpeg" alt="Poster Film 23" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">Love Untangled (2025)</p>
-                        <p class="text-xs text-gray-500 text-center">Drama,Romance</p>
-                    </a>
-                     <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgrFjbQVDnR2rpR0VvrFAP-gLi0DmaAjd2VCAgfqGz2akxn2ySReBYqayKDXlLnp9aJISHzNuJv_2us1-_k4xjEQRXoUwE95kxlQDE-iyGnWKQE0pIigoxD7-xG2d2ZSYb9Y-eFTg2UqjQ1ZGSc6UyKLKz8ZMMs-47H2QcDwTiBudaHyGQNPA_x-bbcL83k/s2283/La%20enfermedad%20del%20domingo.jpg" alt="Poster Film 24" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">La enfermedad del domingo</p>
-                        <p class="text-xs text-gray-500 text-center">Drama,Romance</p>
-                    </a>
-                     <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjPA0B8u5KYvoPt1caVXHJDlIbGVYWN4sW5csYbXiTMEymJwBF5iv_9sSmM8cAJdIWJYay8SctpS6VFACzM0AjstMJgyP2JW_rYcCht9-Coz5vTq_k1UhU6BT0Q9UcyMiCAGWTSdFQXZzRpjHNfiSkxHN3TbeBf1V0gPYq8HA3gt21_dX92DDB8EdDHDumt/s1481/Lady%20Chatterley%27s%20Lover.jpg" alt="Poster Film 25" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">Lady Chatterley's Lover</p>
-                        <p class="text-xs text-gray-500 text-center">Drama,Romance</p>
-                    </a>
-                    <!-- Tambahkan lebih banyak kartu film di sini -->
+                    <div class="modal-action-buttons">
+                        <a id="modal-watch-link" href="#" class="btn-primary" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                            Tonton Sekarang
+                        </a>
+                        <a id="modal-download-link" href="#" class="btn-secondary" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download
+                        </a>
+                    </div>
                 </div>
-            </section>
-
-            <!-- Bagian 2: Series Terbaik -->
-            <section>
-                <h3 class="text-xl sm:text-2xl font-bold mb-4 text-white">TV shows</h3>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                    
-                    <!-- Kartu Series 1 (Ganti detail-film.html dengan URL series 1) -->
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgA6uAvhP7_MBZQTjMZpW0-omWYVzFheosDt3aP1o5r3aTEtiyTxOHoK0-GP4HVO1s1FP8x0JU2u3OFrV_1ke7angxTFt46xmvaGI6lMEVXBL1TwLOoIr1Q1csTc9YQiwfIVaC5xAij60V23Yp-_2Oia0ovOQhft-NXS5Tffq8To0_xghuJwVZQoblPJj1F/s1500/Original%20Sin.jpg" alt="Poster Series 1" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">Original Sin</p>
-                        <p class="text-xs text-gray-500 text-center">Romance,Erotic</p>
-                    </a>
-                    
-                    <!-- Kartu Series 2 (Ganti detail-film.html dengan URL series 2) -->
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgi_WMpGQfq2lOS1gHZUODbMj_jG_z6qhVG-_c6aT5GaPaCAkEjlA1NELV1Uw0GV2FbyQaFXQ2xh-7l0SHJ9l4l1j95zgvjki0rxFVcAPqcMF6sKc2TxBBBAZKAMchcaO4S60_yPDsIOg0uPDY6D2UlmfP_c9OIBL6HBRIHnYEh4EGvP_63b8C81XC4HSkL/s2048/Mr.%20&amp;%20Mrs.%20Smith.jpg" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">Mr. & Mrs. Smith</p>
-                        <p class="text-xs text-gray-500 text-center">Drama,Comedy</p>
-                    </a>
-                    
-                    <!-- Kartu Series 3 (Ganti detail-film.html dengan URL series 3) -->
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjp1Ux_mXK6Iu-K5NujNbnOwwgleR1KzIW1gvQyFUzCZB5qZUf78Hg83PBrUB-tFaIbTmtkZphN18eO3pRlmIcMADlYrNTBw3IGcPJBcGtkWLmVNsKf6yteasP0hOwhLLn6WgOLuOo-GIcNo3aH8P8CKD3AKrfoLLMNRyoGm0NNsHt6U3fTl3bcK5z04XxP/s1431/Salt.jpg" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">Salt</p>
-                        <p class="text-xs text-gray-500 text-center">Action</p>
-                    </a>
-                    
-                    <!-- Kartu Series 4 (Ganti detail-film.html dengan URL series 4) -->
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="flex-shrink-0 w-40 sm:w-48 hover:opacity-80 transition duration-150 block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJDh75hOmXQ-uZNm91DWRR53sLKvlkEWaWTT8HOnkUYJ9QCW4dKEqe43F7u5gO7C4-YQchvJw9xg2tUjyqVCJbTded18cNDOk3GcXYKNY0Q-FnJ0qFeJs_RhED4OThwCM657MoIeQKjs-aBkc1bGtMni2dSG6lkKSzwHAKsWfjH3ihP69gnFCww2KV2R4q/s3000/Gen%20V.jpg" alt="Poster Series 4" class="w-full h-auto rounded-xl shadow-lg mb-2 object-cover aspect-[2/3]">
-                        <p class="text-sm font-semibold text-center truncate">Gen V</p>
-                        <p class="text-xs text-gray-500 text-center">Drama, Action</p>
-                    </a>
-                    
-                    <!-- Tambahkan lebih banyak kartu series di sini -->
-                </div>
-            </section>
-
-            <!-- Bagian 3: Film Pilihan (Daftar Vertikal di Mobile, Grid di Desktop) -->
-            <section>
-                <h3 class="text-xl sm:text-2xl font-bold mb-4 text-white">Trending</h3>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                    
-                    <!-- Item Grid 1 (Ganti detail-film.html dengan URL film 6) -->
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="relative group rounded-xl overflow-hidden shadow-xl transform transition duration-300 hover:scale-[1.02] cursor-pointer block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgm9xUaHdMUhCZzRzelQa8DrQNbNJOF47Dz7j9HjosVqXzfWPcdoLtrN4Nt_aqZi2weBn0oDd4Rt6yq4P2yhWWHN4M6FSl1YWUUUMfm-fp_0BprKEIkN4NDIp0COQInqh0RDjq23GQDOv3WhNcgkLIe5JpGn5Ar-tYcGV5eOuWaQxSzc1LoTomaJqIFAnYt/s1250/Superman.jpg" alt="Pilihan Film 1" class="w-full h-full object-cover aspect-[2/3]">
-                        <div class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition duration-300 flex items-end p-3">
-                            <p class="text-white font-semibold text-sm">Superman</p>
-                        </div>
-                    </a>
-                    
-                    <!-- Item Grid 2 (Ganti detail-film.html dengan URL film 7) -->
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="relative group rounded-xl overflow-hidden shadow-xl transform transition duration-300 hover:scale-[1.02] cursor-pointer block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgkLQPyxZMD_sTyRvvow4TRabWNPktSa-U45xAthyphenhyphenRd6NyYaVY75M5FN8w98QDzf-GvlVrMFQs2-pf2F2aWTzcEfFCzUinsV4j4s6Y5xSzH64SFP_sFtrOBVcRSmfxarNfpF1p5wGDMc5VL3ZIvLwxZAFyQ68hN9szYU9HeFp0zfeQZynpBTuWvz9BWbabx/s281/Weapons.jpg" alt="Pilihan Film 2" class="w-full h-full object-cover aspect-[2/3]">
-                        <div class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition duration-300 flex items-end p-3">
-                            <p class="text-white font-semibold text-sm">Weapons</p>
-                        </div>
-                    </a>
-                    
-                    <!-- Item Grid 3 (Ganti detail-film.html dengan URL film 8) -->
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="relative group rounded-xl overflow-hidden shadow-xl transform transition duration-300 hover:scale-[1.02] cursor-pointer block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjIji8kaa-i2-Ri7pz-TnXlisA36eNLy8bRlMkRhqcvKfRDc2oq38IhWUYoVDruzokjL7z6-JaZjbl7H8bjfg6H4fnkJWxdI1zeYmc6VO0xaCNKkzhe2-DnLJY2oc007gFATaJrdLpnNlksTAoWri2ZQTu7aOjw-jsEHcUIY4Tl1zQXSp-4bRdoXrRGIBRE/s1481/The%20Long%20Walk.jpg" alt="Pilihan Film 3" class="w-full h-full object-cover aspect-[2/3]">
-                        <div class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition duration-300 flex items-end p-3">
-                            <p class="text-white font-semibold text-sm">The Long Walk</p>
-                        </div>
-                    </a>
-                    
-                    <!-- Item Grid 4 (Ganti detail-film.html dengan URL film 9) -->
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="relative group rounded-xl overflow-hidden shadow-xl transform transition duration-300 hover:scale-[1.02] cursor-pointer block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJjDsxCZpG3e1hXUK9sjm-N3t0JJiauIE3bIannR8ncpT7DT5wbcFq_EqRMGEXAkDNhTR8Tst1_M87j-nOF4z6_4t-GoBR_SJuEI8dCdtGvZiwpE8L9O-G_TmZkd6tG0fgVisjVZdW9YMbAqWa5Q83XE6t-R5IpjFGGg8kP_Gxh-D-Z8J9k2y3y1sVCBXs/s2048/One%20Battle%20After%20Another.jpg" alt="Pilihan Film 4" class="w-full h-full object-cover aspect-[2/3]">
-                        <div class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition duration-300 flex items-end p-3">
-                            <p class="text-white font-semibold text-sm">One Battle After Another</p>
-                        </div>
-                    </a>
-                    
-                    <!-- Item Grid 5 (Hanya terlihat di layar besar - Ganti detail-film.html dengan URL film 10) -->
-                    <a href="https://www.revenuecpmgate.com/kv7yd4qfc?key=54727d8293dcffe6ba7d770186e213c8" class="relative hidden lg:block group rounded-xl overflow-hidden shadow-xl transform transition duration-300 hover:scale-[1.02] cursor-pointer block">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiXaNL31t6ebgkWKOGv4KFKzLPoQl7TDKu6sdRakRwlq8M0kfZMUXQI64Ff-vlM0Q9nXCQamyOU6T105W-8bvnJH9BbaKiAXKabZ5d5T_qXJG6eZzjU_AwRzErXVVeZpOp5JS7ucOkwqfwieC30454YtqR90Z3aIz7dZlpm2tTvliLj8lAoJUPYy5sBD46l/s1500/Anaconda.jpg" alt="Pilihan Film 5" class="w-full h-full object-cover aspect-[2/3]">
-                        <div class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition duration-300 flex items-end p-3">
-                            <p class="text-white font-semibold text-sm">Anaconda</p>
-                        </div>
-                    </a>
-                    
-                </div>
-            </section>
-        </main>
-
-        <!-- Footer Sederhana (Hanya terlihat di desktop) -->
-        <footer class="hidden md:block p-6 text-center text-gray-500 border-t border-gray-800 mt-10">
-            <p>&copy; 2025 CineMax. Semua Hak Dilindungi. | Dibuat dengan Tailwind CSS.</p>
-        </footer>
-
-        <!-- Navigasi Bawah Mobile (Sticky Bottom Bar) -->
-        <!-- DIUBAH: Kini hanya menyisakan tombol Beranda dan dipusatkan (justify-center) -->
-        <nav class="fixed bottom-0 left-0 right-0 h-16 bg-black/90 backdrop-blur-md border-t border-gray-800 flex justify-center items-center z-20 md:hidden">
-            <!-- Tombol 1: Beranda (Satu-satunya tombol yang tersisa) -->
-            <a href="#" class="flex flex-col items-center justify-center text-red-500 p-4">
-                <!-- Ikon Beranda (Lucide icon: home) -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                <span class="text-xs mt-1">Beranda</span>
-            </a>
-            <!-- Tombol 2, 3, 4 (Cari, Koleksi, Akun) Dihapus -->
-        </nav>
-
+            </div>
+        </div>
     </div>
+
+    <!-- Tautkan JavaScript (penting di akhir body) -->
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
