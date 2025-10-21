@@ -1,163 +1,699 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SJH3QKN4BV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SJH3QKN4BV');
+</script>
+<script type='text/javascript' src='//bulletinsituatedelectronics.com/d4/f2/14/d4f2148957282c3d6175326c1f847248.js'></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dicakun Movie – Nonton Film & Series Sub Indo Terbaik</title>
+    <title>DICAKUN - Situs Streaming Film dan Serial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for responsiveness and aesthetics */
+        body { font-family: 'Inter', sans-serif; background-color: #0d1117; color: #e6e6e6; }
+        .poster-container {
+            position: relative;
+            padding-top: 150%; /* 2:3 Aspect Ratio */
+            overflow: hidden;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .poster-container:hover {
+            transform: scale(1.02);
+        }
+        .poster-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* 16:9 Aspect Ratio for Video Player */
+        .video-wrapper {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: #000;
+        }
 
-    <!-- SEO & Metadata -->
-    <meta name="description" content="Dicakun Movie – Nonton film dan temukan koleksi terbaik secara legal.">
-    <meta name="keywords" content="film, movie, streaming, action, horror, LK21, Dicakun Movie">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
-    
-    <!-- Font Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Tautkan CSS -->
-    <link rel="stylesheet" href="css/style.css">
+        .video-wrapper iframe {
+            /* Pastikan iframe mengisi wrapper 16:9 */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
 
-    <!-- Schema JSON-LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Dicakun Movie",
-      "url": "https://dicakun.my.id"
-    }
-    </script>
+        /* NEW: Overlay Iklan dengan Tombol Play Palsu */
+        .ad-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Semi-transparan gelap agar tombol lebih menonjol */
+            background-color: rgba(0, 0, 0, 0.8); 
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10; /* Pastikan di atas iframe */
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Header & Navigation -->
-    <header class="header">
-        <div class="container header-content">
-            <h1 class="logo">Dicakun<span class="logo-accent">Movie</span></h1>
-            
-            <!-- Menu Genre (Digunakan untuk filter cepat) -->
-            <nav class="nav-menu">
-                <a href="#" data-filter-genre="Action">Action</a>
-                <a href="#" data-filter-genre="Horror">Horror</a>
-                <a href="#" data-filter-genre="Romance">Romance</a>
-                <a href="#" data-filter-genre="Comedy">Comedy</a>
-                <a href="#" data-filter-genre="Animation">Animation</a>
-                <a href="#" data-filter-genre="Sci-Fi">Sci-Fi</a>
-            </nav>
-
-            <!-- Kolom Pencarian -->
-            <div class="search-box">
-                <input type="text" id="search-input" placeholder="Cari film, series, anime...">
-                <button id="search-button" aria-label="Search">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Konten Utama -->
-    <main class="main-content container">
-        
-        <!-- Filter Bar -->
-        <section class="filter-bar">
-            <h2 class="section-title">Film Terbaru & Terpopuler</h2>
-            <div class="filters">
-                <select id="genre-filter">
-                    <option value="">Semua Genre</option>
-                    <option value="Action">Action</option>
-                    <option value="Horror">Horror</option>
-                    <option value="Romance">Romance</option>
-                    <option value="Comedy">Comedy</option>
-                    <option value="Animation">Animation</option>
-                    <option value="Sci-Fi">Sci-Fi</option>
-                    <option value="Fantasy">Fantasy</option>
-                    <option value="Thriller">Thriller</option>
-                    <option value="Drama">Drama</option>
-                </select>
-                <select id="year-filter">
-                    <option value="">Semua Tahun</option>
-                    <!-- Tahun akan diisi oleh JavaScript -->
-                </select>
-                <select id="sort-by">
-                    <option value="views">Paling Populer</option>
-                    <option value="rating">Rating Tertinggi</option>
-                    <option value="id">Terbaru</option>
-                    <option value="title">Judul (A-Z)</option>
-                </select>
-            </div>
-        </section>
-
-        <!-- Grid Film -->
-        <section class="movie-grid" id="movie-grid">
-            <!-- Film akan diisi oleh JavaScript di sini -->
-            <p id="no-results" style="display: none; color: #fff; text-align: center; grid-column: 1 / -1; padding: 40px 0;">Tidak ada film yang cocok dengan kriteria Anda. Coba kata kunci lain.</p>
-        </section>
-
-        <!-- Load More/Pagination -->
-        <div class="load-more-container container">
-            <button id="load-more-button" class="btn-primary" style="display: none;">Muat Lebih Banyak</button>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="social-links">
-                <a href="#" aria-label="Facebook">Facebook</a> | 
-                <a href="#" aria-label="Instagram">Instagram</a> | 
-                <a href="#" aria-label="Twitter">Twitter</a>
-            </div>
-            <p>&copy; 2024 Dicakun Movie. Hak Cipta Dilindungi. | Kode Ini Hanya Contoh Web Statis.</p>
-        </div>
-    </footer>
-
-    <!-- Popup Modal Detail (Tersembunyi) -->
-    <div id="movie-modal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modal-title">Judul Film</h3>
-                <button class="modal-close-btn" id="modal-close-btn">&times;</button>
-            </div>
-            <div class="modal-body">
-                <img id="modal-poster" src="" alt="Poster Film" class="modal-poster" onerror="this.onerror=null;this.src='https://placehold.co/200x300/1a1a1a/cccccc?text=Poster+Missing';">
-                <div class="modal-details">
-                    <h4>Sinopsis</h4>
-                    <p id="modal-synopsis">Sinopsis film.</p>
-                    
-                    <h4>Informasi</h4>
-                    <p>
-                        <strong>Tahun:</strong> <span id="modal-year">2024</span><br>
-                        <strong>Tipe:</strong> <span id="modal-type">Movie</span><br>
-                        <strong>Rating:</strong> <span id="modal-rating">8.0</span><br>
-                        <strong>Dilihat:</strong> <span id="modal-views">1.000.000</span>
-                    </p>
-
-                    <h4>Genre</h4>
-                    <div id="modal-genres" class="tag-list">
-                        <!-- Tags Genre -->
-                    </div>
-
-                    <!-- Untuk Series/Anime/Donghua -->
-                    <div id="episode-selector-container" style="display: none;">
-                        <label for="episode-selector">Pilih Episode:</label>
-                        <select id="episode-selector"></select>
-                    </div>
-
-                    <div class="modal-action-buttons">
-                        <a id="modal-watch-link" href="#" class="btn-primary" target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                            Tonton Sekarang
-                        </a>
-                        <a id="modal-download-link" href="#" class="btn-secondary" target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                            Download
-                        </a>
-                    </div>
+<!-- Navbar (Tetap di atas) -->
+<nav class="sticky top-0 z-50 bg-gray-900 shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <div class="flex items-center">
+                <!-- Navigasi ke Halaman Utama menggunakan fungsi JS -->
+                <a href="#" onclick="navigateTo('home')" class="flex-shrink-0 text-2xl font-extrabold text-red-500 tracking-wider">
+                    DICAKUN
+                </a>
+                <div class="hidden md:block ml-10 flex space-x-4">
+                    <button onclick="filterContent('Movie')" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-150">Movie</button>
+                    <button onclick="filterContent('Series')" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-150">Serial</button>
+                    <button onclick="filterContent('Donghua')" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-150">Donghua</button>
+                    <button onclick="filterContent('Anime')" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-150">Anime</button>
                 </div>
+            </div>
+            <div class="flex items-center">
+                <div class="relative hidden sm:block">
+                    <input type="text" id="search-input" placeholder="Cari..." class="bg-gray-800 text-white rounded-lg pl-4 pr-10 py-2 focus:ring-red-500 focus:border-red-500 transition duration-150">
+                    <button onclick="performSearch()" class="absolute right-0 top-0 mt-2 mr-3 text-gray-400 hover:text-white">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </button>
+                </div>
+                <!-- Tombol Menu Mobile -->
+                <button id="mobile-menu-button" type="button" class="ml-2 md:hidden bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                    <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Tautkan JavaScript (penting di akhir body) -->
-    <script src="js/data.js"></script>
-    <script src="js/script.js"></script>
+    <!-- Menu Mobile -->
+    <div class="md:hidden hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <input type="text" id="mobile-search-input" placeholder="Cari..." class="w-full bg-gray-800 text-white rounded-lg pl-4 pr-10 py-2 mb-2 focus:ring-red-500 focus:border-red-500 transition duration-150">
+            <button onclick="performSearch(true)" class="block w-full text-white bg-red-600 hover:bg-red-700 px-3 py-2 rounded-md text-base font-medium transition duration-150">Cari</button>
+            <button onclick="filterContent('Movie')" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Movie</button>
+            <button onclick="filterContent('Series')" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Serial</button>
+            <button onclick="filterContent('Donghua')" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Donghua</button>
+            <button onclick="filterContent('Anime')" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Anime</button>
+        </div>
+    </div>
+</nav>
+
+<!-- Konten Utama (Beranda / Pemutar) -->
+<main id="app-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"></main>
+
+<!-- Modal untuk Pesan -->
+<div id="message-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 z-[100] flex items-center justify-center">
+    <div class="bg-gray-800 p-6 rounded-lg shadow-2xl max-w-sm w-full">
+        <h3 class="text-xl font-bold mb-3 text-red-500">Pesan</h3>
+        <p id="message-text" class="text-gray-300 mb-4"></p>
+        <button onclick="closeModal()" class="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition duration-150">Tutup</button>
+    </div>
+</div>
+
+<script>
+    // Konstanta untuk pengelompokan episode di tampilan player
+    const EPISODES_PER_CHUNK = 20;
+    // URL Adsterra Anda (GANTI DENGAN LINK ANDA!)
+    const AD_DIRECT_LINK = "https://perky-ad.com/vmbeGK"; 
+
+<script src="data.js"></script>
+
+    // --- State Navigasi dan Paginasi ---
+    const PAGE_SIZE = window.innerWidth < 768 ? 20 : 36;
+    let latestPage = 1;
+    let popularPage = 1;
+
+    // --- Fungsi Utilitas ---
+
+    function showModal(message) {
+        document.getElementById('message-text').textContent = message;
+        document.getElementById('message-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('message-modal').classList.add('hidden');
+    }
+
+    function getMovieById(id) {
+        return dummyData.find(m => m.id === parseInt(id));
+    }
+
+    // Fungsi untuk mendapatkan parameter dari URL HASH
+    function getUrlParams() {
+        const hash = window.location.hash.substring(1); 
+        const params = new URLSearchParams(hash); 
+        
+        return {
+            view: params.get('view') || 'home',
+            id: params.get('id'),
+            episode: parseInt(params.get('ep') || '1'),
+            // Episode Chunk Page (untuk serial besar)
+            epPage: parseInt(params.get('epPage') || '1') 
+        };
+    }
+
+    // Navigasi yang Mengubah URL (Menggunakan Hash URL)
+    function navigateTo(view, id = null, episode = 1, epPage = 1) { 
+        let newHash = `#view=${view}`;
+        if (id) {
+            newHash += `&id=${id}`;
+            if (episode !== 1) { 
+                newHash += `&ep=${episode}`;
+            }
+            if (epPage !== 1) {
+                newHash += `&epPage=${epPage}`;
+            }
+        }
+        
+        window.location.hash = newHash;
+        renderApp();
+        window.scrollTo(0, 0);
+    }
+    
+    // Fungsi untuk pindah halaman chunk episode
+    function changeEpisodeChunk(direction, movieId, currentEpisode, currentEpPage) {
+        let newEpPage = currentEpPage;
+        if (direction === 'next') {
+            newEpPage++;
+        } else if (direction === 'prev') {
+            newEpPage--;
+        }
+        // Pindah halaman chunk episode, mempertahankan episode yang sedang dilihat
+        navigateTo('player', movieId, currentEpisode, newEpPage);
+    }
+
+    // Render komponen Poster Film
+    function renderPostCard(movie) {
+        const episodeInfo = (movie.type !== 'Movie' && movie.latestEpisode) ? `Ep ${movie.latestEpisode}` : '';
+        
+        const typeColor = {
+            Movie: 'bg-red-600',
+            Series: 'bg-blue-600',
+            Donghua: 'bg-green-600',
+            Anime: 'bg-purple-600'
+        }[movie.type] || 'bg-gray-600';
+
+        const targetEpisode = (movie.type !== 'Movie' && movie.latestEpisode) 
+                              ? movie.latestEpisode 
+                              : 1;
+
+        return `
+            <div class="rounded-lg overflow-hidden cursor-pointer" onclick="navigateTo('player', ${movie.id}, ${targetEpisode})">
+                <div class="poster-container">
+                    <img src="${movie.imageUrl}" alt="Poster ${movie.title}" class="poster-img" onerror="this.onerror=null;this.src='https://placehold.co/300x450/000000/ffffff?text=No+Image';">
+                    
+                    <!-- Overlay Rating -->
+                    <div class="absolute top-2 right-2 bg-yellow-500 text-gray-900 text-xs font-bold px-2 py-0.5 rounded-md shadow-lg">
+                        ⭐ ${movie.rating}
+                    </div>
+
+                    <!-- Overlay Type dan Episode -->
+                    <div class="absolute bottom-0 right-0 p-2 space-y-1 text-right">
+                        <span class="inline-block ${typeColor} text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-lg">
+                            ${movie.type}
+                        </span>
+                        ${episodeInfo ? `<span class="inline-block bg-gray-900 text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-lg">${episodeInfo}</span>` : ''}
+                    </div>
+                </div>
+                <h3 class="text-white text-md font-semibold mt-2 truncate">${movie.title}</h3>
+                <p class="text-gray-400 text-sm">${movie.type}</p>
+            </div>
+        `;
+    }
+
+    function renderPaginationControls(sectionName, currentPage, totalPages) {
+        if (totalPages <= 1) return '';
+        
+        return `
+            <div class="flex justify-center space-x-4 mt-8">
+                <button onclick="changePage('${sectionName}', 'prev')" 
+                        ${currentPage === 1 ? 'disabled' : ''} 
+                        class="px-4 py-2 bg-gray-700 text-white rounded-lg font-semibold hover:bg-gray-600 disabled:opacity-50 transition duration-150">
+                    &larr; Sebelumnya
+                </button>
+                <span class="px-4 py-2 text-gray-300 font-medium hidden sm:block">
+                    Halaman ${currentPage} / ${totalPages}
+                </span>
+                <button onclick="changePage('${sectionName}', 'next')" 
+                        ${currentPage === totalPages ? 'disabled' : ''} 
+                        class="px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 disabled:opacity-50 transition duration-150">
+                    Selanjutnya &rarr;
+                </button>
+            </div>
+        `;
+    }
+
+    function changePage(section, direction) {
+        if (section === 'popular') {
+            if (direction === 'next') popularPage++; else popularPage--;
+        } else if (section === 'latest') {
+            if (direction === 'next') latestPage++; else latestPage--;
+        }
+        renderApp();
+        window.scrollTo(0, 0);
+    }
+
+
+    // --- index.html (Halaman Daftar) ---
+
+    function renderHome(data = dummyData) {
+        const contentDiv = document.getElementById('app-content');
+        let html = '';
+        
+        const isFiltered = data !== dummyData;
+        const totalItems = data.length;
+        
+        // 1. Postingan Populer (Diurutkan berdasarkan 'views' manual)
+        const sortedPopular = [...data].sort((a, b) => b.views - a.views || b.rating - a.rating);
+        
+        const popularTotalPages = isFiltered ? 1 : Math.ceil(totalItems / PAGE_SIZE);
+        const popularStartIndex = (popularPage - 1) * PAGE_SIZE;
+        const popularPosts = sortedPopular.slice(popularStartIndex, popularStartIndex + PAGE_SIZE);
+
+        html += `
+            <section id="popular-section" class="mb-10">
+                <h2 class="text-3xl font-bold text-white mb-6 border-b border-red-600 pb-2">Postingan Populer</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    ${popularPosts.map(renderPostCard).join('')}
+                </div>
+                ${!isFiltered ? renderPaginationControls('popular', popularPage, popularTotalPages) : ''}
+            </section>
+        `;
+
+        // 2. Postingan Terbaru (Hanya tampil jika tidak dalam mode filter/search)
+        if (!isFiltered) { 
+            const sortedLatest = [...data].sort((a, b) => b.id - a.id);
+            
+            const latestTotalPages = Math.ceil(totalItems / PAGE_SIZE);
+            const latestStartIndex = (latestPage - 1) * PAGE_SIZE;
+            const latestPosts = sortedLatest.slice(latestStartIndex, latestStartIndex + PAGE_SIZE);
+            
+            html += `
+                <section id="latest-section" class="mb-10">
+                    <h2 class="text-3xl font-bold text-white mb-6 border-b border-red-600 pb-2">Postingan Terbaru</h2>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                        ${latestPosts.map(renderPostCard).join('')}
+                    </div>
+                    ${renderPaginationControls('latest', latestPage, latestTotalPages)}
+                </section>
+            `;
+        }
+
+        contentDiv.innerHTML = html;
+    }
+    
+    // Fungsi Pencarian/Filter
+function filterContent(type) {
+    latestPage = 1;
+    popularPage = 1;
+
+    // Simpan kategori aktif
+    window.activeCategory = type;
+
+    const filteredData = dummyData.filter(m => m.type === type);
+
+    if (filteredData.length === 0) {
+        showModal(`Tidak ada konten untuk kategori: ${type}.`);
+        renderHome(dummyData);
+        return;
+    }
+
+    // Gunakan renderHome dengan pagination per kategori
+    renderCategory(filteredData, type);
+}
+function renderCategory(data, type) {
+    const contentDiv = document.getElementById('app-content');
+    const PAGE_SIZE = window.innerWidth < 768 ? 20 : 36;
+    
+    // Tentukan halaman aktif
+    if (!window.categoryPage) window.categoryPage = 1;
+    const totalPages = Math.ceil(data.length / PAGE_SIZE);
+    const startIndex = (window.categoryPage - 1) * PAGE_SIZE;
+    const pageItems = data.slice(startIndex, startIndex + PAGE_SIZE);
+
+    let html = `
+        <section id="category-section" class="mb-10">
+            <h2 class="text-3xl font-bold text-white mb-6 border-b border-red-600 pb-2">${type}</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                ${pageItems.map(renderPostCard).join('')}
+            </div>
+            ${renderCategoryPagination(type, window.categoryPage, totalPages)}
+        </section>
+    `;
+
+    contentDiv.innerHTML = html;
+}
+function renderCategoryPagination(type, currentPage, totalPages) {
+    if (totalPages <= 1) return '';
+    return `
+        <div class="flex justify-center space-x-4 mt-8">
+            <button onclick="changeCategoryPage('${type}', 'prev')" 
+                    ${currentPage === 1 ? 'disabled' : ''} 
+                    class="px-4 py-2 bg-gray-700 text-white rounded-lg font-semibold hover:bg-gray-600 disabled:opacity-50 transition duration-150">
+                &larr; Sebelumnya
+            </button>
+            <span class="px-4 py-2 text-gray-300 font-medium hidden sm:block">
+                Halaman ${currentPage} / ${totalPages}
+            </span>
+            <button onclick="changeCategoryPage('${type}', 'next')" 
+                    ${currentPage === totalPages ? 'disabled' : ''} 
+                    class="px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 disabled:opacity-50 transition duration-150">
+                Selanjutnya &rarr;
+            </button>
+        </div>
+    `;
+}
+
+function changeCategoryPage(type, direction) {
+    const filteredData = dummyData.filter(m => m.type === type);
+    const PAGE_SIZE = window.innerWidth < 768 ? 20 : 36;
+    const totalPages = Math.ceil(filteredData.length / PAGE_SIZE);
+    if (!window.categoryPage) window.categoryPage = 1;
+
+    if (direction === 'next' && window.categoryPage < totalPages) window.categoryPage++;
+    else if (direction === 'prev' && window.categoryPage > 1) window.categoryPage--;
+
+    renderCategory(filteredData, type);
+}
+
+    function performSearch(isMobile = false) {
+        latestPage = 1; popularPage = 1;
+        const inputId = isMobile ? 'mobile-search-input' : 'search-input';
+        const query = document.getElementById(inputId).value.toLowerCase();
+        if (!query) { showModal("Mohon masukkan kata kunci pencarian."); return; }
+
+        const searchResults = dummyData.filter(movie => 
+            movie.title.toLowerCase().includes(query) || movie.type.toLowerCase().includes(query)
+        );
+
+        if (searchResults.length > 0) {
+            renderHome(searchResults);
+        } else {
+            showModal(`Tidak ditemukan hasil untuk "${query}".`);
+            renderHome(dummyData);
+        }
+        document.getElementById(inputId).value = '';
+        document.getElementById('mobile-menu').classList.add('hidden');
+    }
+
+    // --- halaman.html (Halaman Pemutar) ---
+
+    function getEmbed(movie, episode) {
+        let embedKey = '';
+        let embedId = '';
+        
+        if (movie.type === 'Movie' || !movie.episodesData) {
+            if (movie.embed) {
+                embedKey = Object.keys(movie.embed)[0];
+                embedId = movie.embed[embedKey];
+            } else {
+                 return { url: '', type: 'Tidak Ditemukan', message: 'Tautan embed film tidak ditemukan.' };
+            }
+        } 
+        else {
+            const episodeData = movie.episodesData.find(e => e.episode === episode);
+            
+            if (episodeData && episodeData.embed) {
+                embedKey = Object.keys(episodeData.embed)[0];
+                embedId = episodeData.embed[embedKey];
+            } else {
+                return { url: '', type: 'Tidak Ditemukan', message: `Tautan embed untuk Episode ${episode} belum tersedia.` };
+            }
+        }
+
+        switch (embedKey) {
+            case 'youtube':
+                return { url: `https://www.youtube.com/embed/${embedId}?autoplay=0`, type: 'YouTube', message: null };
+            case 'dailymotion':
+                return { url: `https://www.dailymotion.com/embed/video/${embedId}`, type: 'Dailymotion', message: null };
+            case 'googleDrive':
+                return { url: `https://drive.google.com/file/d/${embedId}/preview`, type: 'Google Drive', message: null };
+            default:
+                return { url: '', type: 'Tidak Ditemukan', message: 'Tipe embed tidak didukung.' };
+        }
+    }
+
+    function renderPlayer(movie, episode, epPage) { 
+        const contentDiv = document.getElementById('app-content');
+        if (!movie) {
+            navigateTo('home');
+            return;
+        }
+
+        const isSeries = movie.type !== 'Movie';
+        const embedInfo = getEmbed(movie, episode);
+        
+        const totalEps = movie.totalEpisodes || 1; 
+        
+        const hasPrev = episode > 1;
+        const hasNext = isSeries && episode < totalEps; 
+        
+        let playerContent = '';
+
+        if (embedInfo.url) {
+             // NEW: Tombol Play Palsu di atas iframe yang tersembunyi
+             playerContent = `
+                <div class="ad-overlay" id="ad-overlay-link" title="Klik untuk putar video">
+                    <button id="fake-play-button" 
+                        class="p-6 md:p-10 bg-red-600 text-white rounded-full shadow-2xl hover:bg-red-700 transition duration-300 transform hover:scale-105 ring-8 ring-red-300 ring-opacity-50">
+                        <!-- Ikon Play SVG -->
+                        <svg class="w-10 h-10 md:w-16 md:h-16" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 3v18l15-9L6 3z"></path>
+                        </svg>
+                        <span class="sr-only">Putar Video</span>
+                    </button>
+                    <p class="mt-4 text-white text-sm md:text-base font-semibold text-center absolute bottom-5 left-0 right-0">Klik tombol play untuk melanjutkan</p>
+                </div>
+                <!-- Iframe disembunyikan sampai tombol play palsu diklik -->
+                <iframe id="video-embed" allowfullscreen class="w-full h-full absolute top-0 left-0 hidden"></iframe>
+            `;
+        } else {
+            // Konten jika tidak ada embed URL
+            playerContent = `
+                <div class="flex items-center justify-center h-full bg-gray-900 rounded-lg text-red-500">
+                    <p class="p-8 text-lg font-semibold">${embedInfo.message || 'Error: Konten pemutar tidak dapat dimuat.'}</p>
+                </div>
+            `;
+        }
+        
+        // --- LOGIKA DAFTAR TOMBOL EPISODE DENGAN PAGINASI CHUNK ---
+        let episodeListHtml = '';
+        if (isSeries) {
+            const totalChunks = Math.ceil(totalEps / EPISODES_PER_CHUNK);
+            
+            const safeEpPage = Math.min(Math.max(1, epPage), totalChunks);
+
+            const chunkStart = (safeEpPage - 1) * EPISODES_PER_CHUNK + 1;
+            const chunkEnd = Math.min(safeEpPage * EPISODES_PER_CHUNK, totalEps);
+
+            let buttons = '';
+            for (let i = chunkStart; i <= chunkEnd; i++) {
+                const isActive = i === episode ? 'bg-red-600 text-white font-bold shadow-lg' : 'bg-gray-700 text-gray-300 hover:bg-gray-600';
+                buttons += `
+                    <button onclick="navigateTo('player', ${movie.id}, ${i}, ${safeEpPage})" 
+                            class="px-3 py-2 rounded-lg text-sm transition duration-150 ${isActive} flex-shrink-0">
+                        ${i}
+                    </button>
+                `;
+            }
+
+            let chunkNavControls = '';
+            if (totalChunks > 1) {
+                chunkNavControls = `
+                    <div class="flex justify-between items-center space-x-2 mt-4 pt-3 border-t border-gray-700">
+                        <button onclick="changeEpisodeChunk('prev', ${movie.id}, ${episode}, ${safeEpPage})" 
+                                ${safeEpPage === 1 ? 'disabled' : ''} 
+                                class="flex-1 px-4 py-2 bg-gray-600 text-white font-semibold rounded-lg hover:bg-gray-500 disabled:opacity-50 transition duration-150">
+                            &larr; Halaman Sebelumnya
+                        </button>
+                        <span class="text-gray-400 text-sm whitespace-nowrap hidden sm:block">
+                            Bagian ${safeEpPage} / ${totalChunks}
+                        </span>
+                        <button onclick="changeEpisodeChunk('next', ${movie.id}, ${episode}, ${safeEpPage})" 
+                                ${safeEpPage === totalChunks ? 'disabled' : ''} 
+                                class="flex-1 px-4 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 disabled:opacity-50 transition duration-150">
+                            Halaman Selanjutnya &rarr;
+                        </button>
+                    </div>
+                `;
+            }
+
+            episodeListHtml = `
+                <section id="episode-list" class="bg-gray-800 p-4 rounded-lg shadow-xl mb-8">
+                    <h2 class="text-xl font-bold text-white mb-4">Daftar Episode (${totalEps} Total)</h2>
+                    
+                    ${totalChunks > 1 ? `<p class="text-sm text-gray-400 mb-3">Menampilkan Episode ${chunkStart} - ${chunkEnd}</p>` : ''}
+
+                    <div class="flex flex-wrap gap-2 p-2 bg-gray-900 rounded-md">
+                        ${buttons}
+                    </div>
+                    
+                    ${chunkNavControls}
+                </section>
+            `;
+        }
+        // ------------------------------------------
+
+        let html = `
+            <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-4">
+                <button onclick="navigateTo('home')" class="text-gray-400 hover:text-red-500 mr-2">&larr;</button>
+                ${movie.title} ${isSeries ? `(Episode ${episode})` : ''}
+            </h1>
+            
+            <!-- Frame Video -->
+            <div class="video-wrapper mb-6">
+                ${playerContent}
+            </div>
+
+            <!-- Tombol Download dan Navigasi Prev/Next -->
+            <div class="bg-gray-800 p-4 rounded-lg shadow-xl mb-4">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <!-- Tombol Download -->
+                    <a href="${movie.downloadLink}" target="_blank" class="w-full md:w-auto px-6 py-3 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition duration-150 text-center">
+                        <svg class="w-5 h-5 inline mr-2 -mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        Download Film
+                    </a>
+                    
+                    ${isSeries ? ` 
+                    <!-- Navigasi Episode (Prev/Next) -->
+                    <div class="flex space-x-3 w-full md:w-auto">
+                        <button onclick="changeEpisode('prev', ${movie.id}, ${episode})" ${hasPrev ? '' : 'disabled'} class="flex-1 px-4 py-2 bg-gray-600 text-white font-semibold rounded-lg hover:bg-gray-700 disabled:opacity-50 transition duration-150">
+                            Prev
+                        </button>
+                        <span class="px-4 py-2 bg-gray-700 text-white font-bold rounded-lg whitespace-nowrap hidden sm:block">
+                            Ep. ${episode} / ${totalEps}
+                        </span>
+                        <button onclick="changeEpisode('next', ${movie.id}, ${episode})" ${hasNext ? '' : 'disabled'} class="flex-1 px-4 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 disabled:opacity-50 transition duration-150">
+                            Next
+                        </button>
+                    </div>
+                    ` : ''}
+                </div>
+            </div>
+            
+            <!-- DAFTAR EPISODE LENGKAP DENGAN CHUNKING -->
+            ${episodeListHtml}
+
+            <!-- Rekomendasi Movie -->
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-4 border-b border-red-600 pb-2">Rekomendasi ${movie.type}</h2>
+                <div id="recommendation-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <!-- Konten rekomendasi dimuat di JS -->
+                </div>
+            </section>
+        `;
+
+        contentDiv.innerHTML = html;
+        loadVideoAndRecommendations(movie, episode, embedInfo);
+    }
+    
+    // Logic untuk memuat video dan overlay iklan
+    function loadVideoAndRecommendations(movie, episode, embedInfo) {
+        const iframe = document.getElementById('video-embed');
+        const overlay = document.getElementById('ad-overlay-link'); // Ini adalah div overlay baru
+        const playButton = document.getElementById('fake-play-button');
+
+        if (playButton && iframe && embedInfo.url) {
+            overlay.classList.remove('hidden'); // Pastikan overlay terlihat
+            iframe.classList.add('hidden');    // Pastikan iframe tersembunyi
+            
+            // Set listener pada Tombol Play Palsu
+            playButton.onclick = (e) => {
+                e.preventDefault(); 
+                e.stopPropagation();
+
+                // 1. Buka Link Adsterra di tab baru
+                window.open(AD_DIRECT_LINK, '_blank'); 
+                
+                // 2. Sembunyikan overlay dan muat video di iframe
+                overlay.classList.add('hidden');
+                iframe.classList.remove('hidden');
+                iframe.src = embedInfo.url;
+            };
+
+        } else if (overlay) {
+             // Jika tidak ada embed URL, sembunyikan overlay
+             overlay.style.display = 'none';
+        }
+
+        // Rekomendasi
+        const recommendations = dummyData.filter(m => m.type === movie.type && m.id !== movie.id);
+        const recGrid = document.getElementById('recommendation-grid');
+        if (recGrid) {
+            recGrid.innerHTML = recommendations.slice(0, 5).map(renderPostCard).join('');
+        }
+    }
+
+    function changeEpisode(direction, movieId, currentEpisode) {
+        let newEpisode = currentEpisode;
+        if (direction === 'next') {
+            newEpisode++;
+        } else if (direction === 'prev') {
+            newEpisode--;
+        }
+        // Navigasi ke episode baru. epPage akan di-reset atau dihitung ulang di renderPlayer
+        navigateTo('player', movieId, newEpisode);
+    }
+    
+    // --- Inisialisasi Aplikasi (Memeriksa URL) ---
+
+    function renderApp() {
+        const params = getUrlParams();
+        const movie = getMovieById(params.id);
+
+        if (params.view === 'player' && movie) {
+            renderPlayer(movie, params.episode, params.epPage); 
+        } else {
+            renderHome(); // Render index.html
+        }
+    }
+    
+    // Tambahkan listener untuk tombol Back/Forward browser
+    window.addEventListener('hashchange', renderApp);
+
+    // Event Listener untuk Tombol Menu Mobile
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Render halaman awal saat DOMContentLoaded berdasarkan URL
+        renderApp(); 
+    });
+</script>
+
 </body>
 </html>
+
+
+
+
